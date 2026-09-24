@@ -1,0 +1,48 @@
+---
+import { Image } from 'astro:assets';
+import introPhoto from '../assets/images/intro-photo.png';
+---
+<section class="intro">
+  <div class="container intro-grid">
+    <div class="intro-art">
+      <div class="photo-frame" style="aspect-ratio:4/5">
+        <Image
+          class="photo-frame-img"
+          src={introPhoto}
+          alt="Hume Edge team working session"
+          widths={[330, 460]}
+          sizes="(max-width: 660px) 100vw, 460px"
+          quality={70}
+          loading="lazy"
+          style="object-fit:contain"
+        />
+      </div>
+      <div class="intro-art-sticker" aria-hidden="true">
+        <svg viewBox="-14 -14 128 114" width="84" height="73" preserveAspectRatio="xMidYMid meet">
+          <polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3" fill="#00FB90" stroke="#00FB90" stroke-width="22" stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="intro-body">
+      <div class="eyebrow">Built on global experience</div>
+      <p class="lead" style="margin-top:24px">
+        Too many AI programs stall at the same point: <em>the technology is ready, the people aren't.</em>
+      </p>
+      <p class="body">
+        <a href="https://mnpdigital.ca/insights/2026-canadian-ai-report-download/" target="_blank" rel="noopener noreferrer">MNP's The Business of AI 2026 report</a> found that only 4% of organizations consider their use of AI to deliver transformational strategic value.
+      </p>
+      <p class="body">
+        Most of the industry treats that gap as a footnote. We treat it as the headline. Our founding team has led transformation programs at the firms that defined the category. We left to build something the category was missing.
+      </p>
+      <p class="body">
+        We've designed some of the world's largest transformations. We've seen what works. We've seen what doesn't. The discipline came with us. The bureaucracy didn't.
+      </p>
+      <p class="intro-tagline">
+        An AI advisory firm that begins where others stop.<br />
+        <em>The Human-Side of AI.</em>
+      </p>
+      <a class="btn btn-ghost-dark" href="/about">Learn More About Us</a>
+    </div>
+  </div>
+</section>

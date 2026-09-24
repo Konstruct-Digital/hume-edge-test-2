@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+// No page-specific styles needed - all base styles loaded via layout
+import Nav from '../components/Nav.astro';
+
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Hume Edge",
+  "url": "https://humeedge.ai",
+  "logo": "https://humeedge.ai/assets/hume-edge-logo.png",
+  "description": "AI enablement consulting firm focused on the human side of AI adoption - strategy, workforce training, and adoption measurement.",
+  "sameAs": []
+};
+import Hero from '../components/Hero.astro';
+import Intro from '../components/Intro.astro';
+import ProblemCarousel from '../components/ProblemCarousel.astro';
+import ImageBreak from '../components/ImageBreak.astro';
+import ServicesSection from '../components/ServicesSection.astro';
+// import ResourceDownload from '../components/ResourceDownload.astro'; // hidden until PDF is provided
+import VersusSplit from '../components/VersusSplit.astro';
+import IndustriesSection from '../components/IndustriesSection.astro';
+import WhyDifferent from '../components/WhyDifferent.astro';
+import LeadershipTeam from '../components/LeadershipTeam.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CTAForm from '../components/CTAForm.astro';
+import Footer from '../components/Footer.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+---
+
+<BaseLayout
+  title="Hume Edge: AI Advisory Firm That Starts With Your People"
+  description="From AI strategy to workforce training to adoption measurement, Hume Edge covers the full AI journey with a people-first approach."
+  canonical="https://humeedge.ai/"
+  schema={orgSchema}
+>
+  <Nav current="Home" />
+  <Hero />
+  <Intro />
+  <ProblemCarousel />
+  <ImageBreak />
+  <ServicesSection />
+  {/* <ResourceDownload /> */}
+  <VersusSplit />
+  <IndustriesSection />
+  <Testimonials />
+  <WhyDifferent />
+  <LeadershipTeam />
+  <CTAForm id="contact" formId="home-cta" />
+  <Footer />
+  <ScrollReveal />
+</BaseLayout>

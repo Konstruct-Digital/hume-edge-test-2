@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import ScrollReveal from '../components/ScrollReveal.astro';
+---
+
+<BaseLayout
+  title="Page Not Found — Hume Edge"
+  description="The page you're looking for doesn't exist."
+>
+  <Nav />
+
+  <section class="not-found">
+    <div class="container not-found-inner">
+      <div class="not-found-code">404</div>
+      <h1 class="not-found-title">Page not found.</h1>
+      <p class="not-found-body">
+        The page you're looking for doesn't exist or may have moved.
+      </p>
+      <a class="btn btn-lg btn-mint" href="/">Back to Home</a>
+    </div>
+  </section>
+
+  <Footer />
+  <ScrollReveal />
+</BaseLayout>
+
+<style>
+  .not-found {
+    min-height: calc(100vh - 64px);
+    display: flex;
+    align-items: center;
+    background: var(--he-indigo);
+    color: var(--he-white);
+  }
+  .not-found-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+  .not-found-code {
+    font: 700 120px/1 'Poppins', sans-serif;
+    color: rgba(255, 255, 255, 0.12);
+    letter-spacing: -4px;
+    line-height: 1;
+    margin-bottom: -8px;
+  }
+  .not-found-title {
+    font: 700 48px/1.1 'Poppins', sans-serif;
+    margin: 0;
+  }
+  .not-found-body {
+    font: 400 18px/1.6 'Inter', sans-serif;
+    color: rgba(255, 255, 255, 0.7);
+    max-width: 420px;
+    margin: 0;
+  }
+  @media (max-width: 660px) {
+    .not-found-code { font-size: 80px; }
+    .not-found-title { font-size: 32px; }
+    .not-found-body { font-size: 16px; }
+  }
+</style>

@@ -1,0 +1,513 @@
+/* ============================================================
+   Hume Edge — Home (Light Theme Override)
+   Loads AFTER styles.css. Scoped under html.theme-light for
+   higher specificity than the base rules.
+   ============================================================ */
+
+html.theme-light, html.theme-light body {
+  background: #ffffff;
+  color: var(--he-indigo);
+}
+
+html.theme-light ::selection { background: var(--he-purple); color: #fff; }
+
+/* ------------------------------------------------------------
+   Buttons — ghost-dark variant becomes a light-ground ghost.
+   ------------------------------------------------------------ */
+html.theme-light .btn-ghost-dark {
+  background: transparent;
+  color: var(--he-indigo);
+  box-shadow: inset 0 0 0 1.5px var(--border-strong);
+}
+html.theme-light .btn-ghost-dark:hover {
+  color: var(--he-purple);
+  box-shadow: inset 0 0 0 1.5px var(--he-purple);
+}
+
+/* ------------------------------------------------------------
+   Nav — translucent white over content
+   ------------------------------------------------------------ */
+html.theme-light .nav {
+  background: rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border-bottom: 1px solid var(--border);
+}
+html.theme-light .nav-link { color: rgba(21, 3, 82, 0.72); }
+html.theme-light .nav-link:hover { color: var(--he-purple); }
+html.theme-light .nav-link.is-current { color: var(--he-indigo); }
+html.theme-light .nav-drawer-link.is-current { color: var(--he-indigo); }
+
+/* Force dark-on-light wordmark in the nav, regardless of the
+   <HumeLogo light /> flag the component sets for the dark theme. */
+html.theme-light .nav .nav-logo-wordmark .nav-logo-hume { color: var(--he-indigo); }
+html.theme-light .nav .nav-logo-wordmark .nav-logo-edge { color: var(--he-purple); }
+
+/* ------------------------------------------------------------
+   Section head / eyebrow
+   ------------------------------------------------------------ */
+html.theme-light .section-head h2 { color: var(--he-indigo); }
+html.theme-light .section-head h2 em { color: var(--he-purple); }
+html.theme-light .section-head p { color: rgba(21, 3, 82, 0.7); }
+
+html.theme-light .eyebrow {
+  color: var(--he-purple);
+}
+html.theme-light .eyebrow .dot {
+  background: var(--he-purple);
+  box-shadow: 0 0 0 4px rgba(113, 24, 194, 0.14);
+}
+
+/* ============================================================
+   Hero — light variants
+   ============================================================ */
+html.theme-light .hero {
+  background:
+    radial-gradient(ellipse 900px 600px at 85% 8%, rgba(113, 24, 194, 0.12), transparent 65%),
+    radial-gradient(ellipse 700px 540px at 0% 92%, rgba(0, 251, 144, 0.10), transparent 60%),
+    #ffffff;
+}
+html.theme-light .hero.hero--pure-black { background: #ffffff; }
+html.theme-light .hero.hero--mint-glow {
+  background:
+    radial-gradient(ellipse 700px 500px at 80% 30%, rgba(0, 251, 144, 0.20), transparent 60%),
+    radial-gradient(ellipse 500px 400px at 10% 80%, rgba(113, 24, 194, 0.12), transparent 60%),
+    #ffffff;
+}
+html.theme-light .hero::after {
+  background: linear-gradient(180deg, transparent, rgba(21, 3, 82, 0.04));
+}
+
+html.theme-light .hero-eyebrow {
+  color: var(--he-purple);
+}
+html.theme-light .hero-eyebrow .dot {
+  background: var(--he-purple);
+  box-shadow: 0 0 0 5px rgba(113, 24, 194, 0.16);
+}
+
+html.theme-light .hero-title { color: var(--he-indigo); }
+html.theme-light .hero-title em {
+  background: linear-gradient(120deg, var(--he-purple) 0%, var(--he-magenta) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+html.theme-light .hero-sub { color: rgba(21, 3, 82, 0.72); }
+html.theme-light .hero-sub em { color: var(--he-purple); font-weight: 600; }
+
+html.theme-light .hero-portrait-frame {
+  box-shadow:
+    0 30px 80px -20px rgba(21, 3, 82, 0.28),
+    inset 0 0 0 1px rgba(21, 3, 82, 0.06);
+}
+
+/* ============================================================
+   Logo carousel
+   ============================================================ */
+html.theme-light .logos { background: #ffffff; }
+html.theme-light .logos-body { color: rgba(21, 3, 82, 0.72); }
+html.theme-light .logos-body em { color: var(--he-purple); font-weight: 600; }
+
+html.theme-light .marquee-band {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--he-cream);
+}
+html.theme-light .marquee-track {
+  mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+}
+html.theme-light .brand-mark { color: rgba(21, 3, 82, 0.55); }
+html.theme-light .brand-mark .dot { color: var(--he-purple); }
+
+/* ============================================================
+   Intro
+   ============================================================ */
+html.theme-light .intro {
+  background:
+    radial-gradient(ellipse 600px 400px at 80% 20%, rgba(113, 24, 194, 0.08), transparent 60%),
+    #ffffff;
+}
+html.theme-light .intro-body p.lead { color: var(--he-indigo); }
+html.theme-light .intro-body p.lead em { color: var(--he-purple); }
+html.theme-light .intro-body p.body { color: rgba(21, 3, 82, 0.72); }
+html.theme-light .intro-body .intro-tagline {
+  color: var(--he-indigo);
+  border-left: 3px solid var(--he-purple);
+  background: rgba(113, 24, 194, 0.06);
+}
+html.theme-light .intro-body .intro-tagline em { color: var(--he-purple); }
+html.theme-light .intro-art image-slot {
+  box-shadow: 0 24px 60px -16px rgba(21, 3, 82, 0.22), 0 0 0 1px var(--border);
+}
+
+/* Photo frame drop target — visible on white */
+html.theme-light .photo-frame {
+  background: var(--he-cream);
+  border: 1.5px dashed rgba(113, 24, 194, 0.32);
+}
+html.theme-light .photo-frame:hover {
+  background: rgba(113, 24, 194, 0.05);
+  border-color: var(--he-purple);
+}
+html.theme-light .photo-frame .photo-hint { color: rgba(21, 3, 82, 0.7); }
+html.theme-light .photo-frame .photo-hint .ic {
+  border: 1.5px solid rgba(113, 24, 194, 0.45);
+  color: var(--he-purple);
+  background: rgba(113, 24, 194, 0.08);
+}
+html.theme-light .photo-frame .photo-hint .ttl { color: var(--he-purple); }
+html.theme-light .photo-frame .photo-hint .sub { color: rgba(21, 3, 82, 0.55); }
+/* Once a real image fills the frame, drop the dashed drop-target chrome
+   (the base :has() rule is otherwise out-specified by the light-theme frame). */
+html.theme-light .photo-frame:has(.photo-frame-img),
+html.theme-light .photo-frame:has(image-slot[data-filled]) {
+  background: transparent;
+  border: 0;
+}
+
+/* ============================================================
+   Image break — cream gradient
+   ============================================================ */
+html.theme-light .imgbreak {
+  background: linear-gradient(180deg, var(--he-cream) 0%, #ffffff 60%);
+}
+html.theme-light .imgbreak::before {
+  background: radial-gradient(circle, rgba(113, 24, 194, 0.10), transparent 65%);
+}
+html.theme-light .imgbreak-content { color: var(--he-indigo); }
+html.theme-light .imgbreak-lead { color: var(--he-indigo); }
+html.theme-light .imgbreak-lead em { color: var(--he-purple); }
+html.theme-light .imgbreak-photo-img {
+  box-shadow:
+    0 30px 80px -20px rgba(21, 3, 82, 0.28),
+    inset 0 0 0 1px rgba(21, 3, 82, 0.06);
+}
+html.theme-light .stat-pair { border-top: 1px solid var(--border); }
+html.theme-light .stat-row .big { color: var(--he-purple); }
+html.theme-light .stat-row .big .pct { color: var(--he-magenta); }
+html.theme-light .stat-row .lead { color: var(--he-indigo); }
+html.theme-light .stat-row .src { color: rgba(21, 3, 82, 0.5); }
+
+/* ============================================================
+   Problem carousel — light card surfaces
+   ============================================================ */
+html.theme-light .problem {
+  background: linear-gradient(180deg, var(--he-cream) 0%, #ffffff 100%);
+}
+html.theme-light .problem::before {
+  background: radial-gradient(circle, rgba(113, 24, 194, 0.10), transparent 65%);
+}
+html.theme-light .problem-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+}
+html.theme-light .problem-card:hover {
+  border-color: var(--he-purple);
+  background: #ffffff;
+  box-shadow: var(--shadow-3);
+}
+html.theme-light .problem-card::after {
+  background: radial-gradient(circle at 100% 0%, rgba(113, 24, 194, 0.10), transparent 50%);
+}
+html.theme-light .problem-card .label { color: var(--he-purple); }
+html.theme-light .problem-card .quote { color: var(--he-indigo); }
+html.theme-light .problem-card .quote::before,
+html.theme-light .problem-card .quote::after { color: var(--he-purple); }
+html.theme-light .problem-card .body { color: rgba(21, 3, 82, 0.7); }
+html.theme-light .problem-card .helper {
+  border-top: 1px solid var(--border);
+  color: var(--he-purple);
+}
+
+html.theme-light .problem-controls .progress { background: rgba(21, 3, 82, 0.1); }
+html.theme-light .problem-controls .progress .bar { background: var(--he-purple); }
+html.theme-light .problem-controls .arrow-btn {
+  border: 1px solid rgba(21, 3, 82, 0.18);
+  color: var(--he-indigo);
+}
+html.theme-light .problem-controls .arrow-btn:hover {
+  border-color: var(--he-purple);
+  color: var(--he-purple);
+}
+
+html.theme-light .problem-foot .ln { color: var(--he-indigo); }
+html.theme-light .problem-foot .ln em { color: var(--he-purple); }
+
+/* ============================================================
+   Services — light cards
+   ============================================================ */
+html.theme-light .services { background: #ffffff; }
+html.theme-light .services::before {
+  background: radial-gradient(circle, rgba(113, 24, 194, 0.10), transparent 65%);
+}
+html.theme-light .services-head .right p { color: rgba(21, 3, 82, 0.7); }
+
+html.theme-light .service-card .card-face {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+}
+html.theme-light .service-card:hover .card-face {
+  border-color: var(--card-accent, var(--he-purple));
+  box-shadow: var(--shadow-3);
+}
+html.theme-light .service-card .title { color: var(--he-indigo); }
+html.theme-light .service-card .body { color: rgba(21, 3, 82, 0.72); }
+html.theme-light .service-card .cta { border-top: 1px solid var(--border); color: #150352; }
+
+/* Service Explore modal — light theme */
+html.theme-light .svc-modal-overlay { background: rgba(21, 3, 82, 0.42); }
+html.theme-light .svc-modal {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--card-accent, var(--he-purple));
+  box-shadow: 0 40px 100px rgba(21, 3, 82, 0.28);
+}
+html.theme-light .svc-modal-close {
+  background: rgba(21, 3, 82, 0.06);
+  color: rgba(21, 3, 82, 0.6);
+}
+html.theme-light .svc-modal-close:hover { background: rgba(21, 3, 82, 0.12); color: var(--he-indigo); }
+html.theme-light .svc-modal-title { color: var(--he-indigo); }
+html.theme-light .svc-modal-intro { color: rgba(21, 3, 82, 0.78); }
+html.theme-light .svc-modal-deliverables-label { color: rgba(21, 3, 82, 0.5); }
+html.theme-light .svc-modal-deliverables li { color: rgba(21, 3, 82, 0.9); }
+
+/* Studio — keep signature mint glow, but on light card */
+html.theme-light .studio-card {
+  background:
+    radial-gradient(ellipse 700px 500px at 100% 0%, rgba(0, 251, 144, 0.18), transparent 60%),
+    linear-gradient(135deg, #200868 0%, #150352 100%);
+  border: 1px solid rgba(0, 251, 144, 0.25);
+  box-shadow: var(--shadow-2);
+}
+html.theme-light .studio-card .label { color: var(--he-mint); }
+html.theme-light .studio-card .title { color: var(--he-white); }
+html.theme-light .studio-card .body { color: rgba(255, 255, 255, 0.82); }
+html.theme-light .studio-card .deliverables li { color: rgba(255, 255, 255, 0.82); }
+html.theme-light .studio-card.is-quiet {
+  background: var(--he-cream);
+  border-color: var(--border);
+}
+html.theme-light .studio-card.is-quiet .label { color: rgba(21, 3, 82, 0.6); }
+html.theme-light .studio-card.is-quiet .label .badge {
+  background: rgba(21, 3, 82, 0.1);
+  color: var(--he-indigo);
+}
+
+/* ============================================================
+   Resource — gated executive guide (light)
+   ============================================================ */
+html.theme-light .resource {
+  background:
+    radial-gradient(ellipse 600px 400px at 100% 0%, rgba(0, 251, 144, 0.12), transparent 62%),
+    radial-gradient(ellipse 600px 400px at 0% 100%, rgba(113, 24, 194, 0.10), transparent 62%),
+    var(--he-cream);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+html.theme-light .resource-copy h2 { color: var(--he-indigo); }
+html.theme-light .resource-copy h2 em { color: var(--he-purple); }
+html.theme-light .resource-copy > p { color: rgba(21, 3, 82, 0.72); }
+html.theme-light .resource-points li { color: rgba(21, 3, 82, 0.88); }
+html.theme-light .resource-success h3 { color: var(--he-indigo); }
+html.theme-light .resource-success p { color: rgba(21, 3, 82, 0.74); }
+html.theme-light .resource-success p strong { color: var(--he-indigo); }
+html.theme-light .form-error { color: #c0264a; }
+
+/* ============================================================
+   Process — versus split (kept high-contrast)
+   ============================================================ */
+html.theme-light .process { background: #ffffff; }
+html.theme-light .process-head h2 { color: var(--he-indigo); }
+html.theme-light .process-head h2 em { color: var(--he-purple); }
+html.theme-light .process-head p { color: rgba(21, 3, 82, 0.7); }
+
+/* The 'us' column keeps its rich purple/indigo on purpose -
+   visual anchor that ties back to brand colors. The 'them'
+   column becomes light grey for clear contrast. */
+html.theme-light .versus-col.them {
+  background: linear-gradient(180deg, var(--he-cream) 0%, #f1eef7 100%);
+  color: rgba(21, 3, 82, 0.55);
+}
+html.theme-light .versus-col.them .brandrow .title { color: rgba(21, 3, 82, 0.45); }
+html.theme-light .versus-col.them .brandrow .tag {
+  background: rgba(21, 3, 82, 0.08);
+  color: rgba(21, 3, 82, 0.5);
+}
+html.theme-light .versus-col.them .versus-row { border-top-color: rgba(21, 3, 82, 0.1); }
+html.theme-light .versus-col.them .versus-row .k { color: rgba(21, 3, 82, 0.45); }
+html.theme-light .versus-col.them .versus-row .v {
+  color: rgba(21, 3, 82, 0.5);
+  text-decoration-color: rgba(21, 3, 82, 0.3);
+}
+
+html.theme-light .versus-cta { background: #ffffff; }
+
+/* ============================================================
+   Industries — pinned scroll
+   ============================================================ */
+html.theme-light .industries {
+  background: linear-gradient(180deg, #ffffff 0%, var(--he-cream) 100%);
+}
+html.theme-light .ind-title { color: var(--he-indigo); }
+html.theme-light .ind-active { color: var(--he-purple); }
+html.theme-light .ind-body { color: rgba(21, 3, 82, 0.65); }
+html.theme-light .ind-card {
+  background: var(--he-cream);
+  border-color: var(--border);
+  color: rgba(21, 3, 82, 0.45);
+}
+html.theme-light .ind-card-name { color: rgba(21, 3, 82, 0.85); }
+html.theme-light .ind-card.is-active {
+  background: #ffffff;
+  border-color: transparent;
+  box-shadow: var(--shadow-3);
+  color: var(--he-purple);
+}
+html.theme-light .ind-card.is-active .ind-card-name { color: var(--he-purple); }
+html.theme-light .ind-card:focus-visible { outline-color: var(--he-purple); }
+@media (max-width: 660px) {
+  html.theme-light .ind-left { background: #ffffff; }
+  html.theme-light .ind-left::after { background: linear-gradient(to bottom, #ffffff, transparent); }
+  html.theme-light .ind-list-fade { background: linear-gradient(to bottom, transparent, var(--he-cream)); }
+}
+
+/* ============================================================
+   Why we're different
+   ============================================================ */
+html.theme-light .why { background: #ffffff; }
+html.theme-light .why-row { border-top: 1px solid var(--border); }
+html.theme-light .why-row .num { color: var(--he-purple); }
+html.theme-light .why-row .ttl { color: var(--he-indigo); }
+html.theme-light .why-row .body { color: rgba(21, 3, 82, 0.72); }
+
+/* Closer card — keep this one as a dark anchor card; it's the
+   page's narrative climax and the contrast feels intentional. */
+
+/* ============================================================
+   Leadership team (light)
+   ============================================================ */
+html.theme-light .leadership { background: var(--he-cream); }
+html.theme-light .leadership-head h2 { color: var(--he-indigo); }
+html.theme-light .leader-card { background: transparent; border: 0; box-shadow: none; }
+html.theme-light .leader-face {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+}
+html.theme-light .leader-card:hover .leader-face { border-color: var(--he-purple); box-shadow: var(--shadow-3); }
+html.theme-light .leader-back {
+  background: linear-gradient(160deg, #ffffff 0%, var(--he-cream) 100%);
+}
+html.theme-light .leader-name { color: var(--he-indigo); }
+html.theme-light .leader-title { color: var(--he-purple); }
+html.theme-light .leader-bio { color: rgba(21, 3, 82, 0.74); }
+html.theme-light .leader-link { color: rgba(21, 3, 82, 0.7); }
+html.theme-light .leader-link:hover { color: var(--he-purple); }
+
+/* ============================================================
+   Client testimonials (light)
+   ============================================================ */
+html.theme-light .testimonials {
+  background:
+    radial-gradient(ellipse 700px 500px at 100% 0%, rgba(0, 251, 144, 0.18), transparent 60%),
+    linear-gradient(135deg, #200868 0%, #150352 100%);
+}
+html.theme-light .testimonials-head h2 { color: var(--he-white); }
+html.theme-light .testimonials .eyebrow { color: var(--he-white); }
+html.theme-light .tcard {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+}
+html.theme-light .tcard-media { background: var(--he-cream); }
+html.theme-light .tcard-video .tcard-media { background: #0b0420; }
+html.theme-light .tcard-quote { color: rgba(21, 3, 82, 0.82); }
+html.theme-light .tcard-name { color: var(--he-indigo); }
+html.theme-light .tcard-role { color: rgba(21, 3, 82, 0.55); }
+html.theme-light .tcard-cs { color: var(--he-purple); }
+
+/* Flip testimonial — light theme */
+html.theme-light .tcard-flip { background: transparent; border: 0; box-shadow: none; }
+html.theme-light .tflip-face {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+}
+html.theme-light .tflip-back {
+  background:
+    radial-gradient(ellipse 520px 420px at 100% 0%, rgba(113, 24, 194, 0.10), transparent 62%),
+    #ffffff;
+}
+html.theme-light .tback-eyebrow { color: var(--he-purple); }
+html.theme-light .tcard-backquote { color: rgba(21, 3, 82, 0.82); scrollbar-color: rgba(21, 3, 82, 0.35) transparent; }
+html.theme-light .tcard-backquote::-webkit-scrollbar-thumb { background: rgba(21, 3, 82, 0.35); }
+html.theme-light .tback-fade { color: rgba(21, 3, 82, 0.5); }
+html.theme-light .tback-fade--top    { background: linear-gradient(to bottom, #ffffff 0%, transparent 100%); }
+html.theme-light .tback-fade--bottom { background: linear-gradient(to top,   #ffffff 0%, transparent 100%); }
+
+/* ============================================================
+   CTA section — light with subtle brand glow
+   ============================================================ */
+html.theme-light .cta-section {
+  background:
+    radial-gradient(ellipse 700px 400px at 0% 100%, rgba(113, 24, 194, 0.14), transparent 60%),
+    radial-gradient(ellipse 600px 400px at 100% 0%, rgba(0, 251, 144, 0.10), transparent 65%),
+    var(--he-cream);
+}
+html.theme-light .cta-grid h2 { color: var(--he-indigo); }
+html.theme-light .cta-grid h2 em { color: var(--he-purple); }
+html.theme-light .cta-grid p { color: rgba(21, 3, 82, 0.72); }
+html.theme-light .cta-meta { border-top: 1px solid var(--border); }
+html.theme-light .cta-meta-item .k { color: var(--he-purple); }
+html.theme-light .cta-meta-item .v { color: var(--he-indigo); }
+
+html.theme-light .form-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-2);
+}
+html.theme-light .form-row label { color: rgba(21, 3, 82, 0.7); }
+html.theme-light .form-row input,
+html.theme-light .form-row select,
+html.theme-light .form-row textarea {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  color: var(--he-indigo);
+}
+html.theme-light .form-row input::placeholder,
+html.theme-light .form-row textarea::placeholder { color: rgba(21, 3, 82, 0.35); }
+html.theme-light .form-row input:focus,
+html.theme-light .form-row select:focus,
+html.theme-light .form-row textarea:focus {
+  border-color: var(--he-purple);
+  background: rgba(113, 24, 194, 0.04);
+}
+html.theme-light .form-options .opt {
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  color: rgba(21, 3, 82, 0.78);
+}
+html.theme-light .form-options .opt:hover,
+html.theme-light .form-options .opt.active {
+  background: var(--he-purple);
+  color: #ffffff;
+  border-color: var(--he-purple);
+}
+html.theme-light .form-actions .fineprint { color: rgba(21, 3, 82, 0.7); }
+
+/* ============================================================
+   Footer — keep dark, it grounds the page
+   ============================================================ */
+/* (No overrides — footer remains the deep-black anchor.) */
+
+/* ============================================================
+   Image slot defaults — visible on light
+   ============================================================ */
+html.theme-light image-slot {
+  --slot-bg: var(--he-cream);
+  --slot-border: var(--border-strong);
+  --slot-text: rgba(21, 3, 82, 0.6);
+}

@@ -1,0 +1,42 @@
+---
+const INDUSTRIES = [
+  'Oil and Gas','Mining','Utilities and Power','Renewable Energy',
+  'Construction','Manufacturing','Aerospace and Defence','Transportation and Logistics',
+  'Technology and Communications','Media and Entertainment','Consumer Goods and Retail',
+  'Hospitality and Tourism','Food and Beverage','Healthcare and Life Sciences',
+  'Pharmaceuticals and Biotech','Professional Services','Financial Services','Real Estate',
+  'Agriculture','Education','Government','Public Services','Non-profit and NGOs',
+];
+const a = [...INDUSTRIES, ...INDUSTRIES];
+const rev = [...INDUSTRIES].reverse();
+const b = [...rev, ...rev];
+---
+
+<section class="industries">
+  <div class="container">
+    <div class="industries-head reveal">
+      <div>
+        <div class="eyebrow">Industry experience or specialization</div>
+        <h2>Who we work with.</h2>
+      </div>
+      <p>These are the industries we know best, but the challenges we tackle aren't sector-specific. If you're looking for help getting your people AI-ready, let's talk.</p>
+    </div>
+  </div>
+
+  <div class="ind-marquee" aria-label="Industries served">
+    <div class="ind-row" aria-hidden="true">
+      {a.map((name, i) => (
+        <span class={`ind-item${i % 2 === 1 ? ' alt' : ''}`}>
+          {name} <span class="sep">◆</span>
+        </span>
+      ))}
+    </div>
+    <div class="ind-row rev" aria-hidden="true" style="margin-top:16px">
+      {b.map((name, i) => (
+        <span class={`ind-item${i % 2 === 1 ? ' alt' : ''}`}>
+          {name} <span class="sep">◆</span>
+        </span>
+      ))}
+    </div>
+  </div>
+</section>

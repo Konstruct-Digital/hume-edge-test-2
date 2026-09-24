@@ -1,0 +1,59 @@
+---
+import { Image } from 'astro:assets';
+import heroPortrait from '../assets/images/hero-portrait-v4.png';
+---
+<section class="hero hero--indigo-purple">
+  <div class="hero-blob b1" aria-hidden="true">
+    <svg viewBox="-20 -20 140 120" width="320" height="277" preserveAspectRatio="xMidYMid meet">
+      {[
+        { c:'#7118C2', s:32 }, { c:'#150352', s:26 }, { c:'#BC10DE', s:20 },
+        { c:'#7118C2', s:14 }, { c:'#00FB90', s:8  }, { c:'#150352', s:4  }
+      ].map((r, i) => {
+        const inset = i * 5;
+        const pts = [
+          [25+inset*0.5, inset], [75-inset*0.5, inset],
+          [100-inset, 43.3], [75-inset*0.5, 86.6-inset],
+          [25+inset*0.5, 86.6-inset], [inset, 43.3]
+        ].map(p => p.join(',')).join(' ');
+        return <polygon key={i} points={pts} fill="none" stroke={r.c} stroke-width={r.s} stroke-linejoin="round" />;
+      })}
+    </svg>
+  </div>
+  <div class="hero-blob b2" aria-hidden="true">
+    <svg viewBox="-14 -14 128 114" width="90" height="78" preserveAspectRatio="xMidYMid meet">
+      <polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3" fill="#BC10DE" stroke="#BC10DE" stroke-width="22" stroke-linejoin="round" />
+    </svg>
+  </div>
+
+  <div class="container hero-grid">
+    <div>
+      <div class="hero-eyebrow">AI enablement consulting</div>
+      <h1 class="hero-title">
+        We're the <em>human side</em> of AI adoption.
+      </h1>
+      <p class="hero-sub">
+        The AI edge doesn't come from the model; it comes from the humans on your team. Whether they trust it, understand it, and actually use it. That's where AI programs live or die. That's where we work. <em>That's the Hume Edge.</em>
+      </p>
+      <div class="hero-ctas">
+        <a class="btn btn-lg btn-mint" href="/contact">
+          Get Your People AI Ready
+          <svg class="btn-arrow" viewBox="0 0 36 30" fill="none" aria-hidden="true"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg>
+        </a>
+        <a class="btn btn-lg btn-ghost-dark" href="/about">See Our Framework</a>
+      </div>
+    </div>
+
+    <div class="hero-portrait">
+      <Image
+        class="hero-portrait-art"
+        src={heroPortrait}
+        alt="Hume Edge consultant working with a team"
+        widths={[390, 540, 660]}
+        sizes="(max-width: 660px) 100vw, 660px"
+        quality={70}
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </div>
+</section>

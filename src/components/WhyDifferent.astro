@@ -1,0 +1,62 @@
+---
+const WHY_ROWS = [
+  { icon:'/assets/icons/why-1.svg', title:'We start with your people',
+    body:"Your edge in AI is not the model you choose or the platform you buy. It's whether your people trust it, understand it, and use it. We start there. Everything else follows." },
+  { icon:'/assets/icons/why-2.svg', title:'We measure AI value differently',
+    body:"The hardest part of an AI program is proving it's working. Platform usage tells you nothing about adoption. License counts tell you nothing about confidence. We bring a deliberate way of measuring whether your people are actually working differently, and whether the value promised is real." },
+  { icon:'/assets/icons/why-3.svg', title:'We enable what others miss',
+    body:"Tools are easy to deliver. Behavior is harder. Training that ends on Friday and changes nothing by Monday is the most common failure mode in AI programs, and it is the one nobody wants to talk about. We work with your people until the way they work has actually changed. If your people don't change, neither will the value of your investments." },
+  { icon:'/assets/icons/why-4.svg', title:'We adapt to your organization',
+    body:"A methodology that works in every organization is a methodology that works in none of them. We bring a structured approach and bend it to your culture, your pace, and what your people can actually absorb. Rigor that fits, not rigor that imposes." },
+];
+---
+
+<section class="why">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>Why Hume Edge.</h2>
+    </div>
+    <div class="why-grid">
+      {WHY_ROWS.map((row, i) => (
+        <div class="why-row reveal" style={`--reveal-delay:${i*85}ms`}>
+          <div class="head">
+            <img class="why-icon" src={row.icon} alt="" width="52" height="52" loading="lazy" />
+            <div class="ttl">{row.title}</div>
+          </div>
+          <div class="body">{row.body}</div>
+        </div>
+      ))}
+    </div>
+
+    <div class="why-closer">
+      <div class="why-closer-img">
+        <video
+          style="object-fit:cover;width:100%;height:100%;display:block"
+          src="/assets/video/team-video.mp4"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="none"
+          aria-label="Hume Edge team at work"
+        ></video>
+      </div>
+      <div>
+        <h3>The depth of a global firm. <em>Built for how you actually work.</em></h3>
+        <p>
+          Our teams have spent decades at large consulting and technology firms, as well as sector-leading organizations - designing and delivering the kind of transformation work the largest organizations in the world rely on. We left because that depth was being delivered in a model that no longer fit how organizations need to move. Hume Edge keeps the discipline. We left the rest behind.
+        </p>
+        <div class="firms">
+          <div class="lab">Executive team previously at</div>
+          <div class="firms-row">
+            <span>Accenture</span><span>·</span>
+            <span>IBM</span><span>·</span>
+            <span>KPMG</span><span>·</span>
+            <span>EY</span><span>·</span>
+            <span>Microsoft</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets';
+import logoWhite from '../assets/hume-edge-logo-white.png';
+---
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <a href="/" aria-label="Hume Edge home" style="display:inline-block;line-height:0">
+            <Image class="footer-logo-lockup" src={logoWhite} alt="Hume Edge" width={238} />
+          </a>
+        </div>
+        <p>AI enablement advisory. The human side of AI.</p>
+      </div>
+      <div class="footer-nav">
+        <a class="footer-nav-link" href="/">Home</a>
+        <a class="footer-nav-link" href="/about">About Us</a>
+        <a class="btn btn-mint" href="/contact">Contact Us</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© 2026 Hume Edge</span>
+    </div>
+  </div>
+</footer>

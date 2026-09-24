@@ -1,0 +1,15 @@
+# Hume Edge
+
+> Hume Edge is an AI enablement consulting firm focused on the human side of AI adoption — strategy, workforce training, change management, and adoption measurement for mid-to-large organizations.
+
+We work with organizations navigating AI transformation, helping their people trust, understand, and actually use AI. Our work spans AI strategy, operational model design, workforce skilling, and measuring whether AI programs are delivering real value.
+
+## Pages
+
+- [Home](https://www.humeedge.ai/): Overview of Hume Edge, our services (Envision, Design, Grow, Edge Lab), client testimonials, industry experience, and how to get started.
+- [About Us](https://www.humeedge.ai/about): Our founding story, the Hume Edge framework, and the leadership team behind the firm.
+- [Contact](https://www.humeedge.ai/contact): How to reach us and what to expect when you do.
+
+## Optional
+
+- [robots.txt](https://www.humeedge.ai/robots.txt)

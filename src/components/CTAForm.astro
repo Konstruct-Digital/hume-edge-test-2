@@ -1,0 +1,130 @@
+---
+export interface Props {
+  eyebrow?: string;
+  heading?: string;
+  subtitle?: string;
+  id?: string;
+  formId?: string;
+}
+const {
+  eyebrow = 'Start here',
+  heading,
+  subtitle = "Tell us where your organization is in the AI adoption process. We'll take it from there.",
+  id,
+  formId = 'cta-form',
+} = Astro.props;
+
+const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
+---
+
+<section class="cta-section" id={id}>
+  <div class="container cta-grid">
+    <div>
+      <div class="eyebrow">{eyebrow}</div>
+      {heading
+        ? <Fragment set:html={heading} />
+        : <h2>Ready to gain<br /><em>an edge?</em></h2>
+      }
+      <p>{subtitle}</p>
+    </div>
+
+    <form class="form-card" id={formId} novalidate>
+      <div class="form-row split">
+        <div>
+          <label for={`${formId}-fname`}>First name</label>
+          <input id={`${formId}-fname`} type="text" name="firstName" placeholder="Alex" autocomplete="given-name" />
+        </div>
+        <div>
+          <label for={`${formId}-lname`}>Last name</label>
+          <input id={`${formId}-lname`} type="text" name="lastName" placeholder="Morgan" autocomplete="family-name" />
+        </div>
+      </div>
+      <div class="form-row split">
+        <div>
+          <label for={`${formId}-email`}>Work email</label>
+          <input id={`${formId}-email`} type="email" name="email" placeholder="you@company.com" autocomplete="email" />
+        </div>
+        <div>
+          <label for={`${formId}-company`}>Company</label>
+          <input id={`${formId}-company`} type="text" name="company" placeholder="Organization" autocomplete="organization" />
+        </div>
+      </div>
+      <div class="form-row">
+        <label>Where are you in your AI journey?</label>
+        <div class="form-options" role="group" aria-label="AI journey stage">
+          {stages.map((s, i) => (
+            <button type="button" class={`opt${i === 1 ? ' active' : ''}`} data-stage={s}>{s}</button>
+          ))}
+        </div>
+        <input type="hidden" name="stage" value="Pilots underway" />
+      </div>
+      <div class="form-row">
+        <label for={`${formId}-msg`}>Anything we should know?</label>
+        <textarea id={`${formId}-msg`} name="message" placeholder="A challenge you're facing, a goal, a deadline…"></textarea>
+      </div>
+      <div class="form-error" id={`${formId}-error`} hidden></div>
+      <div class="form-actions">
+        <div class="fineprint">By submitting, you agree to our privacy policy. We won't share your details.</div>
+        <button type="submit" class="btn btn-lg btn-mint">
+          Send
+          <svg class="btn-arrow" viewBox="0 0 36 30" fill="none" aria-hidden="true"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg>
+        </button>
+      </div>
+      <div class="form-success" id={`${formId}-success`} hidden style="padding:16px 0;color:var(--he-mint);font-weight:600;font-family:var(--font-display)">
+        ✓ Thanks! A member of our executive team will be in touch within 1–2 business days.
+      </div>
+    </form>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('.cta-section form').forEach(form => {
+    const id = form.id;
+    const errEl = document.getElementById(`${id}-error`)!;
+    const successEl = document.getElementById(`${id}-success`)!;
+
+    // Stage toggle
+    const stageInput = form.querySelector('input[name=stage]') as HTMLInputElement;
+    form.querySelectorAll('.opt').forEach(btn => {
+      btn.addEventListener('click', () => {
+        form.querySelectorAll('.opt').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        stageInput.value = (btn as HTMLElement).dataset.stage || '';
+      });
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form as HTMLFormElement);
+      const payload = Object.fromEntries(data.entries());
+      const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((payload.email as string)?.trim());
+
+      if (!payload.firstName || !payload.lastName || !emailOk || !payload.company) {
+        errEl.textContent = 'Please fill in all required fields with a valid work email.';
+        errEl.removeAttribute('hidden');
+        return;
+      }
+      errEl.setAttribute('hidden', '');
+
+      const submitBtn = form.querySelector('button[type=submit]') as HTMLButtonElement;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!res.ok) throw new Error('Server error');
+        (form as HTMLElement).style.display = 'none';
+        successEl.removeAttribute('hidden');
+      } catch {
+        errEl.textContent = 'Something went wrong. Please try again or email us at connect@humeedge.ai.';
+        errEl.removeAttribute('hidden');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Send <svg class="btn-arrow" viewBox="0 0 36 30" fill="none" aria-hidden="true"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg>';
+      }
+    });
+  });
+</script>

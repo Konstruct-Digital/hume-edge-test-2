@@ -1,0 +1,167 @@
+---
+const SERVICES = [
+  { letter:'E', title:'Envision the AI Journey', accent:'#7118C2', ink:'#7118C2', icon:'/assets/icons/edge-envision.svg',
+    tagline:'AI Strategic Narrative, Executive Alignment & Governance',
+    blurb:'A clear AI strategy, roadmap, and governance foundation - to envision, prepare for, and realize AI potential, by shaping the mindsets, directive, and narratives needed to champion AI transformation.',
+    intro:'AI works when your leaders are aligned on why it matters and where it pays off. This is where we set that foundation: a clear strategy, a prioritized roadmap, and the governance to move with confidence. You leave with a plan your executives own, and your board believes in.',
+    bullets:['AI Strategy & Value Blueprint','AI Use Case & Roadmap Prioritization','AI Governance Framework & Policy'] },
+  { letter:'D', title:'Design the Systems to Drive AI Value', accent:'#0599FF', ink:'#0578CC', icon:'/assets/icons/edge-design.svg',
+    tagline:'Human-Centric AI Through Organizational Systems Design',
+    blurb:'Accelerators aimed at preparing your AI transformation through the evaluation and redesign of your organizational systems as well as co-designed, tailored AI enablement programs to help your teams navigate the evolving AI landscape.',
+    intro:'Most of the value of AI is lost in the gap between a capable tool and the way work really gets done. We close that gap by redesigning your operational systems (processes, roles, and decision points) with people at the center. The result is an organization built to absorb AI and keep improving.',
+    bullets:['Future of Work Architecture & Redesign (Operational Systems, People, and Roles)','AI Adoption Strategy & Design'] },
+  { letter:'G', title:'Grow Human & Organizational AI Capabilities', accent:'#BC10DE', ink:'#BC10DE', icon:'/assets/icons/edge-grow.svg',
+    tagline:'AI Capability, Fluency, Development & Enablement',
+    blurb:'Developing foundational AI capability and fluency through critical skills, knowledge, and abilities to amplify your organization as you adapt to AI-driven change, ensuring your AI initiatives deliver tangible results.',
+    intro:'Technology rarely takes hold on its own; it requires planned adoption. We develop the capability and confidence your people need to work alongside AI every day, supported by change management, ambassador networks, and executive learning. And we measure adoption so you can show the return.',
+    bullets:['AI Learning Strategy & Design, Development & Delivery','Executive AI Accelerator Program','Applied AI Leadership Program','AI Enablement Delivery, Cultural Readiness & Change Management','AI Ambassador Program','Microsoft Copilot Training','Claude Training','Adoption Index & Measurement'] },
+  { letter:'E', title:'Edge Lab', accent:'#00FB90', ink:'#0B7A4B', icon:'/assets/icons/edge-lab.svg',
+    tagline:'Agents & Agentic Development & Configuration',
+    blurb:'Builds AI agents and agentic systems that take on real tasks, make decisions within clear boundaries, and grow more capable as they work. Creating capability that earns its place serving the organization.',
+    intro:'Edge Lab is our build studio. We design, prototype, and configure AI agents and agentic systems that handle real work connected to your existing tools, with governance and policy scoped in from day one. Each one earns its place by serving the organization, and we can run them for you once they do.',
+    bullets:['AI Agentics','AI Technical Training & Co-Delivery Solutions','AI Managed Services'] },
+];
+
+const LAB_BULLETS = [
+  'Configure agentic AI inside your own environment - Microsoft, Salesforce, Workday',
+  'Everything runs behind your existing security walls',
+  'Blueprint, prototype, and deploy production-ready agents',
+  'Governance guardrails and policy alignment scoped from day one',
+];
+---
+
+<section class="services" id="services">
+  <div class="container">
+    <div class="services-head">
+      <div class="section-head reveal" style="margin-bottom:0">
+        <div class="eyebrow">Our services</div>
+        <h2>Your AI journey needs <em>a human edge</em>.</h2>
+      </div>
+      <div class="right reveal">
+        <p style="margin-bottom:16px">The organizations seeing true AI returns don't leave any part of the journey to chance. Hume Edge makes sure you don't either.</p>
+        <p>The Hume Edge Framework supports organizations in preparing for, adapting to, and thriving from AI-transformative change, where future-focused organizations amplify human capabilities with AI technology, helping elevate human potential, accelerate decision-making, and unlock unprecedented value.</p>
+      </div>
+    </div>
+
+    <div class="services-grid">
+      {SERVICES.map((s, i) => (
+        <article class="service-card reveal" style={`--card-accent:${s.accent};--card-ink:${s.ink};--reveal-delay:${i*85}ms`}>
+          <div class="card-face">
+            <div class="top">
+              <img class="service-icon" src={s.icon} alt="" width="64" height="64" loading="lazy" />
+            </div>
+            <h3 class="title">{s.title}</h3>
+            <p class="body">{s.blurb}</p>
+            <button
+              type="button"
+              class="cta"
+              data-svc-index={i}
+              aria-haspopup="dialog"
+            >
+              Explore
+              <svg class="ar" viewBox="0 0 36 30" fill="none" aria-hidden="true" width="14" height="11"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg>
+            </button>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <!-- Lab / Studio card -->
+    <article class="studio-card reveal" id="lab-card">
+      <img class="studio-icon" src="/assets/hume-lab-icon.png" alt="Hume Edge Lab" width="120" height="120" loading="lazy" />
+      <div class="studio-body" id="lab-body">
+        <div class="label">Hume edge lab</div>
+        <div id="lab-default">
+          <h3 class="title">Agentics to power the future of work.</h3>
+          <p class="body">
+            The Lab blueprints, prototypes, and configures AI agents and automated workflows connected to your existing systems, with governance guardrails and policy alignment scoped in from day one.
+          </p>
+        </div>
+        <div id="lab-expanded" hidden>
+          <h3 class="title">Inside the Lab.</h3>
+          <ul class="deliverables">
+            {LAB_BULLETS.map(b => <li>{b}</li>)}
+          </ul>
+        </div>
+      </div>
+      <button type="button" class="btn btn-lg btn-mint" id="lab-toggle">
+        Explore
+        <svg class="btn-arrow" viewBox="0 0 36 30" fill="none" aria-hidden="true"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg>
+      </button>
+    </article>
+  </div>
+
+  <!-- Service modal -->
+  <style>.svc-modal-overlay[hidden] { display: none !important; }</style>
+  <div class="svc-modal-overlay" id="svc-overlay" hidden aria-modal="true" role="dialog" aria-label="Service details">
+    <div class="svc-modal" id="svc-modal">
+      <button type="button" class="svc-modal-close" id="svc-close" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <div class="svc-modal-head">
+        <img class="svc-modal-icon" id="svc-icon" src="" alt="" width="56" height="56" />
+        <h3 class="svc-modal-title" id="svc-title"></h3>
+      </div>
+      <div class="svc-modal-tagline" id="svc-tagline"></div>
+      <p class="svc-modal-intro" id="svc-intro"></p>
+      <div class="svc-modal-deliverables-label">What we deliver</div>
+      <ul class="svc-modal-deliverables" id="svc-bullets"></ul>
+    </div>
+  </div>
+</section>
+
+<script>
+  const SERVICES_DATA = [
+    { accent:'#7118C2', ink:'#7118C2', icon:'/assets/icons/edge-envision.svg', title:'Envision the AI Journey', tagline:'AI Strategic Narrative, Executive Alignment & Governance', intro:'AI works when your leaders are aligned on why it matters and where it pays off. This is where we set that foundation: a clear strategy, a prioritized roadmap, and the governance to move with confidence. You leave with a plan your executives own, and your board believes in.', bullets:['AI Strategy & Value Blueprint','AI Use Case & Roadmap Prioritization','AI Governance Framework & Policy'] },
+    { accent:'#0599FF', ink:'#0578CC', icon:'/assets/icons/edge-design.svg', title:'Design the Systems to Drive AI Value', tagline:'Human-Centric AI Through Organizational Systems Design', intro:'Most of the value of AI is lost in the gap between a capable tool and the way work really gets done. We close that gap by redesigning your operational systems (processes, roles, and decision points) with people at the center. The result is an organization built to absorb AI and keep improving.', bullets:['Future of Work Architecture & Redesign (Operational Systems, People, and Roles)','AI Adoption Strategy & Design'] },
+    { accent:'#BC10DE', ink:'#BC10DE', icon:'/assets/icons/edge-grow.svg', title:'Grow Human & Organizational AI Capabilities', tagline:'AI Capability, Fluency, Development & Enablement', intro:'Technology rarely takes hold on its own; it requires planned adoption. We develop the capability and confidence your people need to work alongside AI every day, supported by change management, ambassador networks, and executive learning. And we measure adoption so you can show the return.', bullets:['AI Learning Strategy & Design, Development & Delivery','Executive AI Accelerator Program','Applied AI Leadership Program','AI Enablement Delivery, Cultural Readiness & Change Management','AI Ambassador Program','Microsoft Copilot Training','Claude Training','Adoption Index & Measurement'] },
+    { accent:'#00FB90', ink:'#0B7A4B', icon:'/assets/icons/edge-lab.svg', title:'Edge Lab', tagline:'Agents & Agentic Development & Configuration', intro:"Edge Lab is our build studio. We design, prototype, and configure AI agents and agentic systems that handle real work connected to your existing tools, with governance and policy scoped in from day one. Each one earns its place by serving the organization, and we can run them for you once they do.", bullets:['AI Agentics','AI Technical Training & Co-Delivery Solutions','AI Managed Services'] },
+  ];
+
+  const overlay  = document.getElementById('svc-overlay')!;
+  const modal    = document.getElementById('svc-modal')!;
+  const closeBtn = document.getElementById('svc-close')!;
+
+  function openModal(i: number) {
+    const s = SERVICES_DATA[i];
+    modal.style.setProperty('--card-accent', s.accent);
+    modal.style.setProperty('--card-ink', s.ink);
+    (document.getElementById('svc-icon') as HTMLImageElement).src = s.icon;
+    document.getElementById('svc-title')!.textContent = s.title;
+    document.getElementById('svc-tagline')!.textContent = s.tagline;
+    document.getElementById('svc-intro')!.textContent = s.intro;
+    const ul = document.getElementById('svc-bullets')!;
+    ul.innerHTML = s.bullets.map(b => `<li>${b}</li>`).join('');
+    overlay.removeAttribute('hidden');
+    document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+
+  function closeModal() {
+    overlay.setAttribute('hidden', '');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-svc-index]').forEach(btn => {
+    btn.addEventListener('click', () => openModal(Number((btn as HTMLElement).dataset.svcIndex)));
+  });
+
+  closeBtn.addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+  // Lab card toggle
+  const labToggle   = document.getElementById('lab-toggle')!;
+  const labDefault  = document.getElementById('lab-default')!;
+  const labExpanded = document.getElementById('lab-expanded')!;
+  let labOpen = false;
+
+  labToggle.addEventListener('click', () => {
+    labOpen = !labOpen;
+    labDefault.hidden  = labOpen;
+    labExpanded.hidden = !labOpen;
+    labToggle.innerHTML = labOpen
+      ? `<svg class="btn-arrow" viewBox="0 0 36 30" fill="none" aria-hidden="true" style="transform:scaleX(-1)"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg> Back`
+      : `Explore <svg class="btn-arrow" viewBox="0 0 36 30" fill="none" aria-hidden="true"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg>`;
+  });
+</script>

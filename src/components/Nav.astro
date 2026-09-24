@@ -1,0 +1,98 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/hume-edge-logo.png';
+
+export interface Props {
+  current?: 'Home' | 'About Us' | 'Contact';
+}
+const { current = 'Home' } = Astro.props;
+
+const items = [
+  { label: 'Home', href: '/' },
+  { label: 'Our Services', href: '/#services' },
+  { label: 'About Us', href: '/about' },
+];
+---
+
+<nav class="nav" id="main-nav">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="/" aria-label="Hume Edge home">
+      <Image class="nav-logo-lockup" src={logo} alt="Hume Edge" widths={[131, 262]} sizes="131px" quality={80} />
+    </a>
+
+    <div class="nav-links">
+      {items.map(it => (
+        <a class={`nav-link${current === it.label ? ' is-current' : ''}`} href={it.href}>{it.label}</a>
+      ))}
+    </div>
+
+    <div class="nav-cta">
+      <a class="btn btn-mint" href="/contact">Contact Us</a>
+    </div>
+
+    <button
+      type="button"
+      class="nav-burger"
+      id="nav-burger"
+      aria-label="Open menu"
+      aria-expanded="false"
+      aria-controls="nav-drawer"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+</nav>
+
+<div class="nav-drawer" id="nav-drawer" role="dialog" aria-modal="true" aria-label="Navigation">
+  <button type="button" class="nav-drawer-close" id="nav-drawer-close" aria-label="Close menu">
+    <span></span><span></span>
+  </button>
+  <div class="nav-drawer-links">
+    {items.map(it => (
+      <a class={`nav-drawer-link${current === it.label ? ' is-current' : ''}`} href={it.href}>{it.label}</a>
+    ))}
+  </div>
+  <a class="btn btn-mint nav-drawer-cta" href="/contact">Contact Us</a>
+</div>
+
+<div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>
+
+<script>
+  const burger      = document.getElementById('nav-burger')!;
+  const drawer      = document.getElementById('nav-drawer')!;
+  const scrim       = document.getElementById('nav-scrim')!;
+  const drawerClose = document.getElementById('nav-drawer-close')!;
+
+  function open() {
+    // Set display before triggering transition so the element exists in layout
+    drawer.style.display = 'flex';
+    drawer.offsetHeight; // force reflow so transition fires
+    burger.classList.add('is-open');
+    drawer.classList.add('is-open');
+    scrim.classList.add('is-open');
+    burger.setAttribute('aria-expanded', 'true');
+    burger.setAttribute('aria-label', 'Close menu');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function close() {
+    burger.classList.remove('is-open');
+    drawer.classList.remove('is-open');
+    scrim.classList.remove('is-open');
+    burger.setAttribute('aria-expanded', 'false');
+    burger.setAttribute('aria-label', 'Open menu');
+    document.body.style.overflow = '';
+    // Remove from layout after slide-out animation completes
+    drawer.addEventListener('transitionend', () => {
+      drawer.style.display = '';
+    }, { once: true });
+  }
+
+  burger.addEventListener('click', () =>
+    burger.classList.contains('is-open') ? close() : open()
+  );
+  scrim.addEventListener('click', close);
+  drawerClose.addEventListener('click', close);
+  drawer.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+</script>

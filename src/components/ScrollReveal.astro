@@ -1,0 +1,34 @@
+---
+---
+<script>
+  function initReveal() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const els = document.querySelectorAll('.reveal:not([data-revealed])');
+    if (!els.length) return;
+
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(el => el.classList.add('is-revealed'));
+      return;
+    }
+
+    const io = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('is-revealed');
+            obs.unobserve(e.target);
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '0px 0px -6% 0px' }
+    );
+
+    els.forEach(el => {
+      (el as HTMLElement).dataset.revealed = '1';
+      io.observe(el);
+    });
+  }
+
+  initReveal();
+</script>

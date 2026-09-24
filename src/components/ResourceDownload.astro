@@ -1,0 +1,106 @@
+---
+---
+<section class="resource">
+  <div class="container resource-grid">
+    <div class="resource-copy reveal">
+      <div class="eyebrow">Executive resource</div>
+      <h2>The AI Guide<br /><em>for Executives.</em></h2>
+      <p>A practical playbook for leaders steering AI adoption - what to prioritise, where programs stall, and how to keep your people ahead of the technology.</p>
+      <ul class="resource-points">
+        <li>Where AI programs lose momentum - and how to avoid it</li>
+        <li>A readiness checklist for executive teams</li>
+        <li>How to measure adoption, not just deployment</li>
+      </ul>
+    </div>
+
+    <div class="resource-form-wrap reveal">
+      <form class="form-card" id="resource-form" novalidate>
+        <div class="resource-form-head">Get your copy</div>
+        <div class="form-row split">
+          <div>
+            <label for="res-name">Full name</label>
+            <input id="res-name" type="text" name="name" placeholder="Alex Morgan" autocomplete="name" />
+          </div>
+          <div>
+            <label for="res-title">Job title</label>
+            <input id="res-title" type="text" name="jobTitle" placeholder="Chief Operating Officer" />
+          </div>
+        </div>
+        <div class="form-row split">
+          <div>
+            <label for="res-email">Work email</label>
+            <input id="res-email" type="email" name="email" placeholder="you@company.com" autocomplete="email" />
+          </div>
+          <div>
+            <label for="res-org">Organization</label>
+            <input id="res-org" type="text" name="organization" placeholder="Company name" autocomplete="organization" />
+          </div>
+        </div>
+        <div class="form-error" id="res-error" hidden></div>
+        <button type="submit" class="btn btn-lg btn-mint resource-submit">
+          <span class="btn-label-full">Download Our AI Guide for Executives</span>
+          <span class="btn-label-short">Download Our AI Guide</span>
+        </button>
+        <div class="fineprint resource-fineprint">We'll email your copy and may follow up about AI enablement. We won't share your details.</div>
+      </form>
+
+      <div class="form-card resource-success" id="resource-success" hidden>
+        <div class="resource-success-mark">
+          <svg viewBox="-14 -14 128 114" width="56" height="49" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <polygon points="25,0 75,0 100,43.3 75,86.6 25,86.6 0,43.3" fill="#00FB90" stroke="#00FB90" stroke-width="22" stroke-linejoin="round" />
+          </svg>
+        </div>
+        <h3>Your copy is on the way.</h3>
+        <p>We've sent the AI Guide for Executives to <strong id="res-confirm-email"></strong>. It should land in your inbox shortly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form    = document.getElementById('resource-form') as HTMLFormElement;
+  const success = document.getElementById('resource-success')!;
+  const errEl   = document.getElementById('res-error')!;
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const name  = (data.get('name') as string)?.trim();
+    const title = (data.get('jobTitle') as string)?.trim();
+    const email = (data.get('email') as string)?.trim();
+    const org   = (data.get('organization') as string)?.trim();
+    const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+    if (!name || !title || !org || !emailOk) {
+      errEl.textContent = 'Please complete every field with a valid work email.';
+      errEl.removeAttribute('hidden');
+      return;
+    }
+    errEl.setAttribute('hidden', '');
+
+    const btn = form.querySelector('button[type=submit]') as HTMLButtonElement;
+    btn.disabled = true;
+    const fullLabel = btn.querySelector('.btn-label-full');
+    const shortLabel = btn.querySelector('.btn-label-short');
+    if (fullLabel) fullLabel.textContent = 'Sending…';
+    if (shortLabel) shortLabel.textContent = 'Sending…';
+
+    try {
+      const res = await fetch('/api/resource', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, jobTitle: title, email, organization: org }),
+      });
+      if (!res.ok) throw new Error('Server error');
+      document.getElementById('res-confirm-email')!.textContent = email;
+      form.hidden = true;
+      success.removeAttribute('hidden');
+    } catch {
+      errEl.textContent = 'Something went wrong. Please try again or email us at connect@humeedge.ai.';
+      errEl.removeAttribute('hidden');
+      btn.disabled = false;
+      if (fullLabel) fullLabel.textContent = 'Download Our AI Guide for Executives';
+      if (shortLabel) shortLabel.textContent = 'Download Our AI Guide';
+    }
+  });
+</script>

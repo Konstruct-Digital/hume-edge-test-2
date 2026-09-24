@@ -1,0 +1,74 @@
+---
+const PROBLEMS = [
+  { num:'01', color:'#7118C2', icon:'/assets/icons/card-1.svg',
+    quote:"We rolled out AI. Our people still aren't using it effectively.",
+    body:"Access to a tool and knowing how to use it are two different things. When employees aren't enabled to leverage AI in the flow of work for their specific roles, they default to what they know, and the AI investment you made erodes without value realization." },
+  { num:'02', color:'#BC10DE', icon:'/assets/icons/card-2.svg',
+    quote:"We're spending on AI and can't prove it's working.",
+    body:"Platform costs show up on the balance sheet long before business outcomes do. When your board asks what the AI investment is returning and the honest answer is \"we're not sure yet,\" that's a difficult position to hold for long." },
+  { num:'03', color:'#0599FF', icon:'/assets/icons/card-3.svg',
+    quote:"Our leaders are expected to drive AI adoption. Nobody has shown them how.",
+    body:"Most leadership teams were never trained to lead AI transformation. They're making decisions about tools and budgets while their people wait for clarity about what it all means for their roles. That uncertainty travels fast through an organization." },
+  { num:'04', color:'#7118C2', icon:'/assets/icons/card-4.svg',
+    quote:"Our AI efforts are scattered and unaligned.",
+    body:"When every department is running its own AI initiative without a shared strategy, the efforts don't compound. They compete. Resources get spread thin, priorities stay unclear, and the organization ends up busy with AI without actually advancing because of it." },
+  { num:'05', color:'#00FB90', icon:'/assets/icons/card-5.svg',
+    quote:"Our pilots work. Scaling them is where we run out of hands.",
+    body:"A pilot can succeed with three motivated people in a room. Scale requires hundreds across functions doing something they have never done before. Most organizations underestimate that gap and end up with a portfolio of proven concepts that never make it past the team that built them." },
+  { num:'06', color:'#BC10DE', icon:'/assets/icons/card-6.svg',
+    quote:"We have the strategy. We don't have the ability to build it.",
+    body:"The roadmap is approved, and the funding is committed. What's missing is the capacity inside the organization to actually deliver any of it. AI is moving quickly, and without the capability, organizations are feeling the pressure to catch up. Ambition ceases to move forward at scale." },
+];
+---
+
+<section class="problem">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="eyebrow">What our clients are saying</div>
+      <h2>Your AI program is live.<br />Your <em>people aren't there yet</em>.</h2>
+      <p>Budgets are approved, tools are selected, and the pressure to show results is real. Most organizations have invested more in AI tools than in AI adoption. The gap lives with their people. These are the challenges we hear most.</p>
+    </div>
+  </div>
+
+  <div class="problem-track-wrap">
+    <div class="problem-track" id="problem-track">
+      {PROBLEMS.map((p) => (
+        <article class="problem-card reveal" style={`--card-accent:${p.color}`}>
+          <div class="head">
+            <img class="problem-icon" src={p.icon} alt="" width="60" height="60" loading="lazy" />
+          </div>
+          <h3 class="quote">{p.quote}</h3>
+          <p class="body">{p.body}</p>
+        </article>
+      ))}
+      <div style="flex:0 0 56px" aria-hidden="true"></div>
+    </div>
+    <div class="problem-arrow-row">
+      <button class="problem-arrow problem-arrow--prev" id="prob-prev" aria-label="Previous">‹</button>
+      <button class="problem-arrow problem-arrow--next" id="prob-next" aria-label="Next">›</button>
+    </div>
+  </div>
+
+  <div class="container problem-controls">
+    <div class="progress" role="progressbar" aria-label="Carousel progress">
+      <div class="bar" id="prob-bar" style="width:20%"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('problem-track')!;
+  const bar   = document.getElementById('prob-bar')!;
+  const prev  = document.getElementById('prob-prev')!;
+  const next  = document.getElementById('prob-next')!;
+
+  function updateBar() {
+    const max = track.scrollWidth - track.clientWidth;
+    const pct = max > 0 ? (track.scrollLeft / max) * 100 : 0;
+    bar.style.width = `${Math.max(20, pct)}%`;
+  }
+
+  track.addEventListener('scroll', updateBar, { passive: true });
+  prev.addEventListener('click', () => track.scrollBy({ left: -402, behavior: 'smooth' }));
+  next.addEventListener('click', () => track.scrollBy({ left:  402, behavior: 'smooth' }));
+</script>

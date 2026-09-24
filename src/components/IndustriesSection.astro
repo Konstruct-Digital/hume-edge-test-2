@@ -1,0 +1,171 @@
+---
+const INDUSTRIES = [
+  { name: 'Oil and Gas',                    icon: 'fuel'      },
+  { name: 'Mining',                          icon: 'gem'       },
+  { name: 'Utilities and Power',             icon: 'zap'       },
+  { name: 'Renewable Energy',                icon: 'wind'      },
+  { name: 'Construction',                    icon: 'hardhat'   },
+  { name: 'Manufacturing',                   icon: 'factory'   },
+  { name: 'Aerospace and Defence',           icon: 'plane'     },
+  { name: 'Transportation and Logistics',    icon: 'truck'     },
+  { name: 'Technology and Communications',   icon: 'cpu'       },
+  { name: 'Media and Entertainment',         icon: 'clapper'   },
+  { name: 'Consumer Goods and Retail',       icon: 'bag'       },
+  { name: 'Hospitality and Tourism',         icon: 'bed'       },
+  { name: 'Food and Beverage',               icon: 'utensils'  },
+  { name: 'Healthcare and Life Sciences',    icon: 'activity'  },
+  { name: 'Pharmaceuticals and Biotech',     icon: 'pill'      },
+  { name: 'Professional Services',           icon: 'briefcase' },
+  { name: 'Financial Services',              icon: 'banknote'  },
+  { name: 'Real Estate',                     icon: 'home'      },
+  { name: 'Agriculture',                     icon: 'sprout'    },
+  { name: 'Education',                       icon: 'cap'       },
+  { name: 'Government',                      icon: 'landmark'  },
+  { name: 'Public Services',                 icon: 'users'     },
+  { name: 'Non-profit and NGOs',             icon: 'heart'     },
+];
+
+const HEX_COLORS = ['#7118C2', '#0599FF', '#BC10DE', '#00FB90'];
+
+const ICON_PATHS: Record<string, string> = {
+  fuel:      '<line x1="3" y1="22" x2="15" y2="22"/><line x1="4" y1="9" x2="14" y2="9"/><path d="M14 22V4a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v18"/><path d="M14 13h2a2 2 0 0 1 2 2v2a2 2 0 0 0 2 2 2 2 0 0 0 2-2V9.83a2 2 0 0 0-.59-1.42L18 5"/>',
+  gem:       '<path d="M6 3h12l4 6-10 13L2 9Z"/><path d="M11 3 8 9l4 13 4-13-3-6"/><path d="M2 9h20"/>',
+  zap:       '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+  wind:      '<path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/>',
+  hardhat:   '<path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a6 6 0 0 1 6-6"/><path d="M14 6a6 6 0 0 1 6 6v3"/>',
+  factory:   '<path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/>',
+  plane:     '<path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/>',
+  truck:     '<path d="M5 18H3c-.6 0-1-.4-1-1V7c0-.6.4-1 1-1h10c.6 0 1 .4 1 1v11"/><path d="M14 9h4l4 4v4c0 .6-.4 1-1 1h-2"/><circle cx="7" cy="18" r="2"/><path d="M9 18h6"/><circle cx="17" cy="18" r="2"/>',
+  cpu:       '<rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M15 2v2"/><path d="M15 20v2"/><path d="M2 15h2"/><path d="M2 9h2"/><path d="M20 15h2"/><path d="M20 9h2"/><path d="M9 2v2"/><path d="M9 20v2"/>',
+  clapper:   '<path d="M20.2 6 3 11l-.9-2.4c-.3-1.1.3-2.2 1.3-2.5l13.5-4c1.1-.3 2.2.3 2.5 1.3Z"/><path d="m6.2 5.3 3.1 3.9"/><path d="m12.4 3.4 3.1 4"/><path d="M3 11h18v8c0 1.1-.9 2-2 2H5c-1.1 0-2-.9-2-2Z"/>',
+  bag:       '<path d="M6 2 3 6v14c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/>',
+  bed:       '<path d="M2 4v16"/><path d="M2 8h18a2 2 0 0 1 2 2v10"/><path d="M2 17h20"/><path d="M6 8v9"/>',
+  utensils:  '<path d="M3 2v7c0 1.1.9 2 2 2a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/>',
+  activity:  '<path d="M22 12h-4l-3 9L9 3l-3 9H2"/>',
+  pill:      '<path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/>',
+  briefcase: '<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>',
+  banknote:  '<rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/><path d="M6 12h.01M18 12h.01"/>',
+  home:      '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+  sprout:    '<path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7-2 .4-3.5.4-4.8-.3-1.2-.6-2.3-1.9-3-4.2 2.8-.5 4.4 0 5.5.8z"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-.1 3.3-.6 4.3-1.4 1-1 1.6-2.3 1.7-4.6-2.7.1-4 1-4.9 2z"/>',
+  cap:       '<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',
+  landmark:  '<line x1="3" y1="22" x2="21" y2="22"/><line x1="6" y1="18" x2="6" y2="11"/><line x1="10" y1="18" x2="10" y2="11"/><line x1="14" y1="18" x2="14" y2="11"/><line x1="18" y1="18" x2="18" y2="11"/><polygon points="12 2 20 7 4 7"/>',
+  users:     '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+  heart:     '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+};
+---
+
+<section class="industries" id="industries">
+  <div class="container ind-wrap">
+    <div class="ind-left">
+      <div class="eyebrow ind-eyebrow">Industry experience or specialization</div>
+      <h2 class="ind-title">Who we<br />work with.</h2>
+      <div class="ind-active" id="ind-active-name">{INDUSTRIES[0].name}</div>
+      <p class="ind-body ind-body--desktop">
+        These are the industries we know best, but the challenges we tackle aren't sector-specific. If you're looking for a partner to help your people get AI right, let's talk.
+      </p>
+    </div>
+
+    <div class="ind-list-wrap">
+      <p class="ind-body ind-body--mobile">
+        These are the industries we know best, but the challenges we tackle aren't sector-specific. If you're looking for a partner to help your people get AI right, let's talk.
+      </p>
+      <ul class="ind-list">
+        {INDUSTRIES.map((it, i) => (
+          <li class="ind-list-item">
+            <button
+              type="button"
+              class={`ind-card${i === 0 ? ' is-active' : ''}`}
+              data-ind-index={i}
+              data-ind-name={it.name}
+              aria-current={i === 0 ? 'true' : undefined}
+            >
+              <span class="ind-card-icon">
+                <svg class="ind-hex" viewBox="0 0 446.36 495.36" aria-hidden="true">
+                  <path fill={HEX_COLORS[i % 4]} d="M0,156.25v182.86c0,23.16,12.36,44.56,32.41,56.14l158.36,91.43c20.06,11.58,44.77,11.58,64.82,0l158.36-91.43c20.06-11.58,32.41-32.98,32.41-56.14v-182.86c0-23.16-12.36-44.56-32.41-56.14L255.59,8.68c-20.06-11.58-44.77-11.58-64.82,0L32.41,100.11C12.36,111.69,0,133.09,0,156.25Z" />
+                </svg>
+                <span class="ind-card-glyph">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={ICON_PATHS[it.icon]} />
+                </span>
+              </span>
+              <span class="ind-card-name">{it.name}</span>
+              <span class="ind-card-chev">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <div class="ind-list-fade" aria-hidden="true"></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const activeNameEl = document.getElementById('ind-active-name')!;
+  const cards = document.querySelectorAll<HTMLButtonElement>('.ind-card');
+  let currentActive = 0;
+
+  function setActive(index: number, animate = true) {
+    if (index === currentActive && animate) return;
+    currentActive = index;
+    const name = cards[index]?.dataset.indName ?? '';
+    if (animate && activeNameEl.textContent !== name) {
+      activeNameEl.classList.remove('ind-active-anim');
+      void (activeNameEl as HTMLElement).offsetWidth;
+      activeNameEl.classList.add('ind-active-anim');
+    }
+    activeNameEl.textContent = name;
+    cards.forEach((c, i) => {
+      c.classList.toggle('is-active', i === index);
+      if (i === index) c.setAttribute('aria-current', 'true');
+      else c.removeAttribute('aria-current');
+    });
+  }
+
+  // Scroll-driven: highlight card whose centre is closest to the focal point.
+  // On mobile the ind-left header is sticky, so the visible list area starts
+  // below it — we use its bottom edge as the top of the focal zone.
+  const indLeft = document.querySelector<HTMLElement>('.ind-left');
+
+  function getFocal(): number {
+    if (indLeft && getComputedStyle(indLeft).position === 'sticky') {
+      const headerBottom = indLeft.getBoundingClientRect().bottom;
+      return headerBottom + (window.innerHeight - headerBottom) / 2;
+    }
+    return window.innerHeight / 2;
+  }
+
+  let raf: number | null = null;
+  function onScroll() {
+    if (raf != null) return;
+    raf = requestAnimationFrame(() => {
+      raf = null;
+      const focal = getFocal();
+      let best = 0, bestDist = Infinity;
+      cards.forEach((c, i) => {
+        const r = c.getBoundingClientRect();
+        const d = Math.abs(r.top + r.height / 2 - focal);
+        if (d < bestDist) { bestDist = d; best = i; }
+      });
+      setActive(best);
+    });
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+
+  cards.forEach((c, i) => {
+    c.addEventListener('click', () => setActive(i));
+    c.addEventListener('focus', () => setActive(i));
+  });
+
+  // Hide the bottom fade once the last card is fully in view
+  const fadeEl = document.querySelector<HTMLElement>('.ind-list-fade');
+  const lastCard = cards[cards.length - 1];
+  if (fadeEl && lastCard) {
+    const obs = new IntersectionObserver(([entry]) => {
+      fadeEl.style.opacity = entry.isIntersecting ? '0' : '1';
+    }, { threshold: 0.9 });
+    obs.observe(lastCard);
+  }
+</script>
