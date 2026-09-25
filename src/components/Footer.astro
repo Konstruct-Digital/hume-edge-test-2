@@ -1,6 +1,10 @@
 ---
 import { Image } from 'astro:assets';
+import { getEntry } from 'astro:content';
 import logoWhite from '../assets/hume-edge-logo-white.png';
+
+const site = await getEntry('site', 'global');
+const { footer } = site!.data;
 ---
 <footer class="footer">
   <div class="container">
@@ -11,16 +15,18 @@ import logoWhite from '../assets/hume-edge-logo-white.png';
             <Image class="footer-logo-lockup" src={logoWhite} alt="Hume Edge" width={238} />
           </a>
         </div>
-        <p>AI enablement advisory. The human side of AI.</p>
+        <p>{footer.tagline}</p>
       </div>
       <div class="footer-nav">
-        <a class="footer-nav-link" href="/">Home</a>
-        <a class="footer-nav-link" href="/about">About Us</a>
-        <a class="btn btn-mint" href="/contact">Contact Us</a>
+        {footer.nav.map((link, i) => [
+          <a class="footer-nav-link" href={link.href}>{link.label}</a>,
+          i < footer.nav.length - 1 ? ' ' : null,
+        ])}
+        <a class="btn btn-mint" href={footer.ctaHref}>{footer.ctaLabel}</a>
       </div>
     </div>
     <div class="footer-legal">
-      <span>© 2026 Hume Edge</span>
+      <span>{footer.legal}</span>
     </div>
   </div>
 </footer>
