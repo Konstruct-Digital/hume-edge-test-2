@@ -1,17 +1,8 @@
 ---
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 // No page-specific styles needed - all base styles loaded via layout
 import Nav from '../components/Nav.astro';
-
-const orgSchema = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Hume Edge",
-  "url": "https://humeedge.ai",
-  "logo": "https://humeedge.ai/assets/hume-edge-logo.png",
-  "description": "AI enablement consulting firm focused on the human side of AI adoption - strategy, workforce training, and adoption measurement.",
-  "sameAs": []
-};
 import Hero from '../components/Hero.astro';
 import Intro from '../components/Intro.astro';
 import ProblemCarousel from '../components/ProblemCarousel.astro';
@@ -26,12 +17,15 @@ import Testimonials from '../components/Testimonials.astro';
 import CTAForm from '../components/CTAForm.astro';
 import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
+
+const home = await getEntry('pages', 'home');
+const { meta, orgSchema, cta } = home!.data;
 ---
 
 <BaseLayout
-  title="Hume Edge: AI Advisory Firm That Starts With Your People"
-  description="From AI strategy to workforce training to adoption measurement, Hume Edge covers the full AI journey with a people-first approach."
-  canonical="https://humeedge.ai/"
+  title={meta.title}
+  description={meta.description}
+  canonical={meta.canonical}
   schema={orgSchema}
 >
   <Nav current="Home" />
@@ -46,7 +40,7 @@ import ScrollReveal from '../components/ScrollReveal.astro';
   <Testimonials />
   <WhyDifferent />
   <LeadershipTeam />
-  <CTAForm id="contact" formId="home-cta" />
+  <CTAForm id="contact" formId="home-cta" eyebrow={cta.eyebrow} heading={cta.headingHtml} subtitle={cta.subtitle} />
   <Footer />
   <ScrollReveal />
 </BaseLayout>

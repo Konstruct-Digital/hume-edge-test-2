@@ -6,6 +6,8 @@
     "canonical": "https://humeedge.ai/"
   },
   "orgSchema": {
+    "@context": "https://schema.org",
+    "@type": "Organization",
     "name": "Hume Edge",
     "url": "https://humeedge.ai",
     "logo": "https://humeedge.ai/assets/hume-edge-logo.png",
@@ -176,7 +178,7 @@
   },
   "cta": {
     "eyebrow": "Start here",
-    "headingHtml": "<h2>Ready to gain<br /><em>an edge?</em></h2>",
+    "headingHtml": "<h2>Ready to gain<br><em>an edge?</em></h2>",
     "subtitle": "Tell us where your organization is in the AI adoption process. We'll take it from there."
   }
 }

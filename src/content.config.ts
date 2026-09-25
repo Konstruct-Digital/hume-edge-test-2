@@ -25,6 +25,8 @@ const homeSchema = z.object({
     canonical: z.string(),
   }),
   orgSchema: z.object({
+    "@context": z.string(),
+    "@type": z.string(),
     name: z.string(),
     url: z.string(),
     logo: z.string(),
