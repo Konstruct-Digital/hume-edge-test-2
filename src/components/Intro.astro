@@ -31,9 +31,7 @@ const { intro } = home!.data;
     <div class="intro-body">
       <div class="eyebrow">{intro.eyebrow}</div>
       <p class="lead" style="margin-top:24px" set:html={intro.leadHtml} />
-      {intro.paragraphs.map((p, i) => <>
-        {i > 0 && ' '}<p class="body" set:html={p} /></>
-      )}
+      {intro.paragraphs.map(p => <p class="body" set:html={p} />)}
       <p class="intro-tagline" set:html={intro.taglineHtml} />
       <a class="btn btn-ghost-dark" href={intro.ctaHref}>{intro.ctaLabel}</a>
     </div>
