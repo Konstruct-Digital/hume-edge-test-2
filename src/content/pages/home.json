@@ -16,20 +16,20 @@
   },
   "hero": {
     "eyebrow": "AI enablement consulting",
-    "titleHtml": "We're the <em>human side</em> of AI adoption.",
-    "subHtml": "The AI edge doesn't come from the model; it comes from the humans on your team. Whether they trust it, understand it, and actually use it. That's where AI programs live or die. That's where we work. <em>That's the Hume Edge.</em>",
+    "titleHtml": "\nWe're the <em>human side</em> of AI adoption.\n",
+    "subHtml": "\nThe AI edge doesn't come from the model; it comes from the humans on your team. Whether they trust it, understand it, and actually use it. That's where AI programs live or die. That's where we work. <em>That's the Hume Edge.</em> ",
     "ctaPrimary": { "label": "Get Your People AI Ready", "href": "/contact" },
     "ctaSecondary": { "label": "See Our Framework", "href": "/about" }
   },
   "intro": {
     "eyebrow": "Built on global experience",
-    "leadHtml": "Too many AI programs stall at the same point: <em>the technology is ready, the people aren't.</em>",
+    "leadHtml": "\nToo many AI programs stall at the same point: <em>the technology is ready, the people aren't.</em> ",
     "paragraphs": [
-      "<a href=\"https://mnpdigital.ca/insights/2026-canadian-ai-report-download/\" target=\"_blank\" rel=\"noopener noreferrer\">MNP's The Business of AI 2026 report</a> found that only 4% of organizations consider their use of AI to deliver transformational strategic value.",
-      "Most of the industry treats that gap as a footnote. We treat it as the headline. Our founding team has led transformation programs at the firms that defined the category. We left to build something the category was missing.",
-      "We've designed some of the world's largest transformations. We've seen what works. We've seen what doesn't. The discipline came with us. The bureaucracy didn't."
+      "<a href=\"https://mnpdigital.ca/insights/2026-canadian-ai-report-download/\" target=\"_blank\" rel=\"noopener noreferrer\">MNP's The Business of AI 2026 report</a> found that only 4% of organizations consider their use of AI to deliver transformational strategic value.\n",
+      "\nMost of the industry treats that gap as a footnote. We treat it as the headline. Our founding team has led transformation programs at the firms that defined the category. We left to build something the category was missing.\n",
+      "\nWe've designed some of the world's largest transformations. We've seen what works. We've seen what doesn't. The discipline came with us. The bureaucracy didn't."
     ],
-    "taglineHtml": "An AI advisory firm that begins where others stop.<br />\n<em>The Human-Side of AI.</em>",
+    "taglineHtml": "\nAn AI advisory firm that begins where others stop.<br>\n<em>The Human-Side of AI.</em> ",
     "ctaLabel": "Learn More About Us",
     "ctaHref": "/about"
   },
