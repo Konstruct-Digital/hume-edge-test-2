@@ -1,0 +1,24 @@
+{
+  "$schema": "https://konstruct.dev/schemas/agent-config.v1.json",
+  "allowedWritePaths": [
+    "src/content/pages/**/*.json",
+    "src/content/site/**/*.json",
+    "public/images/**"
+  ],
+  "deniedWritePaths": [
+    "astro.config.*",
+    "package.json",
+    "package-lock.json",
+    "tsconfig.json",
+    "src/layouts/**",
+    "src/components/**",
+    "src/pages/**",
+    "src/content.config.ts",
+    ".github/**",
+    ".konstruct/**"
+  ],
+  "brandFile": "BRAND.md",
+  "stagingBranch": "staging",
+  "baseBranch": "main",
+  "buildFailureRetryLimit": 2
+}
