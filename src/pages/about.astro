@@ -1,10 +1,14 @@
 ---
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/about.css';
 import Nav from '../components/Nav.astro';
 import CTAForm from '../components/CTAForm.astro';
 import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
+
+const about = await getEntry('pages', 'about');
+const { meta, hero, shortVersion } = about!.data;
 
 const CONVICTIONS = [
   { n:'01', color:'#7118C2', icon:'/assets/icons/conv-1.svg',
@@ -61,8 +65,8 @@ const STORY = [
 ---
 
 <BaseLayout
-  title="Hume Edge: Humans Helping Humans Get AI Right"
-  description="Meet the team behind Hume Edge. We have 50+ years of experience and one belief: AI works when people are ready for it."
+  title={meta.title}
+  description={meta.description}
 >
   <Nav current="About Us" />
 
@@ -91,26 +95,24 @@ const STORY = [
     </div>
     <div class="container hero-grid">
       <div>
-        <div class="hero-eyebrow">About us</div>
-        <h1 class="hero-title">
-          Humans helping humans <em>get AI right</em>.
-        </h1>
+        <div class="hero-eyebrow">{hero.eyebrow}</div>
+        <h1 class="hero-title" set:html={hero.titleHtml} />
         <p class="hero-sub">
-          AI succeeds or fails with people. Hume Edge is for the leaders who get that.
+          {hero.sub}
         </p>
         <div class="hero-ctas">
-          <a class="btn btn-lg btn-mint" href="#story">
-            Read our story
+          <a class="btn btn-lg btn-mint" href={hero.primaryCta.href}>
+            {hero.primaryCta.label}
             <svg class="btn-arrow" viewBox="0 0 36 30" fill="none" aria-hidden="true"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg>
           </a>
-          <a class="btn btn-lg btn-ghost-dark" href="#contact">Start a conversation</a>
+          <a class="btn btn-lg btn-ghost-dark" href={hero.secondaryCta.href}>{hero.secondaryCta.label}</a>
         </div>
       </div>
       <div class="hero-portrait about-hero-portrait">
         <img
           class="about-hero-img"
-          src="/assets/images/about-hero.png"
-          alt="Hume Edge team in a strategy session"
+          src={hero.image.src}
+          alt={hero.image.alt}
           width="660"
           height="auto"
           loading="eager"
@@ -122,10 +124,8 @@ const STORY = [
   <!-- Short version band -->
   <section class="about-short">
     <div class="container about-short-grid reveal">
-      <div class="eyebrow">The short version</div>
-      <p class="about-short-lead">
-        Hume Edge is an AI advisory firm. We work with established organizations that are serious about getting AI right: <em>building the strategy, preparing the leaders, training the workforce,</em> and measuring whether any of it is actually changing how people work. Engagements range from full transformation programs to standalone training and workshops.
-      </p>
+      <div class="eyebrow">{shortVersion.eyebrow}</div>
+      <p class="about-short-lead" set:html={shortVersion.leadHtml} />
     </div>
   </section>
 
