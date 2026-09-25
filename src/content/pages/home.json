@@ -101,7 +101,7 @@
   },
   "industries": {
     "eyebrow": "Industry experience or specialization",
-    "titleHtml": "Who we<br />work with.",
+    "titleHtml": "Who we<br>work with.",
     "body": "These are the industries we know best, but the challenges we tackle aren't sector-specific. If you're looking for a partner to help your people get AI right, let's talk.",
     "items": [
       { "name": "Oil and Gas", "icon": "fuel" },

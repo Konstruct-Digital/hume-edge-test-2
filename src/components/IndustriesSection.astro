@@ -1,29 +1,8 @@
 ---
-const INDUSTRIES = [
-  { name: 'Oil and Gas',                    icon: 'fuel'      },
-  { name: 'Mining',                          icon: 'gem'       },
-  { name: 'Utilities and Power',             icon: 'zap'       },
-  { name: 'Renewable Energy',                icon: 'wind'      },
-  { name: 'Construction',                    icon: 'hardhat'   },
-  { name: 'Manufacturing',                   icon: 'factory'   },
-  { name: 'Aerospace and Defence',           icon: 'plane'     },
-  { name: 'Transportation and Logistics',    icon: 'truck'     },
-  { name: 'Technology and Communications',   icon: 'cpu'       },
-  { name: 'Media and Entertainment',         icon: 'clapper'   },
-  { name: 'Consumer Goods and Retail',       icon: 'bag'       },
-  { name: 'Hospitality and Tourism',         icon: 'bed'       },
-  { name: 'Food and Beverage',               icon: 'utensils'  },
-  { name: 'Healthcare and Life Sciences',    icon: 'activity'  },
-  { name: 'Pharmaceuticals and Biotech',     icon: 'pill'      },
-  { name: 'Professional Services',           icon: 'briefcase' },
-  { name: 'Financial Services',              icon: 'banknote'  },
-  { name: 'Real Estate',                     icon: 'home'      },
-  { name: 'Agriculture',                     icon: 'sprout'    },
-  { name: 'Education',                       icon: 'cap'       },
-  { name: 'Government',                      icon: 'landmark'  },
-  { name: 'Public Services',                 icon: 'users'     },
-  { name: 'Non-profit and NGOs',             icon: 'heart'     },
-];
+import { getEntry } from 'astro:content';
+
+const home = await getEntry('pages', 'home');
+const { industries } = home!.data;
 
 const HEX_COLORS = ['#7118C2', '#0599FF', '#BC10DE', '#00FB90'];
 
@@ -57,20 +36,20 @@ const ICON_PATHS: Record<string, string> = {
 <section class="industries" id="industries">
   <div class="container ind-wrap">
     <div class="ind-left">
-      <div class="eyebrow ind-eyebrow">Industry experience or specialization</div>
-      <h2 class="ind-title">Who we<br />work with.</h2>
-      <div class="ind-active" id="ind-active-name">{INDUSTRIES[0].name}</div>
+      <div class="eyebrow ind-eyebrow">{industries.eyebrow}</div>
+      <h2 class="ind-title" set:html={industries.titleHtml} />
+      <div class="ind-active" id="ind-active-name">{industries.items[0].name}</div>
       <p class="ind-body ind-body--desktop">
-        These are the industries we know best, but the challenges we tackle aren't sector-specific. If you're looking for a partner to help your people get AI right, let's talk.
+        {industries.body}
       </p>
     </div>
 
     <div class="ind-list-wrap">
       <p class="ind-body ind-body--mobile">
-        These are the industries we know best, but the challenges we tackle aren't sector-specific. If you're looking for a partner to help your people get AI right, let's talk.
+        {industries.body}
       </p>
       <ul class="ind-list">
-        {INDUSTRIES.map((it, i) => (
+        {industries.items.map((it, i) => (
           <li class="ind-list-item">
             <button
               type="button"
