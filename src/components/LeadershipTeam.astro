@@ -1,28 +1,18 @@
 ---
-const LEADERS = [
-  { name:'Dr. Ryan Rex, MBA', title:'Chief Executive Officer',
-    photo:'/assets/team/ryan-rex.png',
-    linkedin:'https://www.linkedin.com/in/rexryan/',
-    bio:'Ryan holds a Doctorate of Business Administration focused on leadership and organizational performance, and has spent 20 years leading transformation across oil and gas, technology, law, and manufacturing, including senior roles at Suncor and Borden Ladner Gervais.' },
-  { name:'Blake Hanna', title:'Chief Consulting Officer',
-    photo:'/assets/team/blake-hanna.png',
-    linkedin:'https://www.linkedin.com/in/blakedhannayyc/',
-    bio:'Blake spent nearly two decades at Accenture, EY, and IBM, delivering more than 70 digital and organizational change engagements across North America, Europe, and Asia.' },
-  { name:'Kim St-Georges', title:'Chief Innovation Officer',
-    photo:'/assets/team/kim-st-georges.png',
-    linkedin:'https://www.linkedin.com/in/kimstgeorges/',
-    bio:'Kim brings 20 years of experience in digital transformation and AI strategy, including 14 years as a Senior Principal at Accenture and nearly four years as a Senior Advisor for Azure Cloud, Data, and AI at Microsoft.' },
-];
+import { getEntry } from 'astro:content';
+
+const home = await getEntry('pages', 'home');
+const { leadership } = home!.data;
 ---
 
 <section class="leadership">
   <div class="container">
     <div class="section-head leadership-head reveal">
-      <div class="eyebrow" style="justify-content:center">Our leadership team</div>
-      <h2>The people leading the work.</h2>
+      <div class="eyebrow" style="justify-content:center">{leadership.eyebrow}</div>
+      <h2>{leadership.heading}</h2>
     </div>
     <div class="leaders-grid" id="leaders-grid">
-      {LEADERS.map((p, i) => (
+      {leadership.leaders.map((p, i) => (
         <div
           class="leader-card reveal"
           style={`--reveal-delay:${i*85}ms`}
