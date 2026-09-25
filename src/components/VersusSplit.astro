@@ -1,30 +1,24 @@
 ---
-const ROWS = [
-  ['Who delivers',    'Senior teams',                                           'Junior teams'],
-  ['Methodology',     'Co-creation for your organizational needs',              'Standardized, cookie-cutter approach across all clients'],
-  ['Primary focus',   'AI enablement, readiness, and adoption',                 'Everything for everyone, delivered the same way every time'],
-  ['Delivery model',  'Adaptive, agile service delivery focused on your needs', 'Rigid with change orders'],
-  ['Success looks like','Quantifiable AI adoption across your organization',     'Deliverables completed'],
-  ['Pricing',         'Big‑firm quality, small‑firm efficiency',                'Global overhead and bureaucracy included'],
-];
+import { getEntry } from 'astro:content';
+
+const home = await getEntry('pages', 'home');
+const { versus } = home!.data;
 ---
 
 <section class="process">
   <div class="container process-head reveal">
-    <div class="eyebrow" style="justify-content:center">About us</div>
-    <h2>How we work <em>differently</em>.</h2>
-    <p>
-      Large consulting firms bring frameworks, reach, and a price tag to match, but the senior partners who sell the engagement rarely lead the delivery. With Hume Edge, your engagement is led by a member of our executive team, the methodology adapts to your organization's specific context, and we measure success by whether your people are actually working differently.
-    </p>
+    <div class="eyebrow" style="justify-content:center">{versus.eyebrow}</div>
+    <h2 set:html={versus.headingHtml} />
+    <p>{versus.intro}</p>
   </div>
 
   <div class="versus">
     <div class="versus-col us reveal">
       <div class="brandrow">
         <img src="/assets/hume-lab-icon.png" alt="Hume Edge" width="42" height="42" style="object-fit:contain;flex:0 0 auto" loading="lazy" />
-        <span class="title">Hume Edge</span>
+        <span class="title">{versus.usLabel}</span>
       </div>
-      {ROWS.map(([k, us]) => (
+      {versus.rows.map(([k, us]) => (
         <div class="versus-row">
           <div class="k">{k}</div>
           <div class="v">{us}</div>
@@ -33,9 +27,9 @@ const ROWS = [
     </div>
     <div class="versus-col them reveal">
       <div class="brandrow">
-        <span class="title">Other firms</span>
+        <span class="title">{versus.themLabel}</span>
       </div>
-      {ROWS.map(([k,, them]) => (
+      {versus.rows.map(([k,, them]) => (
         <div class="versus-row">
           <div class="k">{k}</div>
           <div class="v">{them}</div>
@@ -45,8 +39,8 @@ const ROWS = [
   </div>
 
   <div class="versus-cta">
-    <a class="btn btn-lg btn-mint" href="/contact">
-      Start a conversation
+    <a class="btn btn-lg btn-mint" href={versus.ctaHref}>
+      {versus.ctaLabel}
       <svg class="btn-arrow" viewBox="0 0 36 30" fill="none" aria-hidden="true"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg>
     </a>
   </div>
