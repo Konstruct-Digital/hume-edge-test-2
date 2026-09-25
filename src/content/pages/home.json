@@ -35,7 +35,7 @@
   },
   "problems": {
     "eyebrow": "What our clients are saying",
-    "headingHtml": "Your AI program is live.<br />Your <em>people aren't there yet</em>.",
+    "headingHtml": "Your AI program is live.<br>Your <em>people aren't there yet</em>.",
     "intro": "Budgets are approved, tools are selected, and the pressure to show results is real. Most organizations have invested more in AI tools than in AI adoption. The gap lives with their people. These are the challenges we hear most.",
     "items": [
       { "num": "01", "color": "#7118C2", "icon": "/assets/icons/card-1.svg", "quote": "We rolled out AI. Our people still aren't using it effectively.", "body": "Access to a tool and knowing how to use it are two different things. When employees aren't enabled to leverage AI in the flow of work for their specific roles, they default to what they know, and the AI investment you made erodes without value realization." },
