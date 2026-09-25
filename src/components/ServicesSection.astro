@@ -101,7 +101,12 @@ const { services } = home!.data as HomeData;
     document.getElementById('svc-tagline').textContent = s.tagline;
     document.getElementById('svc-intro').textContent = s.intro;
     const ul = document.getElementById('svc-bullets');
-    ul.innerHTML = s.bullets.map(b => `<li>${b}</li>`).join('');
+    ul.innerHTML = '';
+    s.bullets.forEach(b => {
+      const li = document.createElement('li');
+      li.textContent = b;
+      ul.appendChild(li);
+    });
     overlay.removeAttribute('hidden');
     document.body.style.overflow = 'hidden';
     closeBtn.focus();

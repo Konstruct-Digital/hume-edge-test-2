@@ -211,7 +211,9 @@ const contactSchema = z.object({
   page: z.literal('contact'),
   meta: z.object({ title: z.string(), description: z.string() }),
   hero: z.object({ eyebrow: z.string(), titleHtml: z.string(), introHtml: z.string() }),
+  expectHeading: z.string(),
   expect: z.array(z.object({ n: z.string(), title: z.string(), body: z.string() })),
+  directHeading: z.string(),
   directContacts: z.array(z.object({ label: z.string(), email: z.string() })),
 });
 

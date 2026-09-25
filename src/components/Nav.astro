@@ -4,9 +4,9 @@ import { getEntry } from 'astro:content';
 import logo from '../assets/hume-edge-logo.png';
 
 export interface Props {
-  current?: 'Home' | 'About Us' | 'Contact';
+  current?: string;
 }
-const { current = 'Home' } = Astro.props;
+const { current = '/' } = Astro.props;
 
 const site = await getEntry('site', 'global');
 const { items, ctaLabel, ctaHref } = site!.data.nav;
@@ -20,7 +20,7 @@ const { items, ctaLabel, ctaHref } = site!.data.nav;
 
     <div class="nav-links">
       {items.map(it => (
-        <a class={`nav-link${current === it.label ? ' is-current' : ''}`} href={it.href}>{it.label}</a>
+        <a class={`nav-link${current === it.href ? ' is-current' : ''}`} href={it.href}>{it.label}</a>
       ))}
     </div>
 
@@ -48,7 +48,7 @@ const { items, ctaLabel, ctaHref } = site!.data.nav;
   </button>
   <div class="nav-drawer-links">
     {items.map(it => (
-      <a class={`nav-drawer-link${current === it.label ? ' is-current' : ''}`} href={it.href}>{it.label}</a>
+      <a class={`nav-drawer-link${current === it.href ? ' is-current' : ''}`} href={it.href}>{it.label}</a>
     ))}
   </div>
   <a class="btn btn-mint nav-drawer-cta" href={ctaHref}>{ctaLabel}</a>
