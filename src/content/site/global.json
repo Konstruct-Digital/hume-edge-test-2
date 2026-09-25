@@ -1,0 +1,23 @@
+{
+  "global": {
+    "nav": {
+      "items": [
+        { "label": "Home", "href": "/" },
+        { "label": "Our Services", "href": "/#services" },
+        { "label": "About Us", "href": "/about" }
+      ],
+      "ctaLabel": "Contact Us",
+      "ctaHref": "/contact"
+    },
+    "footer": {
+      "tagline": "AI enablement advisory. The human side of AI.",
+      "nav": [
+        { "label": "Home", "href": "/" },
+        { "label": "About Us", "href": "/about" }
+      ],
+      "ctaLabel": "Contact Us",
+      "ctaHref": "/contact",
+      "legal": "© 2026 Hume Edge"
+    }
+  }
+}

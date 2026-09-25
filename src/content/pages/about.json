@@ -1,0 +1,100 @@
+{
+  "page": "about",
+  "meta": {
+    "title": "Hume Edge: Humans Helping Humans Get AI Right",
+    "description": "Meet the team behind Hume Edge. We have 50+ years of experience and one belief: AI works when people are ready for it."
+  },
+  "hero": {
+    "eyebrow": "About us",
+    "titleHtml": "Humans helping humans <em>get AI right</em>.",
+    "sub": "AI succeeds or fails with people. Hume Edge is for the leaders who get that.",
+    "primaryCta": { "label": "Read our story", "href": "#story" },
+    "secondaryCta": { "label": "Start a conversation", "href": "#contact" },
+    "image": { "src": "/assets/images/about-hero.png", "alt": "Hume Edge team in a strategy session" }
+  },
+  "shortVersion": {
+    "eyebrow": "The short version",
+    "leadHtml": "Hume Edge is an AI advisory firm. We work with established organizations that are serious about getting AI right: <em>building the strategy, preparing the leaders, training the workforce,</em> and measuring whether any of it is actually changing how people work. Engagements range from full transformation programs to standalone training and workshops."
+  },
+  "mission": {
+    "eyebrow": "Our mission",
+    "headingHtml": "Three convictions that shape <em>every engagement</em> we run.",
+    "convictions": [
+      { "n": "01", "color": "#7118C2", "icon": "/assets/icons/conv-1.svg", "title": "Your people determine whether AI succeeds", "body": "When your people trust AI, understand it, and know how to use it in their roles, your investment pays off. When they don't, no amount of technology spending closes the gap. We start every engagement with your workforce." },
+      { "n": "02", "color": "#BC10DE", "icon": "/assets/icons/conv-2.svg", "title": "AI transformation requires more than good intentions", "body": "The organizations seeing real AI returns made deliberate decisions about strategy, leadership, and how to bring their people along. Deliberate decisions require a clear model. We bring one." },
+      { "n": "03", "color": "#2D7FE0", "icon": "/assets/icons/conv-3.svg", "title": "We define and measure what real adoption looks like", "body": "Behavior change is measurable. We define what success looks like before we start, track whether AI is changing how your people actually work, and give your leadership team the data to act on." }
+    ]
+  },
+  "team": {
+    "eyebrow": "Our team",
+    "headingHtml": "The people supporting <em>your people</em>.",
+    "introHtml": "<em>Our executive team has spent decades leading transformation inside the organizations they now advise.</em> Combined, we bring 50+ years of experience across consulting, technology, and organizational change.",
+    "founders": [
+      {
+        "name": "Dr. Ryan Rex, MBA",
+        "title": "Chief executive officer",
+        "photo": "/assets/team/ryan-rex.png",
+        "linkedin": "https://www.linkedin.com/in/rexryan/",
+        "firms": ["Suncor", "Borden Ladner Gervais"],
+        "bio": [
+          "Ryan has spent more than 20 years in the senior leader's chair, leading high-performance teams across global enterprises and early-stage start-ups, and coaching the executives who run them. He understands the complexity and pressure of organizational transformation because he has lived it from the inside, not only advised on it.",
+          "A certified executive coach and leadership researcher with an MBA and a doctorate, Ryan's work centers on the human side of AI: the leadership, culture, and capability that ultimately decide whether the technology delivers or stalls. He pairs firsthand experience of leading change under pressure with the research to back what genuinely moves people.",
+          "His experience spans technology and software, oil and gas, energy and utilities, aviation, law, manufacturing, and professional services. Across it all, Ryan keeps returning to the same conviction: the organizations that win with AI are the ones that get their people ready for it, not just their systems."
+        ],
+        "industries": "Technology / Software · Oil & Gas · Airline · Law · Consulting · Manufacturing"
+      },
+      {
+        "name": "Blake Hanna",
+        "title": "Chief consulting officer",
+        "photo": "/assets/team/blake-hanna.png",
+        "linkedin": "https://www.linkedin.com/in/blakedhannayyc/",
+        "firms": ["Accenture", "EY", "IBM"],
+        "bio": [
+          "Blake has spent more than 18 years inside the kind of organizational change most firms only describe from the outside. Across Big 4 and boutique consulting and a series of global industry roles, he has led the messy, human work of making transformation actually hold — through operating-model redesigns, M&A integrations, culture change, and global technology rollouts.",
+          "His focus today is AI enablement and adoption: building the organizational dexterity and effectiveness that determine whether an AI investment becomes everyday practice or quietly fades. Having delivered more than 70 projects, he knows the difference between a program that looks good on a slide and one that changes how people actually work.",
+          "That experience spans technology and software, energy and utilities, mining, oil and gas, financial services, consumer packaged goods, the public sector, and not-for-profits. Wherever adoption starts to stall, Blake has usually seen what's pulling it apart — and knows what it takes to get it back on course at global scale."
+        ],
+        "industries": "Oil & Gas · Technology / Software · Consumer Goods · Retail · Not-for-Profits · Energy & Utilities"
+      },
+      {
+        "name": "Kim St-Georges",
+        "title": "Chief innovation officer",
+        "photo": "/assets/team/kim-st-georges.png",
+        "linkedin": "https://www.linkedin.com/in/kimstgeorges/",
+        "firms": ["Accenture", "Microsoft"],
+        "bio": [
+          "Kim has spent more than 20 years leading transformation at the point where strategy meets execution — where the real challenge is rarely defining change, but delivering it. Across senior consulting and industry leadership roles, she has guided complex, multi-stakeholder organizations through the gap between ambition and results.",
+          "Her expertise centers on AI enablement end-to-end: from strategy and governance through to adoption, execution, and workforce integration. She draws on hands-on experience with digital transformation programs, data-driven innovation, and large-scale AI initiatives to help organizations make the hardest move of all — from experimentation to real, measurable business value.",
+          "Kim's work spans cloud and data platforms, construction, manufacturing, energy, oil and gas, and professional services. She has a particular eye for where transformation slows and where alignment breaks down among leadership, teams, and technology, with a track record of turning AI ambition into self-sustaining execution."
+        ],
+        "industries": "Cloud Services, Data & AI · Consulting · Oil & Gas · Mining · Manufacturing · Construction · Accounting"
+      }
+    ]
+  },
+  "story": {
+    "eyebrow": "Our story",
+    "headingHtml": "The story behind <em>Hume Edge.</em>",
+    "quote": {
+      "text": "The science of man is the only solid foundation for the other sciences.",
+      "citeHtml": "— David Hume, <em>A Treatise of Human Nature</em>"
+    },
+    "image": { "src": "/assets/images/our-story.png", "alt": "Blake and Ryan at the David Hume statue in Edinburgh" },
+    "paragraphs": [
+      "Blake and I met up in Edinburgh during a stretch of travel where we were presenting our Executive AI Accelerator program to senior leaders across Europe and Asia. We had an afternoon free and found ourselves walking the Royal Mile.",
+      "As we walked the streets of Edinburgh, we stopped at a church and graveyard known for inspiring some of the names in the Harry Potter series. As we walked through the church, we noticed a soft spot in the floor that creaked whenever someone walked over it. It was unsettling. I told Blake to walk over it.",
+      "As he went into the room, he called me to join him. On the wall, right in front of the squeak in the floor, was a story of David Hume. I had long admired the Scottish philosopher who spent his life arguing that understanding human nature is the foundation of everything else.",
+      "The strange coincidence was that morning, I had been telling Blake about David Hume as we traveled into town, and all of a sudden, here he was! We were curious whether he was actually buried there, so we spoke to the lady running the parish. She informed us that he was in a different cemetery, only a few minutes away from where we were. So we set off to find him.",
+      "At this point, we had spent hours batting around ideas and testing names for our company. On our way to find his grave, Blake and I stopped for coffee and were starting to seriously consider the name Hume when, all of a sudden, across the street, a bagpiper started playing. Blake wanted to listen for a minute and take a video for his wife. We stood beside this statue, amongst a group of people watching. Blake tapped me and said, \"Look up.\" There he was: a nine-foot bronze statue of David Hume."
+    ],
+    "signOffHtml": "It was a sign. <em>One we couldn't ignore.</em>",
+    "closingParagraphHtml": "We took a picture together in front of the statue, and at that moment, we named our company after the philosopher who spent his life proving that people are the foundation of everything. <strong>Hume Edge was born.</strong>",
+    "signature": "— Ryan Rex, CEO and Co-Founder"
+  },
+  "cta": {
+    "id": "contact",
+    "formId": "about-cta",
+    "eyebrow": "Start here",
+    "headingHtml": "<h2>Ready to get your <em>people AI-ready?</em></h2>",
+    "subtitle": "You know our story. We'd like to know yours; where your organization is on its AI journey, what's getting in your way, and where you want to go."
+  }
+}
