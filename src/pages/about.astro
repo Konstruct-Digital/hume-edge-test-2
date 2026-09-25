@@ -8,40 +8,7 @@ import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 
 const about = await getEntry('pages', 'about');
-const { meta, hero, shortVersion, mission } = about!.data;
-
-const FOUNDERS = [
-  { name:'Dr. Ryan Rex, MBA', title:'Chief executive officer',
-    photo:'/assets/team/ryan-rex.png',
-    linkedin:'https://www.linkedin.com/in/rexryan/',
-    firms:['Suncor','Borden Ladner Gervais'],
-    bio:[
-      "Ryan has spent more than 20 years in the senior leader's chair, leading high-performance teams across global enterprises and early-stage start-ups, and coaching the executives who run them. He understands the complexity and pressure of organizational transformation because he has lived it from the inside, not only advised on it.",
-      "A certified executive coach and leadership researcher with an MBA and a doctorate, Ryan's work centers on the human side of AI: the leadership, culture, and capability that ultimately decide whether the technology delivers or stalls. He pairs firsthand experience of leading change under pressure with the research to back what genuinely moves people.",
-      "His experience spans technology and software, oil and gas, energy and utilities, aviation, law, manufacturing, and professional services. Across it all, Ryan keeps returning to the same conviction: the organizations that win with AI are the ones that get their people ready for it, not just their systems.",
-    ],
-    industries:'Technology / Software · Oil & Gas · Airline · Law · Consulting · Manufacturing' },
-  { name:'Blake Hanna', title:'Chief consulting officer',
-    photo:'/assets/team/blake-hanna.png',
-    linkedin:'https://www.linkedin.com/in/blakedhannayyc/',
-    firms:['Accenture','EY','IBM'],
-    bio:[
-      "Blake has spent more than 18 years inside the kind of organizational change most firms only describe from the outside. Across Big 4 and boutique consulting and a series of global industry roles, he has led the messy, human work of making transformation actually hold — through operating-model redesigns, M&A integrations, culture change, and global technology rollouts.",
-      "His focus today is AI enablement and adoption: building the organizational dexterity and effectiveness that determine whether an AI investment becomes everyday practice or quietly fades. Having delivered more than 70 projects, he knows the difference between a program that looks good on a slide and one that changes how people actually work.",
-      "That experience spans technology and software, energy and utilities, mining, oil and gas, financial services, consumer packaged goods, the public sector, and not-for-profits. Wherever adoption starts to stall, Blake has usually seen what's pulling it apart — and knows what it takes to get it back on course at global scale.",
-    ],
-    industries:'Oil & Gas · Technology / Software · Consumer Goods · Retail · Not-for-Profits · Energy & Utilities' },
-  { name:'Kim St-Georges', title:'Chief innovation officer',
-    photo:'/assets/team/kim-st-georges.png',
-    linkedin:'https://www.linkedin.com/in/kimstgeorges/',
-    firms:['Accenture','Microsoft'],
-    bio:[
-      "Kim has spent more than 20 years leading transformation at the point where strategy meets execution — where the real challenge is rarely defining change, but delivering it. Across senior consulting and industry leadership roles, she has guided complex, multi-stakeholder organizations through the gap between ambition and results.",
-      "Her expertise centers on AI enablement end-to-end: from strategy and governance through to adoption, execution, and workforce integration. She draws on hands-on experience with digital transformation programs, data-driven innovation, and large-scale AI initiatives to help organizations make the hardest move of all — from experimentation to real, measurable business value.",
-      "Kim's work spans cloud and data platforms, construction, manufacturing, energy, oil and gas, and professional services. She has a particular eye for where transformation slows and where alignment breaks down among leadership, teams, and technology, with a track record of turning AI ambition into self-sustaining execution.",
-    ],
-    industries:'Cloud Services, Data & AI · Consulting · Oil & Gas · Mining · Manufacturing · Construction · Accounting' },
-];
+const { meta, hero, shortVersion, mission, team } = about!.data;
 
 const STORY = [
   'Blake and I met up in Edinburgh during a stretch of travel where we were presenting our Executive AI Accelerator program to senior leaders across Europe and Asia. We had an afternoon free and found ourselves walking the Royal Mile.',
@@ -142,14 +109,12 @@ const STORY = [
   <section class="about-team">
     <div class="container">
       <div class="section-head about-team-head reveal">
-        <div class="eyebrow">Our team</div>
-        <h2>The people supporting <em>your people</em>.</h2>
-        <p class="about-team-intro">
-          <em>Our executive team has spent decades leading transformation inside the organizations they now advise.</em> Combined, we bring 50+ years of experience across consulting, technology, and organizational change.
-        </p>
+        <div class="eyebrow">{team.eyebrow}</div>
+        <h2 set:html={team.headingHtml} />
+        <p class="about-team-intro" set:html={team.introHtml} />
       </div>
       <div class="founder-list">
-        {FOUNDERS.map((p, i) => (
+        {team.founders.map((p, i) => (
           <article class="founder-card reveal" style={`--reveal-delay:${i*90}ms`}>
             <div class="founder-photo-wrap">
               <img
