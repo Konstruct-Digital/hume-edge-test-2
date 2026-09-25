@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import type { HomeData } from '../content.config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 // No page-specific styles needed - all base styles loaded via layout
 import Nav from '../components/Nav.astro';
@@ -19,7 +20,7 @@ import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 
 const home = await getEntry('pages', 'home');
-const { meta, orgSchema, cta } = home!.data;
+const { meta, orgSchema, cta } = home!.data as HomeData;
 ---
 
 <BaseLayout

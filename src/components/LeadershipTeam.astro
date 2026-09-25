@@ -1,8 +1,9 @@
 ---
 import { getEntry } from 'astro:content';
+import type { HomeData } from '../content.config';
 
 const home = await getEntry('pages', 'home');
-const { leadership } = home!.data;
+const { leadership } = home!.data as HomeData;
 ---
 
 <section class="leadership">

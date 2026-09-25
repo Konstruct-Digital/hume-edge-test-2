@@ -1,8 +1,9 @@
 ---
 import { getEntry } from 'astro:content';
+import type { HomeData } from '../content.config';
 
 const home = await getEntry('pages', 'home');
-const { imageBreak } = home!.data;
+const { imageBreak } = home!.data as HomeData;
 ---
 <section class="imgbreak">
   <div class="container imgbreak-grid">

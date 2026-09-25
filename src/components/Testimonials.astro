@@ -1,8 +1,9 @@
 ---
 import { getEntry } from 'astro:content';
+import type { HomeData } from '../content.config';
 
 const home = await getEntry('pages', 'home');
-const { testimonials } = home!.data;
+const { testimonials } = home!.data as HomeData;
 const { video, flip } = testimonials;
 ---
 <section class="testimonials">

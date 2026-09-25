@@ -1,10 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import { getEntry } from 'astro:content';
+import type { HomeData } from '../content.config';
 import heroPortrait from '../assets/images/hero-portrait-v4.png';
 
 const home = await getEntry('pages', 'home');
-const { hero } = home!.data;
+const { hero } = home!.data as HomeData;
 ---
 <section class="hero hero--indigo-purple">
   <div class="hero-blob b1" aria-hidden="true">

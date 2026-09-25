@@ -1,12 +1,13 @@
 ---
 import { getEntry } from 'astro:content';
+import type { NotFoundData } from '../content.config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 
 const notFound = await getEntry('pages', 'not-found');
-const { meta, code, heading, body, ctaLabel, ctaHref } = notFound!.data;
+const { meta, code, heading, body, ctaLabel, ctaHref } = notFound!.data as NotFoundData;
 ---
 
 <BaseLayout

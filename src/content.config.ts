@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob, file } from 'astro/loaders';
 
 const founderSchema = z.object({
@@ -246,5 +247,10 @@ const site = defineCollection({
     }),
   }),
 });
+
+export type HomeData = z.infer<typeof homeSchema>;
+export type AboutData = z.infer<typeof aboutSchema>;
+export type ContactData = z.infer<typeof contactSchema>;
+export type NotFoundData = z.infer<typeof notFoundSchema>;
 
 export const collections = { pages, site };

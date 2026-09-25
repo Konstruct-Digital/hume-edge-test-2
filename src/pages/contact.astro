@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import type { ContactData } from '../content.config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/contact.css';
 import Nav from '../components/Nav.astro';
@@ -7,7 +8,7 @@ import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 
 const contact = await getEntry('pages', 'contact');
-const { meta, hero, expect: expectItems, directContacts } = contact!.data;
+const { meta, hero, expect: expectItems, directContacts } = contact!.data as ContactData;
 
 const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
 ---

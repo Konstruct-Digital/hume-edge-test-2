@@ -1,8 +1,9 @@
 ---
 import { getEntry } from 'astro:content';
+import type { HomeData } from '../content.config';
 
 const home = await getEntry('pages', 'home');
-const { whyDifferent } = home!.data;
+const { whyDifferent } = home!.data as HomeData;
 ---
 
 <section class="why">

@@ -1,5 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
+import type { AboutData } from '../content.config';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/about.css';
 import Nav from '../components/Nav.astro';
@@ -8,7 +9,7 @@ import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 
 const about = await getEntry('pages', 'about');
-const { meta, hero, shortVersion, mission, team, story, cta } = about!.data;
+const { meta, hero, shortVersion, mission, team, story, cta } = about!.data as AboutData;
 ---
 
 <BaseLayout
