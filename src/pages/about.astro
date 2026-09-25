@@ -8,15 +8,7 @@ import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 
 const about = await getEntry('pages', 'about');
-const { meta, hero, shortVersion, mission, team } = about!.data;
-
-const STORY = [
-  'Blake and I met up in Edinburgh during a stretch of travel where we were presenting our Executive AI Accelerator program to senior leaders across Europe and Asia. We had an afternoon free and found ourselves walking the Royal Mile.',
-  'As we walked the streets of Edinburgh, we stopped at a church and graveyard known for inspiring some of the names in the Harry Potter series. As we walked through the church, we noticed a soft spot in the floor that creaked whenever someone walked over it. It was unsettling. I told Blake to walk over it.',
-  'As he went into the room, he called me to join him. On the wall, right in front of the squeak in the floor, was a story of David Hume. I had long admired the Scottish philosopher who spent his life arguing that understanding human nature is the foundation of everything else.',
-  'The strange coincidence was that morning, I had been telling Blake about David Hume as we traveled into town, and all of a sudden, here he was! We were curious whether he was actually buried there, so we spoke to the lady running the parish. She informed us that he was in a different cemetery, only a few minutes away from where we were. So we set off to find him.',
-  'At this point, we had spent hours batting around ideas and testing names for our company. On our way to find his grave, Blake and I stopped for coffee and were starting to seriously consider the name Hume when, all of a sudden, across the street, a bagpiper started playing. Blake wanted to listen for a minute and take a video for his wife. We stood beside this statue, amongst a group of people watching. Blake tapped me and said, "Look up." There he was: a nine-foot bronze statue of David Hume.',
-];
+const { meta, hero, shortVersion, mission, team, story, cta } = about!.data;
 ---
 
 <BaseLayout
@@ -151,17 +143,17 @@ const STORY = [
   <section class="about-story" id="story">
     <div class="container story-layout">
       <div class="story-col-left reveal">
-        <div class="eyebrow story-eyebrow">Our story</div>
-        <h2 class="story-headline">The story behind <em>Hume Edge.</em></h2>
+        <div class="eyebrow story-eyebrow">{story.eyebrow}</div>
+        <h2 class="story-headline" set:html={story.headingHtml} />
         <blockquote class="hume-quote">
-          <p>"The science of man is the only solid foundation for the other sciences."</p>
-          <cite>— David Hume, <em>A Treatise of Human Nature</em></cite>
+          <p>"{story.quote.text}"</p>
+          <cite set:html={story.quote.citeHtml} />
         </blockquote>
         <div class="story-photo">
           <img
             class="story-img"
-            src="/assets/images/our-story.png"
-            alt="Blake and Ryan at the David Hume statue in Edinburgh"
+            src={story.image.src}
+            alt={story.image.alt}
             width="520"
             height="400"
             loading="lazy"
@@ -169,22 +161,20 @@ const STORY = [
         </div>
       </div>
       <div class="story-col-right reveal">
-        {STORY.map(para => <p class="story-para">{para}</p>)}
-        <p class="story-para story-sign-line">It was a sign. <em>One we couldn't ignore.</em></p>
-        <p class="story-para">
-          We took a picture together in front of the statue, and at that moment, we named our company after the philosopher who spent his life proving that people are the foundation of everything. <strong>Hume Edge was born.</strong>
-        </p>
-        <div class="story-signature">&mdash; Ryan Rex, CEO and Co-Founder</div>
+        {story.paragraphs.map(para => <p class="story-para">{para}</p>)}
+        <p class="story-para story-sign-line" set:html={story.signOffHtml} />
+        <p class="story-para" set:html={story.closingParagraphHtml} />
+        <div class="story-signature">{story.signature}</div>
       </div>
     </div>
   </section>
 
   <CTAForm
-    id="contact"
-    formId="about-cta"
-    eyebrow="Start here"
-    heading='<h2>Ready to get your <em>people AI-ready?</em></h2>'
-    subtitle="You know our story. We'd like to know yours; where your organization is on its AI journey, what's getting in your way, and where you want to go."
+    id={cta.id}
+    formId={cta.formId}
+    eyebrow={cta.eyebrow}
+    heading={cta.headingHtml}
+    subtitle={cta.subtitle}
   />
 
   <Footer />
