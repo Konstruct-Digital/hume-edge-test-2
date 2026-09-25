@@ -1,29 +1,34 @@
 ---
+import { getEntry } from 'astro:content';
+
+const home = await getEntry('pages', 'home');
+const { testimonials } = home!.data;
+const { video, flip } = testimonials;
 ---
 <section class="testimonials">
   <div class="container">
     <div class="section-head testimonials-head reveal">
-      <div class="eyebrow" style="justify-content:center">Client stories</div>
-      <h2>Hear from our clients.</h2>
+      <div class="eyebrow" style="justify-content:center">{testimonials.eyebrow}</div>
+      <h2>{testimonials.heading}</h2>
     </div>
     <div class="tcards">
 
       <!-- Video testimonial -->
-      <div class="tcard tcard-video reveal" id="video-tcard" role="button" tabindex="0" aria-label="Play video testimonial from Alex Fleming">
+      <div class="tcard tcard-video reveal" id="video-tcard" role="button" tabindex="0" aria-label={`Play video testimonial from ${video.name}`}>
         <div class="tcard-media" id="video-media">
           <div class="tcard-poster" id="video-poster">
-            <img class="tcard-photo" src="/assets/testimonials/alex-fleming.png" alt="Alex Fleming" width="430" height="360" loading="lazy" />
+            <img class="tcard-photo" src={video.photo} alt={video.name} width="430" height="360" loading="lazy" />
             <span class="tcard-play" aria-hidden="true">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </span>
           </div>
         </div>
-        <p class="tcard-quote">Hume Edge changed how our people actually use AI, not just whether we had the tools.</p>
+        <p class="tcard-quote">{video.quote}</p>
         <div class="tcard-foot">
           <div class="tcard-person">
-            <div class="tcard-name">Alex Fleming</div>
-            <div class="tcard-role">Group SVP Talent, Leadership &amp; Culture</div>
-            <div class="tcard-company">The Adecco Group</div>
+            <div class="tcard-name">{video.name}</div>
+            <div class="tcard-role">{video.role}</div>
+            <div class="tcard-company">{video.company}</div>
           </div>
           <span class="tcard-cs">Watch the story <span class="ar">→</span></span>
         </div>
@@ -32,36 +37,36 @@
       <!-- Flip testimonial -->
       <div
         class="tcard tcard-flip reveal"
-        style="--tcard-accent:#7118C2;--reveal-delay:85ms"
+        style={`--tcard-accent:${flip.accent};--reveal-delay:85ms`}
         role="button"
         tabindex="0"
         aria-pressed="false"
         data-flip-card
-        aria-label="Megan Wickens testimonial - click to read full story"
+        aria-label={`${flip.name} testimonial - click to read full story`}
       >
         <div class="tflip-inner">
           <div class="tflip-face tflip-front">
             <div class="tcard-media">
-              <img class="tcard-photo" src="/assets/testimonials/megan-wickens.png" alt="Megan Wickens" width="430" height="360" loading="lazy" />
+              <img class="tcard-photo" src={flip.photo} alt={flip.name} width="430" height="360" loading="lazy" />
             </div>
-            <p class="tcard-quote">Hume Edge set the benchmark for scaling AI impact by integrating strategy, design, and execution.</p>
+            <p class="tcard-quote">{flip.quote}</p>
             <div class="tcard-foot">
               <div class="tcard-person">
-                <div class="tcard-name">Megan Wickens</div>
-                <div class="tcard-role">Global Head of AI Operations</div>
-                <div class="tcard-company">The Adecco Group</div>
+                <div class="tcard-name">{flip.name}</div>
+                <div class="tcard-role">{flip.role}</div>
+                <div class="tcard-company">{flip.company}</div>
               </div>
               <span class="tcard-cs">Read the full story <span class="ar">→</span></span>
             </div>
           </div>
           <div class="tflip-face tflip-back">
-            <div class="tback-eyebrow">In their words</div>
+            <div class="tback-eyebrow">{flip.backEyebrow}</div>
             <div class="tback-scroll-wrap">
               <div class="tback-fade tback-fade--top" aria-hidden="true">
                 <svg class="tback-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
               </div>
               <div class="tcard-backquote" id="tback-scroll">
-                &ldquo;Following the build of a global AI skilling program for all colleagues and the successful launch of a global AI Ambassador network driving adoption, activation, and change management, we most recently engaged the Hume Edge team to design and deliver a truly distinctive experience for executive audiences. The program created space for meaningful executive dialogue, challenged existing assumptions, and deepened leaders' understanding of how AI shows up in our organization — particularly the gap between AI investment and AI value realization, and the critical role leadership plays in closing it. Their ability to integrate strategy, design, and execution continues to set the benchmark for how we scale AI impact across the business.&rdquo;
+                &ldquo;{flip.backQuote}&rdquo;
               </div>
               <div class="tback-fade tback-fade--bottom" aria-hidden="true">
                 <svg class="tback-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
@@ -69,9 +74,9 @@
             </div>
             <div class="tcard-foot">
               <div class="tcard-person">
-                <div class="tcard-name">Megan Wickens</div>
-                <div class="tcard-role">Global Head of AI Operations</div>
-                <div class="tcard-company">The Adecco Group</div>
+                <div class="tcard-name">{flip.name}</div>
+                <div class="tcard-role">{flip.role}</div>
+                <div class="tcard-company">{flip.company}</div>
               </div>
               <span class="tcard-cs"><span class="ar ar-back">←</span> Back</span>
             </div>
@@ -83,16 +88,16 @@
   </div>
 </section>
 
-<script>
+<script define:vars={{ videoSrc: video.videoSrc }}>
   // Video testimonial - click to play
-  const videoCard   = document.getElementById('video-tcard')!;
-  const videoMedia  = document.getElementById('video-media')!;
-  const videoPoster = document.getElementById('video-poster')!;
+  const videoCard   = document.getElementById('video-tcard');
+  const videoMedia  = document.getElementById('video-media');
+  const videoPoster = document.getElementById('video-poster');
 
   function playVideo() {
     const vid = document.createElement('video');
     vid.className   = 'tcard-video-el';
-    vid.src         = '/assets/video/testimonial-alex.mp4';
+    vid.src         = videoSrc;
     vid.controls    = true;
     vid.autoplay    = true;
     vid.playsInline = true;
@@ -107,9 +112,8 @@
   }
 
   videoCard.addEventListener('click', playVideo, { once: true });
-  videoCard.addEventListener('keydown', (e: Event) => {
-    const ke = e as KeyboardEvent;
-    if (ke.key === 'Enter' || ke.key === ' ') { ke.preventDefault(); playVideo(); }
+  videoCard.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); playVideo(); }
   }, { once: true });
 
   // Flip card
@@ -118,8 +122,7 @@
       const flipped = card.classList.toggle('is-flipped');
       card.setAttribute('aria-pressed', String(flipped));
       if (flipped) {
-        // Check scroll state once flip animation settles
-        const inner = card.querySelector<HTMLElement>('.tflip-inner');
+        const inner = card.querySelector('.tflip-inner');
         const dur = inner
           ? parseFloat(getComputedStyle(inner).transitionDuration) * 1000
           : 400;
@@ -127,17 +130,16 @@
       }
     };
     card.addEventListener('click', toggle);
-    card.addEventListener('keydown', (e: Event) => {
-      const ke = e as KeyboardEvent;
-      if (ke.key === 'Enter' || ke.key === ' ') { ke.preventDefault(); toggle(); }
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
     });
   });
 
   // Scroll fades for the back-of-card quote
   const backScroll  = document.getElementById('tback-scroll');
   const scrollWrap  = backScroll?.parentElement;
-  const fadeTop     = scrollWrap?.querySelector<HTMLElement>('.tback-fade--top');
-  const fadeBottom  = scrollWrap?.querySelector<HTMLElement>('.tback-fade--bottom');
+  const fadeTop     = scrollWrap?.querySelector('.tback-fade--top');
+  const fadeBottom  = scrollWrap?.querySelector('.tback-fade--bottom');
 
   function updateScrollFades() {
     if (!backScroll || !fadeTop || !fadeBottom) return;
