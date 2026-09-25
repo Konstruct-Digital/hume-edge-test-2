@@ -8,19 +8,7 @@ import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 
 const about = await getEntry('pages', 'about');
-const { meta, hero, shortVersion } = about!.data;
-
-const CONVICTIONS = [
-  { n:'01', color:'#7118C2', icon:'/assets/icons/conv-1.svg',
-    title:'Your people determine whether AI succeeds',
-    body:"When your people trust AI, understand it, and know how to use it in their roles, your investment pays off. When they don't, no amount of technology spending closes the gap. We start every engagement with your workforce." },
-  { n:'02', color:'#BC10DE', icon:'/assets/icons/conv-2.svg',
-    title:'AI transformation requires more than good intentions',
-    body:'The organizations seeing real AI returns made deliberate decisions about strategy, leadership, and how to bring their people along. Deliberate decisions require a clear model. We bring one.' },
-  { n:'03', color:'#2D7FE0', icon:'/assets/icons/conv-3.svg',
-    title:'We define and measure what real adoption looks like',
-    body:'Behavior change is measurable. We define what success looks like before we start, track whether AI is changing how your people actually work, and give your leadership team the data to act on.' },
-];
+const { meta, hero, shortVersion, mission } = about!.data;
 
 const FOUNDERS = [
   { name:'Dr. Ryan Rex, MBA', title:'Chief executive officer',
@@ -133,11 +121,11 @@ const STORY = [
   <section class="about-mission">
     <div class="container">
       <div class="section-head about-mission-head reveal">
-        <div class="eyebrow">Our mission</div>
-        <h2>Three convictions that shape <em>every engagement</em> we run.</h2>
+        <div class="eyebrow">{mission.eyebrow}</div>
+        <h2 set:html={mission.headingHtml} />
       </div>
       <div class="conviction-grid">
-        {CONVICTIONS.map((c, i) => (
+        {mission.convictions.map((c, i) => (
           <article class="conviction-card reveal" style={`--cv-accent:${c.color};--reveal-delay:${i*85}ms`}>
             <div class="conviction-num">
               <img class="conviction-icon" src={c.icon} alt="" width="56" height="56" loading="lazy" />
