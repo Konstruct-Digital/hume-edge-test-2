@@ -1,22 +1,20 @@
 ---
+import { getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import '../styles/contact.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 
-const EXPECT = [
-  { n:'01', title:'Your inquiry lands with a founding partner.', body:'Every message is reviewed personally, not by an intake team or an automated system.' },
-  { n:'02', title:"We review what you've shared.", body:"We look at where your organization is and what you're working through before we respond." },
-  { n:'03', title:'You hear back within 1–2 business days.', body:"We'll reach out to schedule a focused conversation about your organization and how we can help." },
-];
+const contact = await getEntry('pages', 'contact');
+const { meta, hero, expect: expectItems, directContacts } = contact!.data;
 
 const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
 ---
 
 <BaseLayout
-  title="Hume Edge: Talk to Our Team About AI Adoption"
-  description="Ready to get your people AI-ready? Reach out and a member of the executive team will be in touch within 1–2 business days."
+  title={meta.title}
+  description={meta.description}
 >
   <Nav current="Contact" />
 
@@ -44,13 +42,9 @@ const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
       </svg>
     </div>
     <div class="container contact-hero-inner">
-      <div class="hero-eyebrow">Contact us</div>
-      <h1 class="contact-title">
-        Ready to get your people AI-ready? <em>So are we.</em>
-      </h1>
-      <p class="contact-intro">
-        Every engagement at Hume Edge starts the same way: a conversation about your organization, your people, and where your AI program stands right now. Fill out the form below, and a <a class="contact-intro-link" href="/about">member of the executive team</a> will be in touch within 1–2 business days.
-      </p>
+      <div class="hero-eyebrow">{hero.eyebrow}</div>
+      <h1 class="contact-title" set:html={hero.titleHtml} />
+      <p class="contact-intro" set:html={hero.introHtml} />
     </div>
   </section>
 
@@ -111,7 +105,7 @@ const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
         <div class="expect-block">
           <h2 class="contact-side-head">What to expect after you hit send</h2>
           <ol class="expect-list">
-            {EXPECT.map(e => (
+            {expectItems.map(e => (
               <li class="expect-item">
                 <span class="expect-num">{e.n}</span>
                 <div class="expect-text">
@@ -126,15 +120,11 @@ const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
         <div class="direct-block">
           <h2 class="contact-side-head">Prefer to reach out directly?</h2>
           <div class="direct-list">
-            <a class="direct-item" href="mailto:connect@humeedge.ai">
-              <span class="direct-link">For enterprise engagements <span class="ar">→</span></span>
-            </a>
-            <a class="direct-item" href="mailto:connect@humeedge.ai">
-              <span class="direct-link">For training and workshops <span class="ar">→</span></span>
-            </a>
-            <a class="direct-item" href="mailto:connect@humeedge.ai">
-              <span class="direct-link">For everything else <span class="ar">→</span></span>
-            </a>
+            {directContacts.map(c => (
+              <a class="direct-item" href={`mailto:${c.email}`}>
+                <span class="direct-link">{c.label} <span class="ar">→</span></span>
+              </a>
+            ))}
           </div>
         </div>
       </aside>
