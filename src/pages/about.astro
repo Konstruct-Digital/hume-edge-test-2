@@ -7,9 +7,11 @@ import Nav from '../components/Nav.astro';
 import CTAForm from '../components/CTAForm.astro';
 import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
+import Editable from '../components/Editable.astro';
 
 const about = await getEntry('pages', 'about');
 const { meta, hero, shortVersion, mission, team, story, cta } = about!.data as AboutData;
+const file = 'src/content/pages/about.json';
 ---
 
 <BaseLayout
@@ -19,7 +21,7 @@ const { meta, hero, shortVersion, mission, team, story, cta } = about!.data as A
   <Nav current="/about" />
 
   <!-- Hero -->
-  <section class="hero about-hero hero--indigo-purple">
+  <section class="hero about-hero hero--indigo-purple" data-k-module-file={file} data-k-module-path="hero" data-k-module-label="Hero">
     <div class="hero-blob b1" aria-hidden="true">
       <svg viewBox="-20 -20 140 120" width="320" height="277" preserveAspectRatio="xMidYMid meet">
         {[
@@ -43,17 +45,36 @@ const { meta, hero, shortVersion, mission, team, story, cta } = about!.data as A
     </div>
     <div class="container hero-grid">
       <div>
-        <div class="hero-eyebrow">{hero.eyebrow}</div>
-        <h1 class="hero-title" set:html={hero.titleHtml} />
-        <p class="hero-sub">
-          {hero.sub}
-        </p>
+        <Editable as="div" class="hero-eyebrow" kind="text" value={hero.eyebrow} file={file} path="hero.eyebrow" label="Hero eyebrow" />
+        <Editable as="h1" class="hero-title" kind="html" value={hero.titleHtml} file={file} path="hero.titleHtml" label="Hero title" />
+        <Editable as="p" class="hero-sub" kind="text" value={hero.sub} file={file} path="hero.sub" label="Hero subtitle" />
         <div class="hero-ctas">
-          <a class="btn btn-lg btn-mint" href={hero.primaryCta.href}>
+          <a
+            class="btn btn-lg btn-mint"
+            href={hero.primaryCta.href}
+            data-k-file={file}
+            data-k-path="hero.primaryCta.label"
+            data-k-value={hero.primaryCta.label}
+            data-k-kind="text"
+            data-k-label="Hero primary CTA label"
+            data-k-href-path="hero.primaryCta.href"
+            data-k-href-value={hero.primaryCta.href}
+          >
             {hero.primaryCta.label}
             <svg class="btn-arrow" viewBox="0 0 36 30" fill="none" aria-hidden="true"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg>
           </a>
-          <a class="btn btn-lg btn-ghost-dark" href={hero.secondaryCta.href}>{hero.secondaryCta.label}</a>
+          <Editable
+            as="a"
+            class="btn btn-lg btn-ghost-dark"
+            kind="text"
+            value={hero.secondaryCta.label}
+            file={file}
+            path="hero.secondaryCta.label"
+            hrefPath="hero.secondaryCta.href"
+            hrefValue={hero.secondaryCta.href}
+            href={hero.secondaryCta.href}
+            label="Hero secondary CTA label"
+          />
         </div>
       </div>
       <div class="hero-portrait about-hero-portrait">
@@ -64,34 +85,59 @@ const { meta, hero, shortVersion, mission, team, story, cta } = about!.data as A
           width="660"
           height="auto"
           loading="eager"
+          data-k-file={file}
+          data-k-path="hero.image.alt"
+          data-k-value={hero.image.alt}
+          data-k-kind="text"
+          data-k-label="Hero image alt text"
         />
       </div>
     </div>
   </section>
 
   <!-- Short version band -->
-  <section class="about-short">
+  <section class="about-short" data-k-module-file={file} data-k-module-path="shortVersion" data-k-module-label="Short version">
     <div class="container about-short-grid reveal">
-      <div class="eyebrow">{shortVersion.eyebrow}</div>
-      <p class="about-short-lead" set:html={shortVersion.leadHtml} />
+      <Editable as="div" class="eyebrow" kind="text" value={shortVersion.eyebrow} file={file} path="shortVersion.eyebrow" label="Short version eyebrow" />
+      <Editable as="p" class="about-short-lead" kind="html" value={shortVersion.leadHtml} file={file} path="shortVersion.leadHtml" label="Short version lead" />
     </div>
   </section>
 
   <!-- Mission / convictions -->
-  <section class="about-mission">
+  <section class="about-mission" data-k-module-file={file} data-k-module-path="mission" data-k-module-label="Mission">
     <div class="container">
       <div class="section-head about-mission-head reveal">
-        <div class="eyebrow">{mission.eyebrow}</div>
-        <h2 set:html={mission.headingHtml} />
+        <Editable as="div" class="eyebrow" kind="text" value={mission.eyebrow} file={file} path="mission.eyebrow" label="Mission eyebrow" />
+        <Editable as="h2" kind="html" value={mission.headingHtml} file={file} path="mission.headingHtml" label="Mission heading" />
       </div>
       <div class="conviction-grid">
         {mission.convictions.map((c, i) => (
-          <article class="conviction-card reveal" style={`--cv-accent:${c.color};--reveal-delay:${i*85}ms`}>
+          <article
+            class="conviction-card reveal"
+            style={`--cv-accent:${c.color};--reveal-delay:${i*85}ms`}
+            data-k-module-file={file}
+            data-k-module-path={`mission.convictions.${i}`}
+            data-k-module-label={`Conviction ${i + 1}`}
+          >
             <div class="conviction-num">
               <img class="conviction-icon" src={c.icon} alt="" width="56" height="56" loading="lazy" />
             </div>
-            <h3 class="conviction-title">{c.title}</h3>
-            <p class="conviction-body">{c.body}</p>
+            <h3
+              class="conviction-title"
+              data-k-file={file}
+              data-k-path={`mission.convictions.${i}.title`}
+              data-k-value={c.title}
+              data-k-kind="text"
+              data-k-label="Conviction title"
+            >{c.title}</h3>
+            <p
+              class="conviction-body"
+              data-k-file={file}
+              data-k-path={`mission.convictions.${i}.body`}
+              data-k-value={c.body}
+              data-k-kind="text"
+              data-k-label="Conviction body"
+            >{c.body}</p>
           </article>
         ))}
       </div>
@@ -99,16 +145,22 @@ const { meta, hero, shortVersion, mission, team, story, cta } = about!.data as A
   </section>
 
   <!-- Team / founders -->
-  <section class="about-team">
+  <section class="about-team" data-k-module-file={file} data-k-module-path="team" data-k-module-label="Team">
     <div class="container">
       <div class="section-head about-team-head reveal">
-        <div class="eyebrow">{team.eyebrow}</div>
-        <h2 set:html={team.headingHtml} />
-        <p class="about-team-intro" set:html={team.introHtml} />
+        <Editable as="div" class="eyebrow" kind="text" value={team.eyebrow} file={file} path="team.eyebrow" label="Team eyebrow" />
+        <Editable as="h2" kind="html" value={team.headingHtml} file={file} path="team.headingHtml" label="Team heading" />
+        <Editable as="p" class="about-team-intro" kind="html" value={team.introHtml} file={file} path="team.introHtml" label="Team intro" />
       </div>
       <div class="founder-list">
         {team.founders.map((p, i) => (
-          <article class="founder-card reveal" style={`--reveal-delay:${i*90}ms`}>
+          <article
+            class="founder-card reveal"
+            style={`--reveal-delay:${i*90}ms`}
+            data-k-module-file={file}
+            data-k-module-path={`team.founders.${i}`}
+            data-k-module-label={`Founder ${i + 1}`}
+          >
             <div class="founder-photo-wrap">
               <img
                 class="founder-photo"
@@ -120,16 +172,55 @@ const { meta, hero, shortVersion, mission, team, story, cta } = about!.data as A
               />
             </div>
             <div class="founder-body">
-              <div class="founder-title">{p.title}</div>
-              <h3 class="founder-name">{p.name}</h3>
-              {p.bio.map(para => <p class="founder-bio">{para}</p>)}
+              <div
+                class="founder-title"
+                data-k-file={file}
+                data-k-path={`team.founders.${i}.title`}
+                data-k-value={p.title}
+                data-k-kind="text"
+                data-k-label="Founder title"
+              >{p.title}</div>
+              <h3
+                class="founder-name"
+                data-k-file={file}
+                data-k-path={`team.founders.${i}.name`}
+                data-k-value={p.name}
+                data-k-kind="text"
+                data-k-label="Founder name"
+              >{p.name}</h3>
+              {p.bio.map((para, j) => (
+                <p
+                  class="founder-bio"
+                  data-k-file={file}
+                  data-k-path={`team.founders.${i}.bio.${j}`}
+                  data-k-value={para}
+                  data-k-kind="text"
+                  data-k-label={`Founder bio paragraph ${j + 1}`}
+                >{para}</p>
+              ))}
               <div class="founder-firms">
                 <span class="founder-firms-label">Experience</span>
                 <div class="founder-firms-chips">
-                  {p.firms.map(f => <span class="firm-chip">{f}</span>)}
+                  {p.firms.map((f, j) => (
+                    <span
+                      class="firm-chip"
+                      data-k-file={file}
+                      data-k-path={`team.founders.${i}.firms.${j}`}
+                      data-k-value={f}
+                      data-k-kind="text"
+                      data-k-label={`Founder firm ${j + 1}`}
+                    >{f}</span>
+                  ))}
                 </div>
               </div>
-              <div class="founder-industries">{p.industries}</div>
+              <div
+                class="founder-industries"
+                data-k-file={file}
+                data-k-path={`team.founders.${i}.industries`}
+                data-k-value={p.industries}
+                data-k-kind="text"
+                data-k-label="Founder industries"
+              >{p.industries}</div>
               <a class="leader-link founder-link" href={p.linkedin} target="_blank" rel="noopener noreferrer">
                 Connect on LinkedIn <span class="ar">↗</span>
               </a>
@@ -141,14 +232,20 @@ const { meta, hero, shortVersion, mission, team, story, cta } = about!.data as A
   </section>
 
   <!-- Story -->
-  <section class="about-story" id="story">
+  <section class="about-story" id="story" data-k-module-file={file} data-k-module-path="story" data-k-module-label="Story">
     <div class="container story-layout">
       <div class="story-col-left reveal">
-        <div class="eyebrow story-eyebrow">{story.eyebrow}</div>
-        <h2 class="story-headline" set:html={story.headingHtml} />
+        <Editable as="div" class="eyebrow story-eyebrow" kind="text" value={story.eyebrow} file={file} path="story.eyebrow" label="Story eyebrow" />
+        <Editable as="h2" class="story-headline" kind="html" value={story.headingHtml} file={file} path="story.headingHtml" label="Story heading" />
         <blockquote class="hume-quote">
-          <p>"{story.quote.text}"</p>
-          <cite set:html={story.quote.citeHtml} />
+          <p
+            data-k-file={file}
+            data-k-path="story.quote.text"
+            data-k-value={story.quote.text}
+            data-k-kind="text"
+            data-k-label="Story quote text"
+          >"{story.quote.text}"</p>
+          <Editable as="cite" kind="html" value={story.quote.citeHtml} file={file} path="story.quote.citeHtml" label="Story quote citation" />
         </blockquote>
         <div class="story-photo">
           <img
@@ -158,14 +255,28 @@ const { meta, hero, shortVersion, mission, team, story, cta } = about!.data as A
             width="520"
             height="400"
             loading="lazy"
+            data-k-file={file}
+            data-k-path="story.image.alt"
+            data-k-value={story.image.alt}
+            data-k-kind="text"
+            data-k-label="Story image alt text"
           />
         </div>
       </div>
       <div class="story-col-right reveal">
-        {story.paragraphs.map(para => <p class="story-para">{para}</p>)}
-        <p class="story-para story-sign-line" set:html={story.signOffHtml} />
-        <p class="story-para" set:html={story.closingParagraphHtml} />
-        <div class="story-signature">{story.signature}</div>
+        {story.paragraphs.map((para, i) => (
+          <p
+            class="story-para"
+            data-k-file={file}
+            data-k-path={`story.paragraphs.${i}`}
+            data-k-value={para}
+            data-k-kind="text"
+            data-k-label={`Story paragraph ${i + 1}`}
+          >{para}</p>
+        ))}
+        <Editable as="p" class="story-para story-sign-line" kind="html" value={story.signOffHtml} file={file} path="story.signOffHtml" label="Story sign-off" />
+        <Editable as="p" class="story-para" kind="html" value={story.closingParagraphHtml} file={file} path="story.closingParagraphHtml" label="Story closing paragraph" />
+        <Editable as="div" class="story-signature" kind="text" value={story.signature} file={file} path="story.signature" label="Story signature" />
       </div>
     </div>
   </section>

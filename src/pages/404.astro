@@ -5,9 +5,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
+import Editable from '../components/Editable.astro';
 
 const notFound = await getEntry('pages', 'not-found');
 const { meta, code, heading, body, ctaLabel, ctaHref } = notFound!.data as NotFoundData;
+const file = 'src/content/pages/not-found.json';
 ---
 
 <BaseLayout
@@ -16,14 +18,12 @@ const { meta, code, heading, body, ctaLabel, ctaHref } = notFound!.data as NotFo
 >
   <Nav />
 
-  <section class="not-found">
+  <section class="not-found" data-k-module-file={file} data-k-module-path="" data-k-module-label="404 content">
     <div class="container not-found-inner">
-      <div class="not-found-code">{code}</div>
-      <h1 class="not-found-title">{heading}</h1>
-      <p class="not-found-body">
-        {body}
-      </p>
-      <a class="btn btn-lg btn-mint" href={ctaHref}>{ctaLabel}</a>
+      <Editable as="div" class="not-found-code" kind="text" value={code} file={file} path="code" label="404 code" />
+      <Editable as="h1" class="not-found-title" kind="text" value={heading} file={file} path="heading" label="404 heading" />
+      <Editable as="p" class="not-found-body" kind="text" value={body} file={file} path="body" label="404 body" />
+      <Editable as="a" class="btn btn-lg btn-mint" kind="text" value={ctaLabel} file={file} path="ctaLabel" hrefPath="ctaHref" hrefValue={ctaHref} href={ctaHref} label="404 CTA" />
     </div>
   </section>
 

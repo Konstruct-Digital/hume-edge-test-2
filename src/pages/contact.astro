@@ -6,9 +6,11 @@ import '../styles/contact.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
+import Editable from '../components/Editable.astro';
 
 const contact = await getEntry('pages', 'contact');
 const { meta, hero, expect: expectItems, directContacts, expectHeading, directHeading } = contact!.data as ContactData;
+const file = 'src/content/pages/contact.json';
 
 const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
 ---
@@ -20,7 +22,7 @@ const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
   <Nav current="/contact" />
 
   <!-- Hero -->
-  <section class="contact-hero">
+  <section class="contact-hero" data-k-module-file={file} data-k-module-path="hero" data-k-module-label="Hero">
     <div class="hero-blob b1" aria-hidden="true">
       <svg viewBox="-20 -20 140 120" width="300" height="260" preserveAspectRatio="xMidYMid meet">
         {[
@@ -43,9 +45,9 @@ const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
       </svg>
     </div>
     <div class="container contact-hero-inner">
-      <div class="hero-eyebrow">{hero.eyebrow}</div>
-      <h1 class="contact-title" set:html={hero.titleHtml} />
-      <p class="contact-intro" set:html={hero.introHtml} />
+      <Editable as="div" class="hero-eyebrow" kind="text" value={hero.eyebrow} file={file} path="hero.eyebrow" label="Hero eyebrow" />
+      <Editable as="h1" class="contact-title" kind="html" value={hero.titleHtml} file={file} path="hero.titleHtml" label="Hero title" />
+      <Editable as="p" class="contact-intro" kind="html" value={hero.introHtml} file={file} path="hero.introHtml" label="Hero intro" />
     </div>
   </section>
 
@@ -104,14 +106,40 @@ const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
       <!-- Sidebar -->
       <aside class="contact-side reveal">
         <div class="expect-block">
-          <h2 class="contact-side-head">{expectHeading}</h2>
+          <Editable as="h2" class="contact-side-head" kind="text" value={expectHeading} file={file} path="expectHeading" label="Expect heading" />
           <ol class="expect-list">
-            {expectItems.map(e => (
-              <li class="expect-item">
-                <span class="expect-num">{e.n}</span>
+            {expectItems.map((e, i) => (
+              <li
+                class="expect-item"
+                data-k-module-file={file}
+                data-k-module-path={`expect.${i}`}
+                data-k-module-label={`Expect item ${i + 1}`}
+              >
+                <span
+                  class="expect-num"
+                  data-k-file={file}
+                  data-k-path={`expect.${i}.n`}
+                  data-k-value={e.n}
+                  data-k-kind="text"
+                  data-k-label="Expect item number"
+                >{e.n}</span>
                 <div class="expect-text">
-                  <div class="expect-title">{e.title}</div>
-                  <p class="expect-body">{e.body}</p>
+                  <div
+                    class="expect-title"
+                    data-k-file={file}
+                    data-k-path={`expect.${i}.title`}
+                    data-k-value={e.title}
+                    data-k-kind="text"
+                    data-k-label="Expect item title"
+                  >{e.title}</div>
+                  <p
+                    class="expect-body"
+                    data-k-file={file}
+                    data-k-path={`expect.${i}.body`}
+                    data-k-value={e.body}
+                    data-k-kind="text"
+                    data-k-label="Expect item body"
+                  >{e.body}</p>
                 </div>
               </li>
             ))}
@@ -119,10 +147,23 @@ const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
         </div>
 
         <div class="direct-block">
-          <h2 class="contact-side-head">{directHeading}</h2>
+          <Editable as="h2" class="contact-side-head" kind="text" value={directHeading} file={file} path="directHeading" label="Direct heading" />
           <div class="direct-list">
-            {directContacts.map(c => (
-              <a class="direct-item" href={`mailto:${c.email}`}>
+            {directContacts.map((c, i) => (
+              <a
+                class="direct-item"
+                href={`mailto:${c.email}`}
+                data-k-module-file={file}
+                data-k-module-path={`directContacts.${i}`}
+                data-k-module-label={`Direct contact ${i + 1}`}
+                data-k-file={file}
+                data-k-path={`directContacts.${i}.label`}
+                data-k-value={c.label}
+                data-k-kind="text"
+                data-k-label="Direct contact label"
+                data-k-href-path={`directContacts.${i}.email`}
+                data-k-href-value={c.email}
+              >
                 <span class="direct-link">{c.label} <span class="ar">→</span></span>
               </a>
             ))}
