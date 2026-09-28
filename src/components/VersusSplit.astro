@@ -1,23 +1,25 @@
 ---
 import { getEntry } from 'astro:content';
 import type { HomeData } from '../content.config';
+import Editable from './Editable.astro';
 
 const home = await getEntry('pages', 'home');
 const { versus } = home!.data as HomeData;
+const file = 'src/content/pages/home.json';
 ---
 
-<section class="process">
+<section class="process" data-k-module-file={file} data-k-module-path="versus" data-k-module-label="Versus">
   <div class="container process-head reveal">
-    <div class="eyebrow" style="justify-content:center">{versus.eyebrow}</div>
-    <h2 set:html={versus.headingHtml} />
-    <p>{versus.intro}</p>
+    <Editable as="div" class="eyebrow" style="justify-content:center" kind="text" value={versus.eyebrow} file={file} path="versus.eyebrow" label="Versus eyebrow" />
+    <Editable as="h2" kind="html" value={versus.headingHtml} file={file} path="versus.headingHtml" label="Versus heading" />
+    <Editable as="p" kind="text" value={versus.intro} file={file} path="versus.intro" label="Versus intro" />
   </div>
 
   <div class="versus">
     <div class="versus-col us reveal">
       <div class="brandrow">
         <img src="/assets/hume-lab-icon.png" alt="Hume Edge" width="42" height="42" style="object-fit:contain;flex:0 0 auto" loading="lazy" />
-        <span class="title">{versus.usLabel}</span>
+        <Editable as="span" class="title" kind="text" value={versus.usLabel} file={file} path="versus.usLabel" label="Versus us label" />
       </div>
       {versus.rows.map(([k, us]) => (
         <div class="versus-row">
@@ -28,7 +30,7 @@ const { versus } = home!.data as HomeData;
     </div>
     <div class="versus-col them reveal">
       <div class="brandrow">
-        <span class="title">{versus.themLabel}</span>
+        <Editable as="span" class="title" kind="text" value={versus.themLabel} file={file} path="versus.themLabel" label="Versus them label" />
       </div>
       {versus.rows.map(([k,, them]) => (
         <div class="versus-row">
@@ -40,7 +42,17 @@ const { versus } = home!.data as HomeData;
   </div>
 
   <div class="versus-cta">
-    <a class="btn btn-lg btn-mint" href={versus.ctaHref}>
+    <a
+      class="btn btn-lg btn-mint"
+      href={versus.ctaHref}
+      data-k-file={file}
+      data-k-path="versus.ctaLabel"
+      data-k-value={versus.ctaLabel}
+      data-k-kind="text"
+      data-k-label="Versus CTA label"
+      data-k-href-path="versus.ctaHref"
+      data-k-href-value={versus.ctaHref}
+    >
       {versus.ctaLabel}
       <svg class="btn-arrow" viewBox="0 0 36 30" fill="none" aria-hidden="true"><path d="M35.4142 16.1421C36.1953 15.3611 36.1953 14.0947 35.4142 13.3137L22.6863 0.58577C21.9052 -0.195279 20.6389 -0.195279 19.8579 0.58577C19.0768 1.36682 19.0768 2.63315 19.8579 3.4142L31.1716 14.7279L19.8579 26.0416C19.0768 26.8227 19.0768 28.089 19.8579 28.87C20.6389 29.6511 21.9052 29.6511 22.6863 28.87L35.4142 16.1421ZM0 14.7279V16.7279H34V14.7279V12.7279H0V14.7279Z" fill="currentColor"/></svg>
     </a>

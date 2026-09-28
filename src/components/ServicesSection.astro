@@ -1,34 +1,63 @@
 ---
 import { getEntry } from 'astro:content';
 import type { HomeData } from '../content.config';
+import Editable from './Editable.astro';
 
 const home = await getEntry('pages', 'home');
 const { services } = home!.data as HomeData;
+const file = 'src/content/pages/home.json';
 ---
 
-<section class="services" id="services">
+<section class="services" id="services" data-k-module-file={file} data-k-module-path="services" data-k-module-label="Services">
   <div class="container">
     <div class="services-head">
       <div class="section-head reveal" style="margin-bottom:0">
-        <div class="eyebrow">{services.eyebrow}</div>
-        <h2 set:html={services.headingHtml} />
+        <Editable as="div" class="eyebrow" kind="text" value={services.eyebrow} file={file} path="services.eyebrow" label="Services eyebrow" />
+        <Editable as="h2" kind="html" value={services.headingHtml} file={file} path="services.headingHtml" label="Services heading" />
       </div>
       <div class="right reveal">
         {services.rightParagraphs.map((p, i) => (
-          <p style={i === 0 ? 'margin-bottom:16px' : undefined}>{p}</p>
+          <p
+            style={i === 0 ? 'margin-bottom:16px' : undefined}
+            data-k-file={file}
+            data-k-path={`services.rightParagraphs.${i}`}
+            data-k-value={p}
+            data-k-kind="text"
+            data-k-label={`Services right paragraph ${i + 1}`}
+          >{p}</p>
         ))}
       </div>
     </div>
 
     <div class="services-grid">
       {services.items.map((s, i) => (
-        <article class="service-card reveal" style={`--card-accent:${s.accent};--card-ink:${s.ink};--reveal-delay:${i*85}ms`}>
+        <article
+          class="service-card reveal"
+          style={`--card-accent:${s.accent};--card-ink:${s.ink};--reveal-delay:${i*85}ms`}
+          data-k-module-file={file}
+          data-k-module-path={`services.items.${i}`}
+          data-k-module-label={`Service card ${i + 1}`}
+        >
           <div class="card-face">
             <div class="top">
               <img class="service-icon" src={s.icon} alt="" width="64" height="64" loading="lazy" />
             </div>
-            <h3 class="title">{s.title}</h3>
-            <p class="body">{s.blurb}</p>
+            <h3
+              class="title"
+              data-k-file={file}
+              data-k-path={`services.items.${i}.title`}
+              data-k-value={s.title}
+              data-k-kind="text"
+              data-k-label="Service title"
+            >{s.title}</h3>
+            <p
+              class="body"
+              data-k-file={file}
+              data-k-path={`services.items.${i}.blurb`}
+              data-k-value={s.blurb}
+              data-k-kind="text"
+              data-k-label="Service blurb"
+            >{s.blurb}</p>
             <button
               type="button"
               class="cta"
@@ -44,18 +73,26 @@ const { services } = home!.data as HomeData;
     </div>
 
     <!-- Lab / Studio card -->
-    <article class="studio-card reveal" id="lab-card">
+    <article class="studio-card reveal" id="lab-card" data-k-module-file={file} data-k-module-path="services.lab" data-k-module-label="Services lab">
       <img class="studio-icon" src={services.lab.icon} alt="Hume Edge Lab" width="120" height="120" loading="lazy" />
       <div class="studio-body" id="lab-body">
-        <div class="label">{services.lab.label}</div>
+        <Editable as="div" class="label" kind="text" value={services.lab.label} file={file} path="services.lab.label" label="Lab label" />
         <div id="lab-default">
-          <h3 class="title">{services.lab.defaultTitle}</h3>
-          <p class="body">{services.lab.defaultBody}</p>
+          <Editable as="h3" class="title" kind="text" value={services.lab.defaultTitle} file={file} path="services.lab.defaultTitle" label="Lab default title" />
+          <Editable as="p" class="body" kind="text" value={services.lab.defaultBody} file={file} path="services.lab.defaultBody" label="Lab default body" />
         </div>
         <div id="lab-expanded" hidden>
-          <h3 class="title">{services.lab.expandedTitle}</h3>
+          <Editable as="h3" class="title" kind="text" value={services.lab.expandedTitle} file={file} path="services.lab.expandedTitle" label="Lab expanded title" />
           <ul class="deliverables">
-            {services.lab.bullets.map(b => <li>{b}</li>)}
+            {services.lab.bullets.map((b, i) => (
+              <li
+                data-k-file={file}
+                data-k-path={`services.lab.bullets.${i}`}
+                data-k-value={b}
+                data-k-kind="text"
+                data-k-label={`Lab bullet ${i + 1}`}
+              >{b}</li>
+            ))}
           </ul>
         </div>
       </div>

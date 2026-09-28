@@ -1,29 +1,51 @@
 ---
 import { getEntry } from 'astro:content';
 import type { HomeData } from '../content.config';
+import Editable from './Editable.astro';
 
 const home = await getEntry('pages', 'home');
 const { problems } = home!.data as HomeData;
+const file = 'src/content/pages/home.json';
 ---
 
-<section class="problem">
+<section class="problem" data-k-module-file={file} data-k-module-path="problems" data-k-module-label="Problems">
   <div class="container">
     <div class="section-head reveal">
-      <div class="eyebrow">{problems.eyebrow}</div>
-      <h2 set:html={problems.headingHtml} />
-      <p>{problems.intro}</p>
+      <Editable as="div" class="eyebrow" kind="text" value={problems.eyebrow} file={file} path="problems.eyebrow" label="Problems eyebrow" />
+      <Editable as="h2" kind="html" value={problems.headingHtml} file={file} path="problems.headingHtml" label="Problems heading" />
+      <Editable as="p" kind="text" value={problems.intro} file={file} path="problems.intro" label="Problems intro" />
     </div>
   </div>
 
   <div class="problem-track-wrap">
     <div class="problem-track" id="problem-track">
-      {problems.items.map((p) => (
-        <article class="problem-card reveal" style={`--card-accent:${p.color}`}>
+      {problems.items.map((p, i) => (
+        <article
+          class="problem-card reveal"
+          style={`--card-accent:${p.color}`}
+          data-k-module-file={file}
+          data-k-module-path={`problems.items.${i}`}
+          data-k-module-label={`Problem card ${i + 1}`}
+        >
           <div class="head">
             <img class="problem-icon" src={p.icon} alt="" width="60" height="60" loading="lazy" />
           </div>
-          <h3 class="quote">{p.quote}</h3>
-          <p class="body">{p.body}</p>
+          <h3
+            class="quote"
+            data-k-file={file}
+            data-k-path={`problems.items.${i}.quote`}
+            data-k-value={p.quote}
+            data-k-kind="text"
+            data-k-label="Problem quote"
+          >{p.quote}</h3>
+          <p
+            class="body"
+            data-k-file={file}
+            data-k-path={`problems.items.${i}.body`}
+            data-k-value={p.body}
+            data-k-kind="text"
+            data-k-label="Problem body"
+          >{p.body}</p>
         </article>
       ))}
       <div style="flex:0 0 56px" aria-hidden="true"></div>

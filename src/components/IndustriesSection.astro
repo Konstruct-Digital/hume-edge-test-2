@@ -1,9 +1,11 @@
 ---
 import { getEntry } from 'astro:content';
 import type { HomeData } from '../content.config';
+import Editable from './Editable.astro';
 
 const home = await getEntry('pages', 'home');
 const { industries } = home!.data as HomeData;
+const file = 'src/content/pages/home.json';
 
 const HEX_COLORS = ['#7118C2', '#0599FF', '#BC10DE', '#00FB90'];
 
@@ -34,24 +36,28 @@ const ICON_PATHS: Record<string, string> = {
 };
 ---
 
-<section class="industries" id="industries">
+<section class="industries" id="industries" data-k-module-file={file} data-k-module-path="industries" data-k-module-label="Industries">
   <div class="container ind-wrap">
     <div class="ind-left">
-      <div class="eyebrow ind-eyebrow">{industries.eyebrow}</div>
-      <h2 class="ind-title" set:html={industries.titleHtml} />
-      <div class="ind-active" id="ind-active-name">{industries.items[0].name}</div>
-      <p class="ind-body ind-body--desktop">
-        {industries.body}
-      </p>
+      <Editable as="div" class="eyebrow ind-eyebrow" kind="text" value={industries.eyebrow} file={file} path="industries.eyebrow" label="Industries eyebrow" />
+      <Editable as="h2" class="ind-title" kind="html" value={industries.titleHtml} file={file} path="industries.titleHtml" label="Industries title" />
+      <div
+        class="ind-active"
+        id="ind-active-name"
+        data-k-file={file}
+        data-k-path="industries.items.0.name"
+        data-k-value={industries.items[0].name}
+        data-k-kind="text"
+        data-k-label="Industries active name"
+      >{industries.items[0].name}</div>
+      <Editable as="p" class="ind-body ind-body--desktop" kind="text" value={industries.body} file={file} path="industries.body" label="Industries body" />
     </div>
 
     <div class="ind-list-wrap">
-      <p class="ind-body ind-body--mobile">
-        {industries.body}
-      </p>
+      <Editable as="p" class="ind-body ind-body--mobile" kind="text" value={industries.body} file={file} path="industries.body" label="Industries body" />
       <ul class="ind-list">
         {industries.items.map((it, i) => (
-          <li class="ind-list-item">
+          <li class="ind-list-item" data-k-module-file={file} data-k-module-path={`industries.items.${i}`} data-k-module-label={`Industry ${i + 1}`}>
             <button
               type="button"
               class={`ind-card${i === 0 ? ' is-active' : ''}`}
@@ -67,7 +73,14 @@ const ICON_PATHS: Record<string, string> = {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" set:html={ICON_PATHS[it.icon]} />
                 </span>
               </span>
-              <span class="ind-card-name">{it.name}</span>
+              <span
+                class="ind-card-name"
+                data-k-file={file}
+                data-k-path={`industries.items.${i}.name`}
+                data-k-value={it.name}
+                data-k-kind="text"
+                data-k-label="Industry name"
+              >{it.name}</span>
               <span class="ind-card-chev">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
               </span>

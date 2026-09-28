@@ -1,21 +1,32 @@
 ---
 import { getEntry } from 'astro:content';
 import type { HomeData } from '../content.config';
+import Editable from './Editable.astro';
 
 const home = await getEntry('pages', 'home');
 const { testimonials } = home!.data as HomeData;
 const { video, flip } = testimonials;
+const file = 'src/content/pages/home.json';
 ---
-<section class="testimonials">
+<section class="testimonials" data-k-module-file={file} data-k-module-path="testimonials" data-k-module-label="Testimonials">
   <div class="container">
     <div class="section-head testimonials-head reveal">
-      <div class="eyebrow" style="justify-content:center">{testimonials.eyebrow}</div>
-      <h2>{testimonials.heading}</h2>
+      <Editable as="div" class="eyebrow" style="justify-content:center" kind="text" value={testimonials.eyebrow} file={file} path="testimonials.eyebrow" label="Testimonials eyebrow" />
+      <Editable as="h2" kind="text" value={testimonials.heading} file={file} path="testimonials.heading" label="Testimonials heading" />
     </div>
     <div class="tcards">
 
       <!-- Video testimonial -->
-      <div class="tcard tcard-video reveal" id="video-tcard" role="button" tabindex="0" aria-label={`Play video testimonial from ${video.name}`}>
+      <div
+        class="tcard tcard-video reveal"
+        id="video-tcard"
+        role="button"
+        tabindex="0"
+        aria-label={`Play video testimonial from ${video.name}`}
+        data-k-module-file={file}
+        data-k-module-path="testimonials.video"
+        data-k-module-label="Video testimonial"
+      >
         <div class="tcard-media" id="video-media">
           <div class="tcard-poster" id="video-poster">
             <img class="tcard-photo" src={video.photo} alt={video.name} width="430" height="360" loading="lazy" />
@@ -24,12 +35,12 @@ const { video, flip } = testimonials;
             </span>
           </div>
         </div>
-        <p class="tcard-quote">{video.quote}</p>
+        <Editable as="p" class="tcard-quote" kind="text" value={video.quote} file={file} path="testimonials.video.quote" label="Video testimonial quote" />
         <div class="tcard-foot">
           <div class="tcard-person">
-            <div class="tcard-name">{video.name}</div>
-            <div class="tcard-role">{video.role}</div>
-            <div class="tcard-company">{video.company}</div>
+            <Editable as="div" class="tcard-name" kind="text" value={video.name} file={file} path="testimonials.video.name" label="Video testimonial name" />
+            <Editable as="div" class="tcard-role" kind="text" value={video.role} file={file} path="testimonials.video.role" label="Video testimonial role" />
+            <Editable as="div" class="tcard-company" kind="text" value={video.company} file={file} path="testimonials.video.company" label="Video testimonial company" />
           </div>
           <span class="tcard-cs">Watch the story <span class="ar">→</span></span>
         </div>
@@ -44,29 +55,40 @@ const { video, flip } = testimonials;
         aria-pressed="false"
         data-flip-card
         aria-label={`${flip.name} testimonial - click to read full story`}
+        data-k-module-file={file}
+        data-k-module-path="testimonials.flip"
+        data-k-module-label="Flip testimonial"
       >
         <div class="tflip-inner">
           <div class="tflip-face tflip-front">
             <div class="tcard-media">
               <img class="tcard-photo" src={flip.photo} alt={flip.name} width="430" height="360" loading="lazy" />
             </div>
-            <p class="tcard-quote">{flip.quote}</p>
+            <Editable as="p" class="tcard-quote" kind="text" value={flip.quote} file={file} path="testimonials.flip.quote" label="Flip testimonial quote" />
             <div class="tcard-foot">
               <div class="tcard-person">
-                <div class="tcard-name">{flip.name}</div>
-                <div class="tcard-role">{flip.role}</div>
-                <div class="tcard-company">{flip.company}</div>
+                <Editable as="div" class="tcard-name" kind="text" value={flip.name} file={file} path="testimonials.flip.name" label="Flip testimonial name" />
+                <Editable as="div" class="tcard-role" kind="text" value={flip.role} file={file} path="testimonials.flip.role" label="Flip testimonial role" />
+                <Editable as="div" class="tcard-company" kind="text" value={flip.company} file={file} path="testimonials.flip.company" label="Flip testimonial company" />
               </div>
               <span class="tcard-cs">Read the full story <span class="ar">→</span></span>
             </div>
           </div>
           <div class="tflip-face tflip-back">
-            <div class="tback-eyebrow">{flip.backEyebrow}</div>
+            <Editable as="div" class="tback-eyebrow" kind="text" value={flip.backEyebrow} file={file} path="testimonials.flip.backEyebrow" label="Flip back eyebrow" />
             <div class="tback-scroll-wrap">
               <div class="tback-fade tback-fade--top" aria-hidden="true">
                 <svg class="tback-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
               </div>
-              <div class="tcard-backquote" id="tback-scroll">
+              <div
+                class="tcard-backquote"
+                id="tback-scroll"
+                data-k-file={file}
+                data-k-path="testimonials.flip.backQuote"
+                data-k-value={flip.backQuote}
+                data-k-kind="text"
+                data-k-label="Flip back quote"
+              >
                 &ldquo;{flip.backQuote}&rdquo;
               </div>
               <div class="tback-fade tback-fade--bottom" aria-hidden="true">
@@ -75,9 +97,9 @@ const { video, flip } = testimonials;
             </div>
             <div class="tcard-foot">
               <div class="tcard-person">
-                <div class="tcard-name">{flip.name}</div>
-                <div class="tcard-role">{flip.role}</div>
-                <div class="tcard-company">{flip.company}</div>
+                <Editable as="div" class="tcard-name" kind="text" value={flip.name} file={file} path="testimonials.flip.name" label="Flip testimonial name" />
+                <Editable as="div" class="tcard-role" kind="text" value={flip.role} file={file} path="testimonials.flip.role" label="Flip testimonial role" />
+                <Editable as="div" class="tcard-company" kind="text" value={flip.company} file={file} path="testimonials.flip.company" label="Flip testimonial company" />
               </div>
               <span class="tcard-cs"><span class="ar ar-back">←</span> Back</span>
             </div>

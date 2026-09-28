@@ -2,11 +2,13 @@
 import { Image } from 'astro:assets';
 import { getEntry } from 'astro:content';
 import logoWhite from '../assets/hume-edge-logo-white.png';
+import Editable from './Editable.astro';
 
 const site = await getEntry('site', 'global');
 const { footer } = site!.data;
+const file = 'src/content/site/global.json';
 ---
-<footer class="footer">
+<footer class="footer" data-k-module-file={file} data-k-module-path="global.footer" data-k-module-label="Footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
@@ -15,18 +17,38 @@ const { footer } = site!.data;
             <Image class="footer-logo-lockup" src={logoWhite} alt="Hume Edge" width={238} />
           </a>
         </div>
-        <p>{footer.tagline}</p>
+        <Editable as="p" kind="text" value={footer.tagline} file={file} path="global.footer.tagline" label="Footer tagline" />
       </div>
       <div class="footer-nav">
         {footer.nav.map((link, i) => [
-          <a class="footer-nav-link" href={link.href}>{link.label}</a>,
+          <a
+            class="footer-nav-link"
+            href={link.href}
+            data-k-file={file}
+            data-k-path={`global.footer.nav.${i}.label`}
+            data-k-value={link.label}
+            data-k-kind="text"
+            data-k-label={`Footer nav item ${i + 1} label`}
+            data-k-href-path={`global.footer.nav.${i}.href`}
+            data-k-href-value={link.href}
+          >{link.label}</a>,
           i < footer.nav.length - 1 ? ' ' : null,
         ])}
-        <a class="btn btn-mint" href={footer.ctaHref}>{footer.ctaLabel}</a>
+        <a
+          class="btn btn-mint"
+          href={footer.ctaHref}
+          data-k-file={file}
+          data-k-path="global.footer.ctaLabel"
+          data-k-value={footer.ctaLabel}
+          data-k-kind="text"
+          data-k-label="Footer CTA label"
+          data-k-href-path="global.footer.ctaHref"
+          data-k-href-value={footer.ctaHref}
+        >{footer.ctaLabel}</a>
       </div>
     </div>
     <div class="footer-legal">
-      <span>{footer.legal}</span>
+      <Editable as="span" kind="text" value={footer.legal} file={file} path="global.footer.legal" label="Footer legal" />
     </div>
   </div>
 </footer>

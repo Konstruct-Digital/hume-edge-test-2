@@ -1,16 +1,18 @@
 ---
 import { getEntry } from 'astro:content';
 import type { HomeData } from '../content.config';
+import Editable from './Editable.astro';
 
 const home = await getEntry('pages', 'home');
 const { leadership } = home!.data as HomeData;
+const file = 'src/content/pages/home.json';
 ---
 
-<section class="leadership">
+<section class="leadership" data-k-module-file={file} data-k-module-path="leadership" data-k-module-label="Leadership">
   <div class="container">
     <div class="section-head leadership-head reveal">
-      <div class="eyebrow" style="justify-content:center">{leadership.eyebrow}</div>
-      <h2>{leadership.heading}</h2>
+      <Editable as="div" class="eyebrow" style="justify-content:center" kind="text" value={leadership.eyebrow} file={file} path="leadership.eyebrow" label="Leadership eyebrow" />
+      <Editable as="h2" kind="text" value={leadership.heading} file={file} path="leadership.heading" label="Leadership heading" />
     </div>
     <div class="leaders-grid" id="leaders-grid">
       {leadership.leaders.map((p, i) => (
@@ -21,21 +23,77 @@ const { leadership } = home!.data as HomeData;
           tabindex="0"
           aria-label={`${p.name} - click to see bio`}
           data-leader
+          data-k-module-file={file}
+          data-k-module-path={`leadership.leaders.${i}`}
+          data-k-module-label={`Leader ${i + 1}`}
         >
           <div class="leader-flip">
             <div class="leader-face leader-front">
               <img class="leader-photo" src={p.photo} alt={p.name} width="150" height="150" loading="lazy" />
-              <h3 class="leader-name">{p.name}</h3>
-              <div class="leader-title">{p.title}</div>
-              <a class="leader-link" href={p.linkedin} target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+              <h3
+                class="leader-name"
+                data-k-file={file}
+                data-k-path={`leadership.leaders.${i}.name`}
+                data-k-value={p.name}
+                data-k-kind="text"
+                data-k-label="Leader name"
+              >{p.name}</h3>
+              <div
+                class="leader-title"
+                data-k-file={file}
+                data-k-path={`leadership.leaders.${i}.title`}
+                data-k-value={p.title}
+                data-k-kind="text"
+                data-k-label="Leader title"
+              >{p.title}</div>
+              <a
+                class="leader-link"
+                href={p.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick="event.stopPropagation()"
+                data-k-file={file}
+                data-k-href-path={`leadership.leaders.${i}.linkedin`}
+                data-k-href-value={p.linkedin}
+              >
                 Connect on LinkedIn <span class="ar">↗</span>
               </a>
             </div>
             <div class="leader-face leader-back">
-              <h3 class="leader-name">{p.name}</h3>
-              <div class="leader-title">{p.title}</div>
-              <p class="leader-bio">{p.bio}</p>
-              <a class="leader-link" href={p.linkedin} target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
+              <h3
+                class="leader-name"
+                data-k-file={file}
+                data-k-path={`leadership.leaders.${i}.name`}
+                data-k-value={p.name}
+                data-k-kind="text"
+                data-k-label="Leader name"
+              >{p.name}</h3>
+              <div
+                class="leader-title"
+                data-k-file={file}
+                data-k-path={`leadership.leaders.${i}.title`}
+                data-k-value={p.title}
+                data-k-kind="text"
+                data-k-label="Leader title"
+              >{p.title}</div>
+              <p
+                class="leader-bio"
+                data-k-file={file}
+                data-k-path={`leadership.leaders.${i}.bio`}
+                data-k-value={p.bio}
+                data-k-kind="text"
+                data-k-label="Leader bio"
+              >{p.bio}</p>
+              <a
+                class="leader-link"
+                href={p.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                onclick="event.stopPropagation()"
+                data-k-file={file}
+                data-k-href-path={`leadership.leaders.${i}.linkedin`}
+                data-k-href-value={p.linkedin}
+              >
                 Connect on LinkedIn <span class="ar">↗</span>
               </a>
             </div>

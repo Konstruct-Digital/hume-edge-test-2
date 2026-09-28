@@ -21,10 +21,20 @@ interface Props {
 	style?: string;
 }
 const { as: Tag, value, file, path, kind = 'text', label, hrefPath, hrefValue, href, class: className, style } = Astro.props;
+// Astro dynamic-tag limitation: `class`/`style` aren't resolvable against
+// IntrinsicAttributes for a tag typed as a plain string (const Tag = as).
+// Casting the tag reference to `any` (rather than `@ts-expect-error`-ing the
+// `class` attribute line) sidesteps the type error without relying on an
+// inline comment inside a tag's attribute list — Astro's markup compiler
+// does not treat `//` or `{/* */}` there as an ignorable comment the way a
+// real TSX parser would, so either form leaks into (or breaks) the
+// compiled output. This is confirmed load-bearing: real leaf fields with a
+// class/style exist on real sites, so the prop can't just be dropped.
+const DynamicTag = Tag as any;
 ---
 
 {kind === 'html' ? (
-	<Tag
+	<DynamicTag
 		data-k-file={file}
 		data-k-path={path}
 		data-k-value={value}
@@ -32,14 +42,13 @@ const { as: Tag, value, file, path, kind = 'text', label, hrefPath, hrefValue, h
 		data-k-label={label}
 		data-k-href-path={hrefPath}
 		data-k-href-value={hrefValue}
-		// @ts-expect-error - Astro dynamic-tag limitation: `class` isn't resolvable against IntrinsicAttributes for a tag typed as a plain string (const Tag = as). Confirmed load-bearing (real leaf fields with a class/style exist on real sites), not avoidable by dropping the prop.
 		class={className}
 		style={style}
 		href={href}
 		set:html={value}
 	/>
 ) : (
-	<Tag
+	<DynamicTag
 		data-k-file={file}
 		data-k-path={path}
 		data-k-value={value}
@@ -47,9 +56,8 @@ const { as: Tag, value, file, path, kind = 'text', label, hrefPath, hrefValue, h
 		data-k-label={label}
 		data-k-href-path={hrefPath}
 		data-k-href-value={hrefValue}
-		// @ts-expect-error - Astro dynamic-tag limitation: `class` isn't resolvable against IntrinsicAttributes for a tag typed as a plain string (const Tag = as). Confirmed load-bearing (real leaf fields with a class/style exist on real sites), not avoidable by dropping the prop.
 		class={className}
 		style={style}
 		href={href}
-	>{value}</Tag>
+	>{value}</DynamicTag>
 )}

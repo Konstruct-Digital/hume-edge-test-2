@@ -3,11 +3,13 @@ import { Image } from 'astro:assets';
 import { getEntry } from 'astro:content';
 import type { HomeData } from '../content.config';
 import introPhoto from '../assets/images/intro-photo.png';
+import Editable from './Editable.astro';
 
 const home = await getEntry('pages', 'home');
 const { intro } = home!.data as HomeData;
+const file = 'src/content/pages/home.json';
 ---
-<section class="intro">
+<section class="intro" data-k-module-file={file} data-k-module-path="intro" data-k-module-label="Intro">
   <div class="container intro-grid">
     <div class="intro-art">
       <div class="photo-frame" style="aspect-ratio:4/5">
@@ -30,11 +32,32 @@ const { intro } = home!.data as HomeData;
     </div>
 
     <div class="intro-body">
-      <div class="eyebrow">{intro.eyebrow}</div>
-      <p class="lead" style="margin-top:24px" set:html={intro.leadHtml} />
-      {intro.paragraphs.map(p => <p class="body" set:html={p} />)}
-      <p class="intro-tagline" set:html={intro.taglineHtml} />
-      <a class="btn btn-ghost-dark" href={intro.ctaHref}>{intro.ctaLabel}</a>
+      <Editable as="div" class="eyebrow" kind="text" value={intro.eyebrow} file={file} path="intro.eyebrow" label="Intro eyebrow" />
+      <Editable as="p" class="lead" style="margin-top:24px" kind="html" value={intro.leadHtml} file={file} path="intro.leadHtml" label="Intro lead" />
+      {intro.paragraphs.map((p, i) => (
+        <p
+          class="body"
+          set:html={p}
+          data-k-file={file}
+          data-k-path={`intro.paragraphs.${i}`}
+          data-k-value={p}
+          data-k-kind="html"
+          data-k-label={`Intro paragraph ${i + 1}`}
+        />
+      ))}
+      <Editable as="p" class="intro-tagline" kind="html" value={intro.taglineHtml} file={file} path="intro.taglineHtml" label="Intro tagline" />
+      <Editable
+        as="a"
+        class="btn btn-ghost-dark"
+        kind="text"
+        value={intro.ctaLabel}
+        file={file}
+        path="intro.ctaLabel"
+        hrefPath="intro.ctaHref"
+        hrefValue={intro.ctaHref}
+        href={intro.ctaHref}
+        label="Intro CTA label"
+      />
     </div>
   </div>
 </section>

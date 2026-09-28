@@ -10,22 +10,43 @@ const { current = '/' } = Astro.props;
 
 const site = await getEntry('site', 'global');
 const { items, ctaLabel, ctaHref } = site!.data.nav;
+const file = 'src/content/site/global.json';
 ---
 
-<nav class="nav" id="main-nav">
+<nav class="nav" id="main-nav" data-k-module-file={file} data-k-module-path="global.nav" data-k-module-label="Nav">
   <div class="container nav-inner">
     <a class="nav-logo" href="/" aria-label="Hume Edge home">
       <Image class="nav-logo-lockup" src={logo} alt="Hume Edge" widths={[131, 262]} sizes="131px" quality={80} />
     </a>
 
     <div class="nav-links">
-      {items.map(it => (
-        <a class={`nav-link${current === it.href ? ' is-current' : ''}`} href={it.href}>{it.label}</a>
+      {items.map((it, i) => (
+        <a
+          class={`nav-link${current === it.href ? ' is-current' : ''}`}
+          href={it.href}
+          data-k-file={file}
+          data-k-path={`global.nav.items.${i}.label`}
+          data-k-value={it.label}
+          data-k-kind="text"
+          data-k-label={`Nav item ${i + 1} label`}
+          data-k-href-path={`global.nav.items.${i}.href`}
+          data-k-href-value={it.href}
+        >{it.label}</a>
       ))}
     </div>
 
     <div class="nav-cta">
-      <a class="btn btn-mint" href={ctaHref}>{ctaLabel}</a>
+      <a
+        class="btn btn-mint"
+        href={ctaHref}
+        data-k-file={file}
+        data-k-path="global.nav.ctaLabel"
+        data-k-value={ctaLabel}
+        data-k-kind="text"
+        data-k-label="Nav CTA label"
+        data-k-href-path="global.nav.ctaHref"
+        data-k-href-value={ctaHref}
+      >{ctaLabel}</a>
     </div>
 
     <button
@@ -47,11 +68,31 @@ const { items, ctaLabel, ctaHref } = site!.data.nav;
     <span></span><span></span>
   </button>
   <div class="nav-drawer-links">
-    {items.map(it => (
-      <a class={`nav-drawer-link${current === it.href ? ' is-current' : ''}`} href={it.href}>{it.label}</a>
+    {items.map((it, i) => (
+      <a
+        class={`nav-drawer-link${current === it.href ? ' is-current' : ''}`}
+        href={it.href}
+        data-k-file={file}
+        data-k-path={`global.nav.items.${i}.label`}
+        data-k-value={it.label}
+        data-k-kind="text"
+        data-k-label={`Nav item ${i + 1} label`}
+        data-k-href-path={`global.nav.items.${i}.href`}
+        data-k-href-value={it.href}
+      >{it.label}</a>
     ))}
   </div>
-  <a class="btn btn-mint nav-drawer-cta" href={ctaHref}>{ctaLabel}</a>
+  <a
+    class="btn btn-mint nav-drawer-cta"
+    href={ctaHref}
+    data-k-file={file}
+    data-k-path="global.nav.ctaLabel"
+    data-k-value={ctaLabel}
+    data-k-kind="text"
+    data-k-label="Nav CTA label"
+    data-k-href-path="global.nav.ctaHref"
+    data-k-href-value={ctaHref}
+  >{ctaLabel}</a>
 </div>
 
 <div class="nav-scrim" id="nav-scrim" aria-hidden="true"></div>

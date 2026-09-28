@@ -1,29 +1,51 @@
 ---
 import { getEntry } from 'astro:content';
 import type { HomeData } from '../content.config';
+import Editable from './Editable.astro';
 
 const home = await getEntry('pages', 'home');
 const { whyDifferent } = home!.data as HomeData;
+const file = 'src/content/pages/home.json';
 ---
 
-<section class="why">
+<section class="why" data-k-module-file={file} data-k-module-path="whyDifferent" data-k-module-label="Why different">
   <div class="container">
     <div class="section-head reveal">
-      <h2>{whyDifferent.heading}</h2>
+      <Editable as="h2" kind="text" value={whyDifferent.heading} file={file} path="whyDifferent.heading" label="Why different heading" />
     </div>
     <div class="why-grid">
       {whyDifferent.rows.map((row, i) => (
-        <div class="why-row reveal" style={`--reveal-delay:${i*85}ms`}>
+        <div
+          class="why-row reveal"
+          style={`--reveal-delay:${i*85}ms`}
+          data-k-module-file={file}
+          data-k-module-path={`whyDifferent.rows.${i}`}
+          data-k-module-label={`Why row ${i + 1}`}
+        >
           <div class="head">
             <img class="why-icon" src={row.icon} alt="" width="52" height="52" loading="lazy" />
-            <div class="ttl">{row.title}</div>
+            <div
+              class="ttl"
+              data-k-file={file}
+              data-k-path={`whyDifferent.rows.${i}.title`}
+              data-k-value={row.title}
+              data-k-kind="text"
+              data-k-label="Why row title"
+            >{row.title}</div>
           </div>
-          <div class="body">{row.body}</div>
+          <div
+            class="body"
+            data-k-file={file}
+            data-k-path={`whyDifferent.rows.${i}.body`}
+            data-k-value={row.body}
+            data-k-kind="text"
+            data-k-label="Why row body"
+          >{row.body}</div>
         </div>
       ))}
     </div>
 
-    <div class="why-closer">
+    <div class="why-closer" data-k-module-file={file} data-k-module-path="whyDifferent.closer" data-k-module-label="Why closer">
       <div class="why-closer-img">
         <video
           style="object-fit:cover;width:100%;height:100%;display:block"
@@ -37,16 +59,20 @@ const { whyDifferent } = home!.data as HomeData;
         ></video>
       </div>
       <div>
-        <h3 set:html={whyDifferent.closer.headingHtml} />
-        <p>
-          {whyDifferent.closer.body}
-        </p>
+        <Editable as="h3" kind="html" value={whyDifferent.closer.headingHtml} file={file} path="whyDifferent.closer.headingHtml" label="Why closer heading" />
+        <Editable as="p" kind="text" value={whyDifferent.closer.body} file={file} path="whyDifferent.closer.body" label="Why closer body" />
         <div class="firms">
-          <div class="lab">{whyDifferent.closer.firmsLabel}</div>
+          <Editable as="div" class="lab" kind="text" value={whyDifferent.closer.firmsLabel} file={file} path="whyDifferent.closer.firmsLabel" label="Why closer firms label" />
           <div class="firms-row">
             {whyDifferent.closer.firms.map((firm, i) => (
               <>
-                <span>{firm}</span>
+                <span
+                  data-k-file={file}
+                  data-k-path={`whyDifferent.closer.firms.${i}`}
+                  data-k-value={firm}
+                  data-k-kind="text"
+                  data-k-label={`Firm ${i + 1}`}
+                >{firm}</span>
                 {i < whyDifferent.closer.firms.length - 1 && <span>·</span>}
               </>
             ))}
