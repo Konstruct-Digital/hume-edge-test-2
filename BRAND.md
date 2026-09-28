@@ -29,6 +29,10 @@ Generated from `src/content.config.ts`. Each row is a section/collection the age
 
 Fields whose name ends in `Html` (e.g. `titleHtml`, `headingHtml`) hold raw HTML and may contain inline tags like `<em>`, `<br>`, `<a>`, `<strong>` — preserve or produce valid, balanced markup in those fields. All other fields are plain text and are escaped automatically; do not put HTML tags in a non-`Html` field.
 
+## Editable content markers
+
+Every content-bearing field on this site is marked for the Portal's inline visual editor per `EDITABLE-CONTRACT.md` at the repo root — read that file for the full `data-k-*` markup contract before adding any new content-bearing component.
+
 ## Site Structure
 
 - `/` — Home
