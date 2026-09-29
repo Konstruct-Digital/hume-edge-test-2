@@ -16,10 +16,10 @@
   },
   "hero": {
     "eyebrow": {
-      "text": "AI enablement consulting",
-      "kind": "text"
+      "text": "AI <i>enablement</i> consulting",
+      "kind": "html"
     },
-    "titleHtml": "We're the <em>human side</em> of AI adoption test.",
+    "titleHtml": "We're the <em>human side</em> of AI <i>adoption</i> test.",
     "subHtml": "The AI edge doesn't come from the model; it comes from the humans on your team. Whether they trust it, understand it, and actually use it. That's where AI programs live or die. That's where we work. <em>That's the Hume Edge.</em>",
     "ctaPrimary": {
       "label": "Get Your People AI Ready",
