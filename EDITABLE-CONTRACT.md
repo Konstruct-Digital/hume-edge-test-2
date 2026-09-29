@@ -59,26 +59,37 @@ These nest arbitrarily — a developer can mark both the whole section and
 each item inside it as their own module; the injected script always picks
 the innermost module ancestor of wherever the client clicked.
 
-## Variable-kind fields (optional)
+## Variable-kind fields (the default shape for a text field)
 
 A field's `kind` (`text` or `html`) is normally fixed once, in the
 component's own source, and applies to every instance that render line
-produces — that's the right default for almost every field. For a field
-where the client might reasonably want to switch between plain text and
-rich formatting later, without a developer editing component code, store
-its value as an object instead of a bare string:
+produces. Rather than deciding case by case whether a given field might
+someday want rich formatting, use the `{ text, kind }` object shape by
+default for every `kind:'text'` leaf field, so the Portal's "Add styling"
+action (see the Portal's own docs) is available everywhere a text field is
+editable, with no per-field judgment call and no later retrofit:
 
 ```json
 { "text": "Best decision we made all year.", "kind": "text" }
 ```
 
-instead of:
+instead of a bare string like `"Best decision we made all year."`.
 
-```json
-"Best decision we made all year."
+Add this helper once near the top of `content.config.ts` and reuse it for
+every text field's Zod type:
+
+```ts
+import { z } from 'astro:content'; // or 'astro/zod', matching this site's existing import
+
+const variableKindText = z.union([
+  z.string(),
+  z.object({ text: z.string(), kind: z.enum(['text', 'html']) }),
+]);
 ```
 
-`<Editable>` detects this shape automatically — no extra prop needed:
+then declare a field with `eyebrow: variableKindText` instead of
+`eyebrow: z.string()`. `<Editable>` detects the shape automatically at
+render time — no extra prop needed, and no branching in the component:
 
 ```astro
 <Editable as="p" value={testimonial.quote} file={file} path={`${modulePath}.quote`} />
@@ -89,16 +100,17 @@ works identically whether `testimonial.quote` is a plain string or a
 leaf's content path as `<path>.text` and adds a
 `data-k-kind-path="<path>.kind"` attribute — a real path into this same
 content file, editable through the exact same mechanism as any other field
-(a future "convert to rich text" action is just an ordinary edit setting
-that path's value to `"html"`, nothing new on the write side).
+(the "Add styling" action is just an ordinary edit setting that path's
+value to `"html"`, nothing new on the write side).
 
-**When to use this vs. a plain string:** a bare string is right for
-anything that's always going to be plain — headings, nav labels, names.
-Reach for the `{ text, kind }` shape for prose-shaped fields where
-formatting flexibility is plausible later — body copy, quotes,
-descriptions. This is a schema decision made once, the same moment you're
-already deciding a field's shape (string vs. array vs. nested object) — not
-a new category of Portal-specific rule.
+**When a bare string is still right:** only for a value that was never
+going to be rendered as user-facing prose in the first place — a schema
+discriminator (`type`), a structural field, an href, an icon name, a color
+token, a numeric id. Anything a client would ever read as text on the page
+gets the object shape by default. This removes the earlier "is this
+field prose-shaped enough" judgment call entirely — the object shape is
+the default, a bare string is the deliberate exception, not the other way
+around.
 
 **Retrofitting an existing field later** (a site already built and already
 live) is a normal, bounded change, not something that has to be decided up
@@ -122,10 +134,12 @@ added here (a new section type, a new field, a new page), whoever builds it
 should also mark it per this contract, in the same commit:
 
 1. Does the new component render a value straight from a `src/content/**`
-   file? If it's a pure passthrough, wrap it in `<Editable>`. If the render
-   isn't a pure passthrough (a wrapper, a conditional, a `set:html` block),
-   hand-place the `data-k-*` attributes directly, per the Leaf fields
-   section above.
+   file? If it's a pure passthrough, wrap it in `<Editable>`, and give the
+   new field the `{ text, kind }` shape in its schema (per the Variable-kind
+   fields section above) rather than a bare string — that's the default now,
+   not a follow-up decision. If the render isn't a pure passthrough (a
+   wrapper, a conditional, a `set:html` block), hand-place the `data-k-*`
+   attributes directly, per the Leaf fields section above.
 2. Does the new component represent a whole section or a repeatable item
    worth referencing as a unit (a new card type, a new list item)? Add
    `data-k-module-*` on its container, per the Modules section above.
