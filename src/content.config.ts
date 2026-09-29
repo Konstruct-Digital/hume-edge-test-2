@@ -2,6 +2,13 @@ import { defineCollection } from 'astro:content';
 import { z } from 'astro/zod';
 import { glob, file } from 'astro/loaders';
 
+// A variable-kind field (EDITABLE-CONTRACT.md) — either a plain string, or
+// { text, kind } once a field has been promoted to rich text via the
+// Portal's "Add styling" action. Editable.astro detects the shape
+// automatically, so no component code needs to change for a field using
+// this instead of z.string().
+const variableKindText = z.union([z.string(), z.object({ text: z.string(), kind: z.enum(['text', 'html']) })]);
+
 const founderSchema = z.object({
   name: z.string(),
   title: z.string(),
@@ -35,14 +42,14 @@ const homeSchema = z.object({
     sameAs: z.array(z.string()),
   }),
   hero: z.object({
-    eyebrow: z.string(),
+    eyebrow: variableKindText,
     titleHtml: z.string(),
     subHtml: z.string(),
     ctaPrimary: z.object({ label: z.string(), href: z.string() }),
     ctaSecondary: z.object({ label: z.string(), href: z.string() }),
   }),
   intro: z.object({
-    eyebrow: z.string(),
+    eyebrow: variableKindText,
     leadHtml: z.string(),
     paragraphs: z.array(z.string()),
     taglineHtml: z.string(),
@@ -50,9 +57,9 @@ const homeSchema = z.object({
     ctaHref: z.string(),
   }),
   problems: z.object({
-    eyebrow: z.string(),
+    eyebrow: variableKindText,
     headingHtml: z.string(),
-    intro: z.string(),
+    intro: variableKindText,
     items: z.array(z.object({
       num: z.string(),
       color: z.string(),
@@ -73,7 +80,7 @@ const homeSchema = z.object({
     })),
   }),
   services: z.object({
-    eyebrow: z.string(),
+    eyebrow: variableKindText,
     headingHtml: z.string(),
     rightParagraphs: z.array(z.string()),
     items: z.array(z.object({
@@ -89,65 +96,65 @@ const homeSchema = z.object({
     })),
     lab: z.object({
       icon: z.string(),
-      label: z.string(),
-      defaultTitle: z.string(),
-      defaultBody: z.string(),
-      expandedTitle: z.string(),
+      label: variableKindText,
+      defaultTitle: variableKindText,
+      defaultBody: variableKindText,
+      expandedTitle: variableKindText,
       bullets: z.array(z.string()),
     }),
   }),
   versus: z.object({
-    eyebrow: z.string(),
+    eyebrow: variableKindText,
     headingHtml: z.string(),
-    intro: z.string(),
-    usLabel: z.string(),
-    themLabel: z.string(),
+    intro: variableKindText,
+    usLabel: variableKindText,
+    themLabel: variableKindText,
     rows: z.array(z.tuple([z.string(), z.string(), z.string()])),
     ctaLabel: z.string(),
     ctaHref: z.string(),
   }),
   industries: z.object({
-    eyebrow: z.string(),
+    eyebrow: variableKindText,
     titleHtml: z.string(),
-    body: z.string(),
+    body: variableKindText,
     items: z.array(z.object({ name: z.string(), icon: z.string() })),
   }),
   testimonials: z.object({
-    eyebrow: z.string(),
-    heading: z.string(),
+    eyebrow: variableKindText,
+    heading: variableKindText,
     video: z.object({
       photo: z.string(),
       videoSrc: z.string(),
-      quote: z.string(),
-      name: z.string(),
-      role: z.string(),
-      company: z.string(),
+      quote: variableKindText,
+      name: variableKindText,
+      role: variableKindText,
+      company: variableKindText,
     }),
     flip: z.object({
       accent: z.string(),
       photo: z.string(),
-      quote: z.string(),
-      name: z.string(),
-      role: z.string(),
-      company: z.string(),
-      backEyebrow: z.string(),
+      quote: variableKindText,
+      name: variableKindText,
+      role: variableKindText,
+      company: variableKindText,
+      backEyebrow: variableKindText,
       backQuote: z.string(),
     }),
   }),
   whyDifferent: z.object({
-    heading: z.string(),
+    heading: variableKindText,
     rows: z.array(z.object({ icon: z.string(), title: z.string(), body: z.string() })),
     closer: z.object({
       videoSrc: z.string(),
       headingHtml: z.string(),
-      body: z.string(),
-      firmsLabel: z.string(),
+      body: variableKindText,
+      firmsLabel: variableKindText,
       firms: z.array(z.string()),
     }),
   }),
   leadership: z.object({
-    eyebrow: z.string(),
-    heading: z.string(),
+    eyebrow: variableKindText,
+    heading: variableKindText,
     leaders: z.array(z.object({
       name: z.string(),
       title: z.string(),
@@ -163,16 +170,16 @@ const aboutSchema = z.object({
   page: z.literal('about'),
   meta: z.object({ title: z.string(), description: z.string() }),
   hero: z.object({
-    eyebrow: z.string(),
+    eyebrow: variableKindText,
     titleHtml: z.string(),
-    sub: z.string(),
+    sub: variableKindText,
     primaryCta: z.object({ label: z.string(), href: z.string() }),
     secondaryCta: z.object({ label: z.string(), href: z.string() }),
     image: z.object({ src: z.string(), alt: z.string() }),
   }),
-  shortVersion: z.object({ eyebrow: z.string(), leadHtml: z.string() }),
+  shortVersion: z.object({ eyebrow: variableKindText, leadHtml: z.string() }),
   mission: z.object({
-    eyebrow: z.string(),
+    eyebrow: variableKindText,
     headingHtml: z.string(),
     convictions: z.array(z.object({
       n: z.string(),
@@ -183,20 +190,20 @@ const aboutSchema = z.object({
     })),
   }),
   team: z.object({
-    eyebrow: z.string(),
+    eyebrow: variableKindText,
     headingHtml: z.string(),
     introHtml: z.string(),
     founders: z.array(founderSchema),
   }),
   story: z.object({
-    eyebrow: z.string(),
+    eyebrow: variableKindText,
     headingHtml: z.string(),
     quote: z.object({ text: z.string(), citeHtml: z.string() }),
     image: z.object({ src: z.string(), alt: z.string() }),
     paragraphs: z.array(z.string()),
     signOffHtml: z.string(),
     closingParagraphHtml: z.string(),
-    signature: z.string(),
+    signature: variableKindText,
   }),
   cta: z.object({
     id: z.string(),
@@ -210,20 +217,20 @@ const aboutSchema = z.object({
 const contactSchema = z.object({
   page: z.literal('contact'),
   meta: z.object({ title: z.string(), description: z.string() }),
-  hero: z.object({ eyebrow: z.string(), titleHtml: z.string(), introHtml: z.string() }),
-  expectHeading: z.string(),
+  hero: z.object({ eyebrow: variableKindText, titleHtml: z.string(), introHtml: z.string() }),
+  expectHeading: variableKindText,
   expect: z.array(z.object({ n: z.string(), title: z.string(), body: z.string() })),
-  directHeading: z.string(),
+  directHeading: variableKindText,
   directContacts: z.array(z.object({ label: z.string(), email: z.string() })),
 });
 
 const notFoundSchema = z.object({
   page: z.literal('not-found'),
   meta: z.object({ title: z.string(), description: z.string() }),
-  code: z.string(),
-  heading: z.string(),
-  body: z.string(),
-  ctaLabel: z.string(),
+  code: variableKindText,
+  heading: variableKindText,
+  body: variableKindText,
+  ctaLabel: variableKindText,
   ctaHref: z.string(),
 });
 
@@ -241,11 +248,11 @@ const site = defineCollection({
       ctaHref: z.string(),
     }),
     footer: z.object({
-      tagline: z.string(),
+      tagline: variableKindText,
       nav: z.array(z.object({ label: z.string(), href: z.string() })),
       ctaLabel: z.string(),
       ctaHref: z.string(),
-      legal: z.string(),
+      legal: variableKindText,
     }),
   }),
 });

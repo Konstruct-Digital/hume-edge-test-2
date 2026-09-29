@@ -15,7 +15,10 @@
     "sameAs": []
   },
   "hero": {
-    "eyebrow": "AI enablement consulting",
+    "eyebrow": {
+      "text": "AI enablement consulting",
+      "kind": "text"
+    },
     "titleHtml": "We're the <em>human side</em> of AI adoption test.",
     "subHtml": "The AI edge doesn't come from the model; it comes from the humans on your team. Whether they trust it, understand it, and actually use it. That's where AI programs live or die. That's where we work. <em>That's the Hume Edge.</em>",
     "ctaPrimary": {
@@ -28,7 +31,10 @@
     }
   },
   "intro": {
-    "eyebrow": "Built on global experience",
+    "eyebrow": {
+      "text": "Built on global experience",
+      "kind": "text"
+    },
     "leadHtml": "Too many AI programs stall at the same point: <em>the technology is ready, the people aren't.</em>",
     "paragraphs": [
       "<a href=\"https://mnpdigital.ca/insights/2026-canadian-ai-report-download/\" target=\"_blank\" rel=\"noopener noreferrer\">MNP's The Business of AI 2026 report</a> found that only 4% of organizations consider their use of AI to deliver transformational strategic value.",
@@ -40,9 +46,15 @@
     "ctaHref": "/about"
   },
   "problems": {
-    "eyebrow": "What our clients are saying",
+    "eyebrow": {
+      "text": "What our clients are saying",
+      "kind": "text"
+    },
     "headingHtml": "Your AI program is live.<br>Your <em>people aren't there yet</em>.",
-    "intro": "Budgets are approved, tools are selected, and the pressure to show results is real. Most organizations have invested more in AI tools than in AI adoption. The gap lives with their people. These are the challenges we hear most.",
+    "intro": {
+      "text": "Budgets are approved, tools are selected, and the pressure to show results is real. Most organizations have invested more in AI tools than in AI adoption. The gap lives with their people. These are the challenges we hear most.",
+      "kind": "text"
+    },
     "items": [
       {
         "num": "01",
@@ -108,7 +120,10 @@
     ]
   },
   "services": {
-    "eyebrow": "Our services",
+    "eyebrow": {
+      "text": "Our services",
+      "kind": "text"
+    },
     "headingHtml": "Your AI journey needs <em>a human edge</em>.",
     "rightParagraphs": [
       "The organizations seeing true AI returns don't leave any part of the journey to chance. Hume Edge makes sure you don't either.",
@@ -182,10 +197,22 @@
     ],
     "lab": {
       "icon": "/assets/hume-lab-icon.png",
-      "label": "Hume edge lab",
-      "defaultTitle": "Agentics to power the future of work.",
-      "defaultBody": "The Lab blueprints, prototypes, and configures AI agents and automated workflows connected to your existing systems, with governance guardrails and policy alignment scoped in from day one.",
-      "expandedTitle": "Inside the Lab.",
+      "label": {
+        "text": "Hume edge lab",
+        "kind": "text"
+      },
+      "defaultTitle": {
+        "text": "Agentics to power the future of work.",
+        "kind": "text"
+      },
+      "defaultBody": {
+        "text": "The Lab blueprints, prototypes, and configures AI agents and automated workflows connected to your existing systems, with governance guardrails and policy alignment scoped in from day one.",
+        "kind": "text"
+      },
+      "expandedTitle": {
+        "text": "Inside the Lab.",
+        "kind": "text"
+      },
       "bullets": [
         "Configure agentic AI inside your own environment - Microsoft, Salesforce, Workday",
         "Everything runs behind your existing security walls",
@@ -195,11 +222,23 @@
     }
   },
   "versus": {
-    "eyebrow": "About us",
+    "eyebrow": {
+      "text": "About us",
+      "kind": "text"
+    },
     "headingHtml": "How we work <em>differently</em>.",
-    "intro": "Large consulting firms bring frameworks, reach, and a price tag to match, but the senior partners who sell the engagement rarely lead the delivery. With Hume Edge, your engagement is led by a member of our executive team, the methodology adapts to your organization's specific context, and we measure success by whether your people are actually working differently.",
-    "usLabel": "Hume Edge",
-    "themLabel": "Other firms",
+    "intro": {
+      "text": "Large consulting firms bring frameworks, reach, and a price tag to match, but the senior partners who sell the engagement rarely lead the delivery. With Hume Edge, your engagement is led by a member of our executive team, the methodology adapts to your organization's specific context, and we measure success by whether your people are actually working differently.",
+      "kind": "text"
+    },
+    "usLabel": {
+      "text": "Hume Edge",
+      "kind": "text"
+    },
+    "themLabel": {
+      "text": "Other firms",
+      "kind": "text"
+    },
     "rows": [
       [
         "Who delivers",
@@ -236,9 +275,15 @@
     "ctaHref": "/contact"
   },
   "industries": {
-    "eyebrow": "Industry experience or specialization",
+    "eyebrow": {
+      "text": "Industry experience or specialization",
+      "kind": "text"
+    },
     "titleHtml": "Who we<br>work with.",
-    "body": "These are the industries we know best, but the challenges we tackle aren't sector-specific. If you're looking for a partner to help your people get AI right, let's talk.",
+    "body": {
+      "text": "These are the industries we know best, but the challenges we tackle aren't sector-specific. If you're looking for a partner to help your people get AI right, let's talk.",
+      "kind": "text"
+    },
     "items": [
       {
         "name": "Oil and Gas",
@@ -335,29 +380,65 @@
     ]
   },
   "testimonials": {
-    "eyebrow": "Client stories",
-    "heading": "Hear from our clients.",
+    "eyebrow": {
+      "text": "Client stories",
+      "kind": "text"
+    },
+    "heading": {
+      "text": "Hear from our clients.",
+      "kind": "text"
+    },
     "video": {
       "photo": "/assets/testimonials/alex-fleming.png",
       "videoSrc": "/assets/video/testimonial-alex.mp4",
-      "quote": "Hume Edge changed how our people actually use AI, not just whether we had the tools.",
-      "name": "Alex Fleming",
-      "role": "Group SVP Talent, Leadership & Culture",
-      "company": "The Adecco Group"
+      "quote": {
+        "text": "Hume Edge changed how our people actually use AI, not just whether we had the tools.",
+        "kind": "text"
+      },
+      "name": {
+        "text": "Alex Fleming",
+        "kind": "text"
+      },
+      "role": {
+        "text": "Group SVP Talent, Leadership & Culture",
+        "kind": "text"
+      },
+      "company": {
+        "text": "The Adecco Group",
+        "kind": "text"
+      }
     },
     "flip": {
       "accent": "#7118C2",
       "photo": "/assets/testimonials/megan-wickens.png",
-      "quote": "Hume Edge set the benchmark for scaling AI impact by integrating strategy, design, and execution.",
-      "name": "Megan Wickens",
-      "role": "Global Head of AI Operations",
-      "company": "The Adecco Group",
-      "backEyebrow": "In their words",
+      "quote": {
+        "text": "Hume Edge set the benchmark for scaling AI impact by integrating strategy, design, and execution.",
+        "kind": "text"
+      },
+      "name": {
+        "text": "Megan Wickens",
+        "kind": "text"
+      },
+      "role": {
+        "text": "Global Head of AI Operations",
+        "kind": "text"
+      },
+      "company": {
+        "text": "The Adecco Group",
+        "kind": "text"
+      },
+      "backEyebrow": {
+        "text": "In their words",
+        "kind": "text"
+      },
       "backQuote": "Following the build of a global AI skilling program for all colleagues and the successful launch of a global AI Ambassador network driving adoption, activation, and change management, we most recently engaged the Hume Edge team to design and deliver a truly distinctive experience for executive audiences. The program created space for meaningful executive dialogue, challenged existing assumptions, and deepened leaders' understanding of how AI shows up in our organization — particularly the gap between AI investment and AI value realization, and the critical role leadership plays in closing it. Their ability to integrate strategy, design, and execution continues to set the benchmark for how we scale AI impact across the business."
     }
   },
   "whyDifferent": {
-    "heading": "Why Hume Edge.",
+    "heading": {
+      "text": "Why Hume Edge.",
+      "kind": "text"
+    },
     "rows": [
       {
         "icon": "/assets/icons/why-1.svg",
@@ -383,8 +464,14 @@
     "closer": {
       "videoSrc": "/assets/video/team-video.mp4",
       "headingHtml": "The depth of a global firm. <em>Built for how you actually work.</em>",
-      "body": "Our teams have spent decades at large consulting and technology firms, as well as sector-leading organizations - designing and delivering the kind of transformation work the largest organizations in the world rely on. We left because that depth was being delivered in a model that no longer fit how organizations need to move. Hume Edge keeps the discipline. We left the rest behind.",
-      "firmsLabel": "Executive team previously at",
+      "body": {
+        "text": "Our teams have spent decades at large consulting and technology firms, as well as sector-leading organizations - designing and delivering the kind of transformation work the largest organizations in the world rely on. We left because that depth was being delivered in a model that no longer fit how organizations need to move. Hume Edge keeps the discipline. We left the rest behind.",
+        "kind": "text"
+      },
+      "firmsLabel": {
+        "text": "Executive team previously at",
+        "kind": "text"
+      },
       "firms": [
         "Accenture",
         "IBM",
@@ -395,8 +482,14 @@
     }
   },
   "leadership": {
-    "eyebrow": "Our leadership team",
-    "heading": "The people leading the work.",
+    "eyebrow": {
+      "text": "Our leadership team",
+      "kind": "text"
+    },
+    "heading": {
+      "text": "The people leading the work.",
+      "kind": "text"
+    },
     "leaders": [
       {
         "name": "Dr. Ryan Rex, MBA",

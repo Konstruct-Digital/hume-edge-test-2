@@ -201,7 +201,19 @@ function deactivate() {
 // the rendered text — without this, reopening a field always showed the
 // stale pre-edit value, making an in-progress edit look silently reverted
 // even though it was still correctly queued.
-export function applyPreview({ file, path, hrefPath, value }) {
+export function applyPreview({ file, path, hrefPath, kindPath, value }) {
+	// A "promote this field to rich text" edit (see EDITABLE-CONTRACT.md's
+	// Variable-kind fields) flips data-k-kind on the live element itself —
+	// without this, a value patch arriving right after still reads the
+	// stale data-k-kind="text" below and renders escaped markup instead of
+	// the actual formatting the client just applied.
+	if (kindPath) {
+		document.querySelectorAll('[data-k-kind-path]').forEach((el) => {
+			if (el.getAttribute('data-k-file') === file && el.getAttribute('data-k-kind-path') === kindPath) {
+				el.setAttribute('data-k-kind', value);
+			}
+		});
+	}
 	if (path) {
 		document.querySelectorAll('[data-k-path]').forEach((el) => {
 			if (el.getAttribute('data-k-file') === file && el.getAttribute('data-k-path') === path) {

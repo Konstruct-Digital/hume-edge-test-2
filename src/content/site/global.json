@@ -2,22 +2,43 @@
   "global": {
     "nav": {
       "items": [
-        { "label": "Home", "href": "/" },
-        { "label": "Our Services", "href": "/#services" },
-        { "label": "About Us", "href": "/about" }
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "Our Services",
+          "href": "/#services"
+        },
+        {
+          "label": "About Us",
+          "href": "/about"
+        }
       ],
       "ctaLabel": "Contact Us",
       "ctaHref": "/contact"
     },
     "footer": {
-      "tagline": "AI enablement advisory. The human side of AI.",
+      "tagline": {
+        "text": "AI enablement advisory. The human side of AI.",
+        "kind": "text"
+      },
       "nav": [
-        { "label": "Home", "href": "/" },
-        { "label": "About Us", "href": "/about" }
+        {
+          "label": "Home",
+          "href": "/"
+        },
+        {
+          "label": "About Us",
+          "href": "/about"
+        }
       ],
       "ctaLabel": "Contact Us",
       "ctaHref": "/contact",
-      "legal": "© 2026 Hume Edge"
+      "legal": {
+        "text": "© 2026 Hume Edge",
+        "kind": "text"
+      }
     }
   }
 }
