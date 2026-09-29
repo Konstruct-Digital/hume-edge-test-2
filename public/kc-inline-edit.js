@@ -39,6 +39,10 @@ export function readLeafData(el) {
 		path: el.getAttribute('data-k-path') || null,
 		value: el.getAttribute('data-k-value') || null,
 		kind: el.getAttribute('data-k-kind') || 'text',
+		// Only present on a variable-kind field (see EDITABLE-CONTRACT.md) —
+		// the content path a kind-flip edit would target, same mechanism as
+		// any other field edit, never a special write path of its own.
+		kindPath: el.getAttribute('data-k-kind-path') || null,
 		label: el.getAttribute('data-k-label') || null,
 		hrefPath: el.getAttribute('data-k-href-path') || null,
 		hrefValue: el.getAttribute('data-k-href-value') || null,

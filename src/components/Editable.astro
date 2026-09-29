@@ -9,7 +9,12 @@
 // `<Editable as="h1" value={x} file="..." path="..." />`.
 interface Props {
 	as: string;
-	value: string;
+	// A field whose formatting might need to change later (see
+	// EDITABLE-CONTRACT.md's "Variable-kind fields") is stored as
+	// { text, kind } instead of a bare string — detected automatically
+	// below, so the common case (a plain string, kind fixed by the kind
+	// prop) needs zero extra ceremony.
+	value: string | { text: string; kind: 'text' | 'html' };
 	file: string;
 	path: string;
 	kind?: 'text' | 'html';
@@ -20,7 +25,17 @@ interface Props {
 	class?: string;
 	style?: string;
 }
-const { as: Tag, value, file, path, kind = 'text', label, hrefPath, hrefValue, href, class: className, style } = Astro.props;
+const { as: Tag, value: rawValue, file, path, kind: kindProp = 'text', label, hrefPath, hrefValue, href, class: className, style } = Astro.props;
+const isVariableKind = rawValue !== null && typeof rawValue === 'object';
+const value = isVariableKind ? rawValue.text : rawValue;
+const kind = isVariableKind ? rawValue.kind : kindProp;
+// Only present for a variable-kind field — this is the path a future
+// "Add styling" edit would target to flip kind in place, the exact same
+// way any other content edit already works (setByPath on an existing
+// string field). Astro omits an attribute entirely when its value is
+// undefined, same as data-k-label/data-k-href-path already rely on.
+const valuePath = isVariableKind ? `${path}.text` : path;
+const kindPath = isVariableKind ? `${path}.kind` : undefined;
 // Astro dynamic-tag limitation: `class`/`style` aren't resolvable against
 // IntrinsicAttributes for a tag typed as a plain string (const Tag = as).
 // Casting the tag reference to `any` (rather than `@ts-expect-error`-ing the
@@ -36,9 +51,10 @@ const DynamicTag = Tag as any;
 {kind === 'html' ? (
 	<DynamicTag
 		data-k-file={file}
-		data-k-path={path}
+		data-k-path={valuePath}
 		data-k-value={value}
 		data-k-kind={kind}
+		data-k-kind-path={kindPath}
 		data-k-label={label}
 		data-k-href-path={hrefPath}
 		data-k-href-value={hrefValue}
@@ -50,9 +66,10 @@ const DynamicTag = Tag as any;
 ) : (
 	<DynamicTag
 		data-k-file={file}
-		data-k-path={path}
+		data-k-path={valuePath}
 		data-k-value={value}
 		data-k-kind={kind}
+		data-k-kind-path={kindPath}
 		data-k-label={label}
 		data-k-href-path={hrefPath}
 		data-k-href-value={hrefValue}

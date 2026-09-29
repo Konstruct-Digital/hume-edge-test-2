@@ -59,6 +59,61 @@ These nest arbitrarily — a developer can mark both the whole section and
 each item inside it as their own module; the injected script always picks
 the innermost module ancestor of wherever the client clicked.
 
+## Variable-kind fields (optional)
+
+A field's `kind` (`text` or `html`) is normally fixed once, in the
+component's own source, and applies to every instance that render line
+produces — that's the right default for almost every field. For a field
+where the client might reasonably want to switch between plain text and
+rich formatting later, without a developer editing component code, store
+its value as an object instead of a bare string:
+
+```json
+{ "text": "Best decision we made all year.", "kind": "text" }
+```
+
+instead of:
+
+```json
+"Best decision we made all year."
+```
+
+`<Editable>` detects this shape automatically — no extra prop needed:
+
+```astro
+<Editable as="p" value={testimonial.quote} file={file} path={`${modulePath}.quote`} />
+```
+
+works identically whether `testimonial.quote` is a plain string or a
+`{ text, kind }` object. When it's the object shape, `Editable` reports the
+leaf's content path as `<path>.text` and adds a
+`data-k-kind-path="<path>.kind"` attribute — a real path into this same
+content file, editable through the exact same mechanism as any other field
+(a future "convert to rich text" action is just an ordinary edit setting
+that path's value to `"html"`, nothing new on the write side).
+
+**When to use this vs. a plain string:** a bare string is right for
+anything that's always going to be plain — headings, nav labels, names.
+Reach for the `{ text, kind }` shape for prose-shaped fields where
+formatting flexibility is plausible later — body copy, quotes,
+descriptions. This is a schema decision made once, the same moment you're
+already deciding a field's shape (string vs. array vs. nested object) — not
+a new category of Portal-specific rule.
+
+**Retrofitting an existing field later** (a site already built and already
+live) is a normal, bounded change, not something that has to be decided up
+front:
+
+1. Migrate the content data for that field from a bare string to
+   `{ text, kind }` (one-time, for every existing record).
+2. Update the Zod schema in `content.config.ts` to match.
+3. Update any other place the component reads that field directly (outside
+   the `<Editable>` call itself) to use `.text` instead of the bare value.
+
+Hand-placed raw attributes (where `<Editable>` doesn't fit) can use this
+pattern too — just point `data-k-path` at `<path>.text` and add
+`data-k-kind-path="<path>.kind"` directly, following the same shape.
+
 ## Keeping new content editable (for future development)
 
 This contract isn't a one-time retrofit — it has to keep being applied as
