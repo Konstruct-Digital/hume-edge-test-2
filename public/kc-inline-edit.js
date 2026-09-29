@@ -188,16 +188,22 @@ function deactivate() {
 	hideOverlay();
 }
 
-// kind:'html' fields never get a live cosmetic patch, even though the
-// original render may use set:html for other reasons — only textContent/
-// attribute assignment, never markup injection. This is the one hard
-// safety rule from the spec: it closes off the one path a spoofed message
-// could otherwise use to inject markup into the page.
+// kind:'html' fields get a live innerHTML patch, same as text fields get
+// textContent — both trust the value the same way, on the strength of
+// origin-pinning being the real security boundary here (checked on both
+// this script's message listener and the Portal's own). Every patch also
+// updates data-k-value itself, not just the visible content: readLeafData()
+// (what runs the next time this field is clicked) reads that attribute, not
+// the rendered text — without this, reopening a field always showed the
+// stale pre-edit value, making an in-progress edit look silently reverted
+// even though it was still correctly queued.
 export function applyPreview({ file, path, hrefPath, value }) {
 	if (path) {
 		document.querySelectorAll('[data-k-path]').forEach((el) => {
 			if (el.getAttribute('data-k-file') === file && el.getAttribute('data-k-path') === path) {
-				if (el.getAttribute('data-k-kind') !== 'html') el.textContent = value;
+				if (el.getAttribute('data-k-kind') === 'html') el.innerHTML = value;
+				else el.textContent = value;
+				el.setAttribute('data-k-value', value);
 			}
 		});
 	}
@@ -205,6 +211,7 @@ export function applyPreview({ file, path, hrefPath, value }) {
 		document.querySelectorAll('[data-k-href-path]').forEach((el) => {
 			if (el.getAttribute('data-k-file') === file && el.getAttribute('data-k-href-path') === hrefPath) {
 				el.setAttribute('href', value);
+				el.setAttribute('data-k-href-value', value);
 			}
 		});
 	}
