@@ -60,43 +60,79 @@
         "num": "01",
         "color": "#7118C2",
         "icon": "/assets/icons/card-1.svg",
-        "quote": "We rolled out AI. Our people still aren't using it effectively.",
-        "body": "Access to a tool and knowing how to use it are two different things. When employees aren't enabled to leverage AI in the flow of work for their specific roles, they default to what they know, and the AI investment you made erodes without value realization."
+        "quote": {
+          "text": "We rolled out AI. Our people still aren't using it effectively.",
+          "kind": "text"
+        },
+        "body": {
+          "text": "Access to a tool and knowing how to use it are two different things. When employees aren't enabled to leverage AI in the flow of work for their specific roles, they default to what they know, and the AI investment you made erodes without value realization.",
+          "kind": "text"
+        }
       },
       {
         "num": "02",
         "color": "#BC10DE",
         "icon": "/assets/icons/card-2.svg",
-        "quote": "We're spending on AI and can't prove it's working.",
-        "body": "Platform costs show up on the balance sheet long before business outcomes do. When your board asks what the AI investment is returning and the honest answer is \"we're not sure yet,\" that's a difficult position to hold for long."
+        "quote": {
+          "text": "We're spending on AI and can't prove it's working.",
+          "kind": "text"
+        },
+        "body": {
+          "text": "Platform costs show up on the balance sheet long before business outcomes do. When your board asks what the AI investment is returning and the honest answer is \"we're not sure yet,\" that's a difficult position to hold for long.",
+          "kind": "text"
+        }
       },
       {
         "num": "03",
         "color": "#0599FF",
         "icon": "/assets/icons/card-3.svg",
-        "quote": "Our leaders are expected to drive AI adoption. Nobody has shown them how.",
-        "body": "Most leadership teams were never trained to lead AI transformation. They're making decisions about tools and budgets while their people wait for clarity about what it all means for their roles. That uncertainty travels fast through an organization."
+        "quote": {
+          "text": "Our leaders are expected to drive AI adoption. Nobody has shown them how.",
+          "kind": "text"
+        },
+        "body": {
+          "text": "Most leadership teams were never trained to lead AI transformation. They're making decisions about tools and budgets while their people wait for clarity about what it all means for their roles. That uncertainty travels fast through an organization.",
+          "kind": "text"
+        }
       },
       {
         "num": "04",
         "color": "#7118C2",
         "icon": "/assets/icons/card-4.svg",
-        "quote": "Our AI efforts are scattered and unaligned.",
-        "body": "When every department is running its own AI initiative without a shared strategy, the efforts don't compound. They compete. Resources get spread thin, priorities stay unclear, and the organization ends up busy with AI without actually advancing because of it."
+        "quote": {
+          "text": "Our AI efforts are scattered and unaligned.",
+          "kind": "text"
+        },
+        "body": {
+          "text": "When every department is running its own AI initiative without a shared strategy, the efforts don't compound. They compete. Resources get spread thin, priorities stay unclear, and the organization ends up busy with AI without actually advancing because of it.",
+          "kind": "text"
+        }
       },
       {
         "num": "05",
         "color": "#00FB90",
         "icon": "/assets/icons/card-5.svg",
-        "quote": "Our pilots work. Scaling them is where we run out of hands.",
-        "body": "A pilot can succeed with three motivated people in a room. Scale requires hundreds across functions doing something they have never done before. Most organizations underestimate that gap and end up with a portfolio of proven concepts that never make it past the team that built them."
+        "quote": {
+          "text": "Our pilots work. Scaling them is where we run out of hands.",
+          "kind": "text"
+        },
+        "body": {
+          "text": "A pilot can succeed with three motivated people in a room. Scale requires hundreds across functions doing something they have never done before. Most organizations underestimate that gap and end up with a portfolio of proven concepts that never make it past the team that built them.",
+          "kind": "text"
+        }
       },
       {
         "num": "06",
         "color": "#BC10DE",
         "icon": "/assets/icons/card-6.svg",
-        "quote": "We have the strategy. We don't have the ability to build it.",
-        "body": "The roadmap is approved, and the funding is committed. What's missing is the capacity inside the organization to actually deliver any of it. AI is moving quickly, and without the capability, organizations are feeling the pressure to catch up. Ambition ceases to move forward at scale."
+        "quote": {
+          "text": "We have the strategy. We don't have the ability to build it.",
+          "kind": "text"
+        },
+        "body": {
+          "text": "The roadmap is approved, and the funding is committed. What's missing is the capacity inside the organization to actually deliver any of it. AI is moving quickly, and without the capability, organizations are feeling the pressure to catch up. Ambition ceases to move forward at scale.",
+          "kind": "text"
+        }
       }
     ]
   },
@@ -108,14 +144,26 @@
       {
         "value": "80",
         "suffix": "%",
-        "text": "of CEOs expect AI to force medium-to-high change in their operational capabilities.",
-        "source": "Gartner · April 2026"
+        "text": {
+          "text": "of CEOs expect AI to force medium-to-high change in their operational capabilities.",
+          "kind": "text"
+        },
+        "source": {
+          "text": "Gartner · April 2026",
+          "kind": "text"
+        }
       },
       {
         "value": "12",
         "suffix": "%",
-        "text": "of companies have embedded AI into their core processes.",
-        "source": "Bain · May 2026"
+        "text": {
+          "text": "of companies have embedded AI into their core processes.",
+          "kind": "text"
+        },
+        "source": {
+          "text": "Bain · May 2026",
+          "kind": "text"
+        }
       }
     ]
   },
@@ -126,18 +174,30 @@
     },
     "headingHtml": "Your AI journey needs <em>a human edge</em>.",
     "rightParagraphs": [
-      "The organizations seeing true AI returns don't leave any part of the journey to chance. Hume Edge makes sure you don't either.",
-      "The Hume Edge Framework supports organizations in preparing for, adapting to, and thriving from AI-transformative change, where future-focused organizations amplify human capabilities with AI technology, helping elevate human potential, accelerate decision-making, and unlock unprecedented value."
+      {
+        "text": "The organizations seeing true AI returns don't leave any part of the journey to chance. Hume Edge makes sure you don't either.",
+        "kind": "text"
+      },
+      {
+        "text": "The Hume Edge Framework supports organizations in preparing for, adapting to, and thriving from AI-transformative change, where future-focused organizations amplify human capabilities with AI technology, helping elevate human potential, accelerate decision-making, and unlock unprecedented value.",
+        "kind": "text"
+      }
     ],
     "items": [
       {
         "letter": "E",
-        "title": "Envision the AI Journey",
+        "title": {
+          "text": "Envision the AI Journey",
+          "kind": "text"
+        },
         "accent": "#7118C2",
         "ink": "#7118C2",
         "icon": "/assets/icons/edge-envision.svg",
         "tagline": "AI Strategic Narrative, Executive Alignment & Governance",
-        "blurb": "A clear AI strategy, roadmap, and governance foundation - to envision, prepare for, and realize AI potential, by shaping the mindsets, directive, and narratives needed to champion AI transformation.",
+        "blurb": {
+          "text": "A clear AI strategy, roadmap, and governance foundation - to envision, prepare for, and realize AI potential, by shaping the mindsets, directive, and narratives needed to champion AI transformation.",
+          "kind": "text"
+        },
         "intro": "AI works when your leaders are aligned on why it matters and where it pays off. This is where we set that foundation: a clear strategy, a prioritized roadmap, and the governance to move with confidence. You leave with a plan your executives own, and your board believes in.",
         "bullets": [
           "AI Strategy & Value Blueprint",
@@ -147,12 +207,18 @@
       },
       {
         "letter": "D",
-        "title": "Design the Systems to Drive AI Value",
+        "title": {
+          "text": "Design the Systems to Drive AI Value",
+          "kind": "text"
+        },
         "accent": "#0599FF",
         "ink": "#0578CC",
         "icon": "/assets/icons/edge-design.svg",
         "tagline": "Human-Centric AI Through Organizational Systems Design",
-        "blurb": "Accelerators aimed at preparing your AI transformation through the evaluation and redesign of your organizational systems as well as co-designed, tailored AI enablement programs to help your teams navigate the evolving AI landscape.",
+        "blurb": {
+          "text": "Accelerators aimed at preparing your AI transformation through the evaluation and redesign of your organizational systems as well as co-designed, tailored AI enablement programs to help your teams navigate the evolving AI landscape.",
+          "kind": "text"
+        },
         "intro": "Most of the value of AI is lost in the gap between a capable tool and the way work really gets done. We close that gap by redesigning your operational systems (processes, roles, and decision points) with people at the center. The result is an organization built to absorb AI and keep improving.",
         "bullets": [
           "Future of Work Architecture & Redesign (Operational Systems, People, and Roles)",
@@ -161,12 +227,18 @@
       },
       {
         "letter": "G",
-        "title": "Grow Human & Organizational AI Capabilities",
+        "title": {
+          "text": "Grow Human & Organizational AI Capabilities",
+          "kind": "text"
+        },
         "accent": "#BC10DE",
         "ink": "#BC10DE",
         "icon": "/assets/icons/edge-grow.svg",
         "tagline": "AI Capability, Fluency, Development & Enablement",
-        "blurb": "Developing foundational AI capability and fluency through critical skills, knowledge, and abilities to amplify your organization as you adapt to AI-driven change, ensuring your AI initiatives deliver tangible results.",
+        "blurb": {
+          "text": "Developing foundational AI capability and fluency through critical skills, knowledge, and abilities to amplify your organization as you adapt to AI-driven change, ensuring your AI initiatives deliver tangible results.",
+          "kind": "text"
+        },
         "intro": "Technology rarely takes hold on its own; it requires planned adoption. We develop the capability and confidence your people need to work alongside AI every day, supported by change management, ambassador networks, and executive learning. And we measure adoption so you can show the return.",
         "bullets": [
           "AI Learning Strategy & Design, Development & Delivery",
@@ -181,12 +253,18 @@
       },
       {
         "letter": "E",
-        "title": "Edge Lab",
+        "title": {
+          "text": "Edge Lab",
+          "kind": "text"
+        },
         "accent": "#00FB90",
         "ink": "#0B7A4B",
         "icon": "/assets/icons/edge-lab.svg",
         "tagline": "Agents & Agentic Development & Configuration",
-        "blurb": "Builds AI agents and agentic systems that take on real tasks, make decisions within clear boundaries, and grow more capable as they work. Creating capability that earns its place serving the organization.",
+        "blurb": {
+          "text": "Builds AI agents and agentic systems that take on real tasks, make decisions within clear boundaries, and grow more capable as they work. Creating capability that earns its place serving the organization.",
+          "kind": "text"
+        },
         "intro": "Edge Lab is our build studio. We design, prototype, and configure AI agents and agentic systems that handle real work connected to your existing tools, with governance and policy scoped in from day one. Each one earns its place by serving the organization, and we can run them for you once they do.",
         "bullets": [
           "AI Agentics",
@@ -214,10 +292,22 @@
         "kind": "text"
       },
       "bullets": [
-        "Configure agentic AI inside your own environment - Microsoft, Salesforce, Workday",
-        "Everything runs behind your existing security walls",
-        "Blueprint, prototype, and deploy production-ready agents",
-        "Governance guardrails and policy alignment scoped from day one"
+        {
+          "text": "Configure agentic AI inside your own environment - Microsoft, Salesforce, Workday",
+          "kind": "text"
+        },
+        {
+          "text": "Everything runs behind your existing security walls",
+          "kind": "text"
+        },
+        {
+          "text": "Blueprint, prototype, and deploy production-ready agents",
+          "kind": "text"
+        },
+        {
+          "text": "Governance guardrails and policy alignment scoped from day one",
+          "kind": "text"
+        }
       ]
     }
   },
@@ -286,95 +376,164 @@
     },
     "items": [
       {
-        "name": "Oil and Gas",
+        "name": {
+          "text": "Oil and Gas",
+          "kind": "text"
+        },
         "icon": "fuel"
       },
       {
-        "name": "Mining",
+        "name": {
+          "text": "Mining",
+          "kind": "text"
+        },
         "icon": "gem"
       },
       {
-        "name": "Utilities and Power",
+        "name": {
+          "text": "Utilities and Power",
+          "kind": "text"
+        },
         "icon": "zap"
       },
       {
-        "name": "Renewable Energy",
+        "name": {
+          "text": "Renewable Energy",
+          "kind": "text"
+        },
         "icon": "wind"
       },
       {
-        "name": "Construction",
+        "name": {
+          "text": "Construction",
+          "kind": "text"
+        },
         "icon": "hardhat"
       },
       {
-        "name": "Manufacturing",
+        "name": {
+          "text": "Manufacturing",
+          "kind": "text"
+        },
         "icon": "factory"
       },
       {
-        "name": "Aerospace and Defence",
+        "name": {
+          "text": "Aerospace and Defence",
+          "kind": "text"
+        },
         "icon": "plane"
       },
       {
-        "name": "Transportation and Logistics",
+        "name": {
+          "text": "Transportation and Logistics",
+          "kind": "text"
+        },
         "icon": "truck"
       },
       {
-        "name": "Technology and Communications",
+        "name": {
+          "text": "Technology and Communications",
+          "kind": "text"
+        },
         "icon": "cpu"
       },
       {
-        "name": "Media and Entertainment",
+        "name": {
+          "text": "Media and Entertainment",
+          "kind": "text"
+        },
         "icon": "clapper"
       },
       {
-        "name": "Consumer Goods and Retail",
+        "name": {
+          "text": "Consumer Goods and Retail",
+          "kind": "text"
+        },
         "icon": "bag"
       },
       {
-        "name": "Hospitality and Tourism",
+        "name": {
+          "text": "Hospitality and Tourism",
+          "kind": "text"
+        },
         "icon": "bed"
       },
       {
-        "name": "Food and Beverage",
+        "name": {
+          "text": "Food and Beverage",
+          "kind": "text"
+        },
         "icon": "utensils"
       },
       {
-        "name": "Healthcare and Life Sciences",
+        "name": {
+          "text": "Healthcare and Life Sciences",
+          "kind": "text"
+        },
         "icon": "activity"
       },
       {
-        "name": "Pharmaceuticals and Biotech",
+        "name": {
+          "text": "Pharmaceuticals and Biotech",
+          "kind": "text"
+        },
         "icon": "pill"
       },
       {
-        "name": "Professional Services",
+        "name": {
+          "text": "Professional Services",
+          "kind": "text"
+        },
         "icon": "briefcase"
       },
       {
-        "name": "Financial Services",
+        "name": {
+          "text": "Financial Services",
+          "kind": "text"
+        },
         "icon": "banknote"
       },
       {
-        "name": "Real Estate",
+        "name": {
+          "text": "Real Estate",
+          "kind": "text"
+        },
         "icon": "home"
       },
       {
-        "name": "Agriculture",
+        "name": {
+          "text": "Agriculture",
+          "kind": "text"
+        },
         "icon": "sprout"
       },
       {
-        "name": "Education",
+        "name": {
+          "text": "Education",
+          "kind": "text"
+        },
         "icon": "cap"
       },
       {
-        "name": "Government",
+        "name": {
+          "text": "Government",
+          "kind": "text"
+        },
         "icon": "landmark"
       },
       {
-        "name": "Public Services",
+        "name": {
+          "text": "Public Services",
+          "kind": "text"
+        },
         "icon": "users"
       },
       {
-        "name": "Non-profit and NGOs",
+        "name": {
+          "text": "Non-profit and NGOs",
+          "kind": "text"
+        },
         "icon": "heart"
       }
     ]
@@ -431,7 +590,10 @@
         "text": "In their words",
         "kind": "text"
       },
-      "backQuote": "Following the build of a global AI skilling program for all colleagues and the successful launch of a global AI Ambassador network driving adoption, activation, and change management, we most recently engaged the Hume Edge team to design and deliver a truly distinctive experience for executive audiences. The program created space for meaningful executive dialogue, challenged existing assumptions, and deepened leaders' understanding of how AI shows up in our organization — particularly the gap between AI investment and AI value realization, and the critical role leadership plays in closing it. Their ability to integrate strategy, design, and execution continues to set the benchmark for how we scale AI impact across the business."
+      "backQuote": {
+        "text": "Following the build of a global AI skilling program for all colleagues and the successful launch of a global AI Ambassador network driving adoption, activation, and change management, we most recently engaged the Hume Edge team to design and deliver a truly distinctive experience for executive audiences. The program created space for meaningful executive dialogue, challenged existing assumptions, and deepened leaders' understanding of how AI shows up in our organization — particularly the gap between AI investment and AI value realization, and the critical role leadership plays in closing it. Their ability to integrate strategy, design, and execution continues to set the benchmark for how we scale AI impact across the business.",
+        "kind": "text"
+      }
     }
   },
   "whyDifferent": {
@@ -442,23 +604,47 @@
     "rows": [
       {
         "icon": "/assets/icons/why-1.svg",
-        "title": "We start with your people",
-        "body": "Your edge in AI is not the model you choose or the platform you buy. It's whether your people trust it, understand it, and use it. We start there. Everything else follows."
+        "title": {
+          "text": "We start with your people",
+          "kind": "text"
+        },
+        "body": {
+          "text": "Your edge in AI is not the model you choose or the platform you buy. It's whether your people trust it, understand it, and use it. We start there. Everything else follows.",
+          "kind": "text"
+        }
       },
       {
         "icon": "/assets/icons/why-2.svg",
-        "title": "We measure AI value differently",
-        "body": "The hardest part of an AI program is proving it's working. Platform usage tells you nothing about adoption. License counts tell you nothing about confidence. We bring a deliberate way of measuring whether your people are actually working differently, and whether the value promised is real."
+        "title": {
+          "text": "We measure AI value differently",
+          "kind": "text"
+        },
+        "body": {
+          "text": "The hardest part of an AI program is proving it's working. Platform usage tells you nothing about adoption. License counts tell you nothing about confidence. We bring a deliberate way of measuring whether your people are actually working differently, and whether the value promised is real.",
+          "kind": "text"
+        }
       },
       {
         "icon": "/assets/icons/why-3.svg",
-        "title": "We enable what others miss",
-        "body": "Tools are easy to deliver. Behavior is harder. Training that ends on Friday and changes nothing by Monday is the most common failure mode in AI programs, and it is the one nobody wants to talk about. We work with your people until the way they work has actually changed. If your people don't change, neither will the value of your investments."
+        "title": {
+          "text": "We enable what others miss",
+          "kind": "text"
+        },
+        "body": {
+          "text": "Tools are easy to deliver. Behavior is harder. Training that ends on Friday and changes nothing by Monday is the most common failure mode in AI programs, and it is the one nobody wants to talk about. We work with your people until the way they work has actually changed. If your people don't change, neither will the value of your investments.",
+          "kind": "text"
+        }
       },
       {
         "icon": "/assets/icons/why-4.svg",
-        "title": "We adapt to your organization",
-        "body": "A methodology that works in every organization is a methodology that works in none of them. We bring a structured approach and bend it to your culture, your pace, and what your people can actually absorb. Rigor that fits, not rigor that imposes."
+        "title": {
+          "text": "We adapt to your organization",
+          "kind": "text"
+        },
+        "body": {
+          "text": "A methodology that works in every organization is a methodology that works in none of them. We bring a structured approach and bend it to your culture, your pace, and what your people can actually absorb. Rigor that fits, not rigor that imposes.",
+          "kind": "text"
+        }
       }
     ],
     "closer": {
@@ -473,11 +659,26 @@
         "kind": "text"
       },
       "firms": [
-        "Accenture",
-        "IBM",
-        "KPMG",
-        "EY",
-        "Microsoft"
+        {
+          "text": "Accenture",
+          "kind": "text"
+        },
+        {
+          "text": "IBM",
+          "kind": "text"
+        },
+        {
+          "text": "KPMG",
+          "kind": "text"
+        },
+        {
+          "text": "EY",
+          "kind": "text"
+        },
+        {
+          "text": "Microsoft",
+          "kind": "text"
+        }
       ]
     }
   },
@@ -492,25 +693,52 @@
     },
     "leaders": [
       {
-        "name": "Dr. Ryan Rex, MBA",
-        "title": "Chief Executive Officer",
+        "name": {
+          "text": "Dr. Ryan Rex, MBA",
+          "kind": "text"
+        },
+        "title": {
+          "text": "Chief Executive Officer",
+          "kind": "text"
+        },
         "photo": "/assets/team/ryan-rex.png",
         "linkedin": "https://www.linkedin.com/in/rexryan/",
-        "bio": "Ryan holds a Doctorate of Business Administration focused on leadership and organizational performance, and has spent 20 years leading transformation across oil and gas, technology, law, and manufacturing, including senior roles at Suncor and Borden Ladner Gervais."
+        "bio": {
+          "text": "Ryan holds a Doctorate of Business Administration focused on leadership and organizational performance, and has spent 20 years leading transformation across oil and gas, technology, law, and manufacturing, including senior roles at Suncor and Borden Ladner Gervais.",
+          "kind": "text"
+        }
       },
       {
-        "name": "Blake Hanna",
-        "title": "Chief Consulting Officer",
+        "name": {
+          "text": "Blake Hanna",
+          "kind": "text"
+        },
+        "title": {
+          "text": "Chief Consulting Officer",
+          "kind": "text"
+        },
         "photo": "/assets/team/blake-hanna.png",
         "linkedin": "https://www.linkedin.com/in/blakedhannayyc/",
-        "bio": "Blake spent nearly two decades at Accenture, EY, and IBM, delivering more than 70 digital and organizational change engagements across North America, Europe, and Asia."
+        "bio": {
+          "text": "Blake spent nearly two decades at Accenture, EY, and IBM, delivering more than 70 digital and organizational change engagements across North America, Europe, and Asia.",
+          "kind": "text"
+        }
       },
       {
-        "name": "Kim St-Georges",
-        "title": "Chief Innovation Officer",
+        "name": {
+          "text": "Kim St-Georges",
+          "kind": "text"
+        },
+        "title": {
+          "text": "Chief Innovation Officer",
+          "kind": "text"
+        },
         "photo": "/assets/team/kim-st-georges.png",
         "linkedin": "https://www.linkedin.com/in/kimstgeorges/",
-        "bio": "Kim brings 20 years of experience in digital transformation and AI strategy, including 14 years as a Senior Principal at Accenture and nearly four years as a Senior Advisor for Azure Cloud, Data, and AI at Microsoft."
+        "bio": {
+          "text": "Kim brings 20 years of experience in digital transformation and AI strategy, including 14 years as a Senior Principal at Accenture and nearly four years as a Senior Advisor for Azure Cloud, Data, and AI at Microsoft.",
+          "kind": "text"
+        }
       }
     ]
   },

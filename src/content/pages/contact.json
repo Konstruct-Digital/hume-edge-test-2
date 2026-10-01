@@ -19,18 +19,36 @@
   "expect": [
     {
       "n": "01",
-      "title": "Your inquiry lands with a founding partner.",
-      "body": "Every message is reviewed personally, not by an intake team or an automated system."
+      "title": {
+        "text": "Your inquiry lands with a founding partner.",
+        "kind": "text"
+      },
+      "body": {
+        "text": "Every message is reviewed personally, not by an intake team or an automated system.",
+        "kind": "text"
+      }
     },
     {
       "n": "02",
-      "title": "We review what you've shared.",
-      "body": "We look at where your organization is and what you're working through before we respond."
+      "title": {
+        "text": "We review what you've shared.",
+        "kind": "text"
+      },
+      "body": {
+        "text": "We look at where your organization is and what you're working through before we respond.",
+        "kind": "text"
+      }
     },
     {
       "n": "03",
-      "title": "You hear back within 1–2 business days.",
-      "body": "We'll reach out to schedule a focused conversation about your organization and how we can help."
+      "title": {
+        "text": "You hear back within 1–2 business days.",
+        "kind": "text"
+      },
+      "body": {
+        "text": "We'll reach out to schedule a focused conversation about your organization and how we can help.",
+        "kind": "text"
+      }
     }
   ],
   "directHeading": {

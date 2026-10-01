@@ -10,13 +10,13 @@ import { glob, file } from 'astro/loaders';
 const variableKindText = z.union([z.string(), z.object({ text: z.string(), kind: z.enum(['text', 'html']) })]);
 
 const founderSchema = z.object({
-  name: z.string(),
-  title: z.string(),
+  name: variableKindText,
+  title: variableKindText,
   photo: z.string(),
   linkedin: z.string(),
-  firms: z.array(z.string()),
-  bio: z.array(z.string()),
-  industries: z.string(),
+  firms: z.array(variableKindText),
+  bio: z.array(variableKindText),
+  industries: variableKindText,
 });
 
 const ctaCopySchema = z.object({
@@ -64,8 +64,8 @@ const homeSchema = z.object({
       num: z.string(),
       color: z.string(),
       icon: z.string(),
-      quote: z.string(),
-      body: z.string(),
+      quote: variableKindText,
+      body: variableKindText,
     })),
   }),
   imageBreak: z.object({
@@ -75,22 +75,22 @@ const homeSchema = z.object({
     stats: z.array(z.object({
       value: z.string(),
       suffix: z.string(),
-      text: z.string(),
-      source: z.string(),
+      text: variableKindText,
+      source: variableKindText,
     })),
   }),
   services: z.object({
     eyebrow: variableKindText,
     headingHtml: z.string(),
-    rightParagraphs: z.array(z.string()),
+    rightParagraphs: z.array(variableKindText),
     items: z.array(z.object({
       letter: z.string(),
-      title: z.string(),
+      title: variableKindText,
       accent: z.string(),
       ink: z.string(),
       icon: z.string(),
       tagline: z.string(),
-      blurb: z.string(),
+      blurb: variableKindText,
       intro: z.string(),
       bullets: z.array(z.string()),
     })),
@@ -100,7 +100,7 @@ const homeSchema = z.object({
       defaultTitle: variableKindText,
       defaultBody: variableKindText,
       expandedTitle: variableKindText,
-      bullets: z.array(z.string()),
+      bullets: z.array(variableKindText),
     }),
   }),
   versus: z.object({
@@ -117,7 +117,7 @@ const homeSchema = z.object({
     eyebrow: variableKindText,
     titleHtml: z.string(),
     body: variableKindText,
-    items: z.array(z.object({ name: z.string(), icon: z.string() })),
+    items: z.array(z.object({ name: variableKindText, icon: z.string() })),
   }),
   testimonials: z.object({
     eyebrow: variableKindText,
@@ -138,29 +138,29 @@ const homeSchema = z.object({
       role: variableKindText,
       company: variableKindText,
       backEyebrow: variableKindText,
-      backQuote: z.string(),
+      backQuote: variableKindText,
     }),
   }),
   whyDifferent: z.object({
     heading: variableKindText,
-    rows: z.array(z.object({ icon: z.string(), title: z.string(), body: z.string() })),
+    rows: z.array(z.object({ icon: z.string(), title: variableKindText, body: variableKindText })),
     closer: z.object({
       videoSrc: z.string(),
       headingHtml: z.string(),
       body: variableKindText,
       firmsLabel: variableKindText,
-      firms: z.array(z.string()),
+      firms: z.array(variableKindText),
     }),
   }),
   leadership: z.object({
     eyebrow: variableKindText,
     heading: variableKindText,
     leaders: z.array(z.object({
-      name: z.string(),
-      title: z.string(),
+      name: variableKindText,
+      title: variableKindText,
       photo: z.string(),
       linkedin: z.string(),
-      bio: z.string(),
+      bio: variableKindText,
     })),
   }),
   cta: ctaCopySchema,
@@ -185,8 +185,8 @@ const aboutSchema = z.object({
       n: z.string(),
       color: z.string(),
       icon: z.string(),
-      title: z.string(),
-      body: z.string(),
+      title: variableKindText,
+      body: variableKindText,
     })),
   }),
   team: z.object({
@@ -198,9 +198,9 @@ const aboutSchema = z.object({
   story: z.object({
     eyebrow: variableKindText,
     headingHtml: z.string(),
-    quote: z.object({ text: z.string(), citeHtml: z.string() }),
+    quote: z.object({ text: variableKindText, citeHtml: z.string() }),
     image: z.object({ src: z.string(), alt: z.string() }),
-    paragraphs: z.array(z.string()),
+    paragraphs: z.array(variableKindText),
     signOffHtml: z.string(),
     closingParagraphHtml: z.string(),
     signature: variableKindText,
@@ -219,7 +219,7 @@ const contactSchema = z.object({
   meta: z.object({ title: z.string(), description: z.string() }),
   hero: z.object({ eyebrow: variableKindText, titleHtml: z.string(), introHtml: z.string() }),
   expectHeading: variableKindText,
-  expect: z.array(z.object({ n: z.string(), title: z.string(), body: z.string() })),
+  expect: z.array(z.object({ n: z.string(), title: variableKindText, body: variableKindText })),
   directHeading: variableKindText,
   directContacts: z.array(z.object({ label: z.string(), email: z.string() })),
 });

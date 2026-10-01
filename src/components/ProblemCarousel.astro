@@ -30,22 +30,8 @@ const file = 'src/content/pages/home.json';
           <div class="head">
             <img class="problem-icon" src={p.icon} alt="" width="60" height="60" loading="lazy" />
           </div>
-          <h3
-            class="quote"
-            data-k-file={file}
-            data-k-path={`problems.items.${i}.quote`}
-            data-k-value={p.quote}
-            data-k-kind="text"
-            data-k-label="Problem quote"
-          >{p.quote}</h3>
-          <p
-            class="body"
-            data-k-file={file}
-            data-k-path={`problems.items.${i}.body`}
-            data-k-value={p.body}
-            data-k-kind="text"
-            data-k-label="Problem body"
-          >{p.body}</p>
+          <Editable as="h3" class="quote" file={file} path={`problems.items.${i}.quote`} value={p.quote} label="Problem quote" />
+          <Editable as="p" class="body" file={file} path={`problems.items.${i}.body`} value={p.body} label="Problem body" />
         </article>
       ))}
       <div style="flex:0 0 56px" aria-hidden="true"></div>

@@ -2,6 +2,7 @@
 import { getEntry } from 'astro:content';
 import type { HomeData } from '../content.config';
 import Editable from './Editable.astro';
+import { plain } from '../lib/plain';
 
 const home = await getEntry('pages', 'home');
 const { leadership } = home!.data as HomeData;
@@ -21,7 +22,7 @@ const file = 'src/content/pages/home.json';
           style={`--reveal-delay:${i*85}ms`}
           role="button"
           tabindex="0"
-          aria-label={`${p.name} - click to see bio`}
+          aria-label={`${plain(p.name)} - click to see bio`}
           data-leader
           data-k-module-file={file}
           data-k-module-path={`leadership.leaders.${i}`}
@@ -29,23 +30,9 @@ const file = 'src/content/pages/home.json';
         >
           <div class="leader-flip">
             <div class="leader-face leader-front">
-              <img class="leader-photo" src={p.photo} alt={p.name} width="150" height="150" loading="lazy" />
-              <h3
-                class="leader-name"
-                data-k-file={file}
-                data-k-path={`leadership.leaders.${i}.name`}
-                data-k-value={p.name}
-                data-k-kind="text"
-                data-k-label="Leader name"
-              >{p.name}</h3>
-              <div
-                class="leader-title"
-                data-k-file={file}
-                data-k-path={`leadership.leaders.${i}.title`}
-                data-k-value={p.title}
-                data-k-kind="text"
-                data-k-label="Leader title"
-              >{p.title}</div>
+              <img class="leader-photo" src={p.photo} alt={plain(p.name)} width="150" height="150" loading="lazy" />
+              <Editable as="h3" class="leader-name" file={file} path={`leadership.leaders.${i}.name`} value={p.name} label="Leader name" />
+              <Editable as="div" class="leader-title" file={file} path={`leadership.leaders.${i}.title`} value={p.title} label="Leader title" />
               <a
                 class="leader-link"
                 href={p.linkedin}
@@ -60,30 +47,9 @@ const file = 'src/content/pages/home.json';
               </a>
             </div>
             <div class="leader-face leader-back">
-              <h3
-                class="leader-name"
-                data-k-file={file}
-                data-k-path={`leadership.leaders.${i}.name`}
-                data-k-value={p.name}
-                data-k-kind="text"
-                data-k-label="Leader name"
-              >{p.name}</h3>
-              <div
-                class="leader-title"
-                data-k-file={file}
-                data-k-path={`leadership.leaders.${i}.title`}
-                data-k-value={p.title}
-                data-k-kind="text"
-                data-k-label="Leader title"
-              >{p.title}</div>
-              <p
-                class="leader-bio"
-                data-k-file={file}
-                data-k-path={`leadership.leaders.${i}.bio`}
-                data-k-value={p.bio}
-                data-k-kind="text"
-                data-k-label="Leader bio"
-              >{p.bio}</p>
+              <Editable as="h3" class="leader-name" file={file} path={`leadership.leaders.${i}.name`} value={p.name} label="Leader name" />
+              <Editable as="div" class="leader-title" file={file} path={`leadership.leaders.${i}.title`} value={p.title} label="Leader title" />
+              <Editable as="p" class="leader-bio" file={file} path={`leadership.leaders.${i}.bio`} value={p.bio} label="Leader bio" />
               <a
                 class="leader-link"
                 href={p.linkedin}

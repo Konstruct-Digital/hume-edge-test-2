@@ -62,23 +62,9 @@ const file = 'src/content/pages/home.json';
               data-k-kind="text"
               data-k-label="Stat suffix"
             >{s.suffix}</span></div>
-            <div
-              class="lead"
-              data-k-file={file}
-              data-k-path={`imageBreak.stats.${i}.text`}
-              data-k-value={s.text}
-              data-k-kind="text"
-              data-k-label="Stat text"
-            >
-              {s.text}
-              <span
-                class="src"
-                data-k-file={file}
-                data-k-path={`imageBreak.stats.${i}.source`}
-                data-k-value={s.source}
-                data-k-kind="text"
-                data-k-label="Stat source"
-              >{s.source}</span>
+            <div class="lead">
+              <Editable as="span" file={file} path={`imageBreak.stats.${i}.text`} value={s.text} label="Stat text" />
+              <Editable as="span" class="src" file={file} path={`imageBreak.stats.${i}.source`} value={s.source} label="Stat source" />
             </div>
           </div>
         ))}
