@@ -112,6 +112,31 @@ field prose-shaped enough" judgment call entirely — the object shape is
 the default, a bare string is the deliberate exception, not the other way
 around.
 
+**Reading a field outside `<Editable>`.** `<Editable>` unwraps either shape
+itself. Anywhere else a field is read as a string (an `alt` or `aria-label`, a
+`data-*` attribute, a `<title>`, JSON-LD, `.join()`), an object value prints as
+`[object Object]`. Unwrap it first with a one-line helper, `src/lib/plain.ts`:
+
+```ts
+export type VariableKindText = string | { text: string; kind: 'text' | 'html' };
+
+export function plain(value: VariableKindText): string {
+  return typeof value === 'object' && value !== null ? value.text : value;
+}
+```
+
+then `alt={plain(member.name)}`. `astro check` flags the typed cases (an `alt`
+expecting a string), but values passed into arbitrary attributes are not
+type-checked, so after migrating any field also grep the built HTML for
+`[object Object]`.
+
+**Text with decoration around it** (quote marks, a nested element, an `id` a
+script depends on): put an inner `<Editable as="span">` inside the decoration
+(`<p>"<Editable as="span" ... />"</p>`) instead of hand-placing attributes on the
+outer element. A hand-placed attribute set on a variable-kind field has to point
+at `<path>.text`, add `data-k-kind-path`, and render with `set:html` when the
+kind is `html`, which is exactly what `<Editable>` already does for you.
+
 **Retrofitting an existing field later** (a site already built and already
 live) is a normal, bounded change, not something that has to be decided up
 front:
@@ -120,7 +145,8 @@ front:
    `{ text, kind }` (one-time, for every existing record).
 2. Update the Zod schema in `content.config.ts` to match.
 3. Update any other place the component reads that field directly (outside
-   the `<Editable>` call itself) to use `.text` instead of the bare value.
+   the `<Editable>` call itself) to unwrap it with `plain()` (see above)
+   instead of reading the bare value.
 
 Hand-placed raw attributes (where `<Editable>` doesn't fit) can use this
 pattern too — just point `data-k-path` at `<path>.text` and add

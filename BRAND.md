@@ -27,7 +27,7 @@ Generated from `src/content.config.ts`. Each row is a section/collection the age
 | `pages` | `not-found` | 404 error page | `meta`, `code`, `heading`, `body`, `ctaLabel`, `ctaHref` |
 | `site` | `global` | Shared nav and footer, present on every page | `nav`, `footer` |
 
-Fields whose name ends in `Html` (e.g. `titleHtml`, `headingHtml`) hold raw HTML and may contain inline tags like `<em>`, `<br>`, `<a>`, `<strong>` — preserve or produce valid, balanced markup in those fields. All other fields are plain text and are escaped automatically; do not put HTML tags in a non-`Html` field.
+Fields whose name ends in `Html` (e.g. `titleHtml`, `headingHtml`) hold raw HTML and may contain inline tags like `<em>`, `<br>`, `<a>`, `<strong>` — preserve or produce valid, balanced markup in those fields. Most other text fields are stored as an object, `{ "text": "...", "kind": "text" | "html" }`, instead of a bare string. Edit only the `text` value and leave `kind` exactly as it is: never replace the object with a plain string, and never change `kind` yourself (a client switches it with the Portal's "Add styling" action). When `kind` is `"text"`, `text` is plain and escaped automatically, so do not put HTML tags in it. When `kind` is `"html"`, `text` is HTML: keep its existing tags and links intact unless the client asked you to change them. A field that is still a bare string (and not named `*Html`) is plain text; do not put HTML tags in it.
 
 ## Editable content markers
 
