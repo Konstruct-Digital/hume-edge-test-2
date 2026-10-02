@@ -5,20 +5,68 @@
     "description": "Ready to get your people AI-ready? Reach out and a member of the executive team will be in touch within 1–2 business days."
   },
   "hero": {
-    "eyebrow": "Contact us",
-    "titleHtml": "Ready to get your people AI-ready? <em>So are we.</em>",
+    "eyebrow": {
+      "text": "Contact us",
+      "kind": "text"
+    },
+    "titleHtml": "<b><u>Ready</u></b> to get your people AI-ready? <em>So are we.</em>",
     "introHtml": "Every engagement at Hume Edge starts the same way: a conversation about your organization, your people, and where your AI program stands right now. Fill out the form below, and a <a class=\"contact-intro-link\" href=\"/about\">member of the executive team</a> will be in touch within 1–2 business days."
   },
-  "expectHeading": "What to expect after you hit send",
+  "expectHeading": {
+    "text": "What to expect after you hit send",
+    "kind": "text"
+  },
   "expect": [
-    { "n": "01", "title": "Your inquiry lands with a founding partner.", "body": "Every message is reviewed personally, not by an intake team or an automated system." },
-    { "n": "02", "title": "We review what you've shared.", "body": "We look at where your organization is and what you're working through before we respond." },
-    { "n": "03", "title": "You hear back within 1–2 business days.", "body": "We'll reach out to schedule a focused conversation about your organization and how we can help." }
+    {
+      "n": "01",
+      "title": {
+        "text": "Your inquiry lands with a founding partner.",
+        "kind": "text"
+      },
+      "body": {
+        "text": "Every message is reviewed personally, not by an intake team or an automated system.",
+        "kind": "text"
+      }
+    },
+    {
+      "n": "02",
+      "title": {
+        "text": "We review what you've shared.",
+        "kind": "text"
+      },
+      "body": {
+        "text": "We look at where your organization is and what you're working through before we respond.",
+        "kind": "text"
+      }
+    },
+    {
+      "n": "03",
+      "title": {
+        "text": "You hear back within 1–2 business days.",
+        "kind": "text"
+      },
+      "body": {
+        "text": "We'll reach out to schedule a focused conversation about your organization and how we can help.",
+        "kind": "text"
+      }
+    }
   ],
-  "directHeading": "Prefer to reach out directly?",
+  "directHeading": {
+    "text": "Prefer to reach out directly?",
+    "kind": "text"
+  },
   "directContacts": [
-    { "label": "For enterprise engagements", "email": "connect@humeedge.ai" },
-    { "label": "For training and workshops", "email": "connect@humeedge.ai" },
-    { "label": "For everything else", "email": "connect@humeedge.ai" }
+    {
+      "label": "For enterprise engagements",
+      "email": "connect@humeedge.ai"
+    },
+    {
+      "label": "For training and workshops",
+      "email": "connect@humeedge.ai"
+    },
+    {
+      "label": "For everything else",
+      "email": "connect@humeedge.ai"
+    }
   ]
 }

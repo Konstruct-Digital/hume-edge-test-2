@@ -17,14 +17,7 @@ const file = 'src/content/pages/home.json';
       </div>
       <div class="right reveal">
         {services.rightParagraphs.map((p, i) => (
-          <p
-            style={i === 0 ? 'margin-bottom:16px' : undefined}
-            data-k-file={file}
-            data-k-path={`services.rightParagraphs.${i}`}
-            data-k-value={p}
-            data-k-kind="text"
-            data-k-label={`Services right paragraph ${i + 1}`}
-          >{p}</p>
+          <Editable as="p" style={i === 0 ? 'margin-bottom:16px' : undefined} file={file} path={`services.rightParagraphs.${i}`} value={p} label={`Services right paragraph ${i + 1}`} />
         ))}
       </div>
     </div>
@@ -42,22 +35,8 @@ const file = 'src/content/pages/home.json';
             <div class="top">
               <img class="service-icon" src={s.icon} alt="" width="64" height="64" loading="lazy" />
             </div>
-            <h3
-              class="title"
-              data-k-file={file}
-              data-k-path={`services.items.${i}.title`}
-              data-k-value={s.title}
-              data-k-kind="text"
-              data-k-label="Service title"
-            >{s.title}</h3>
-            <p
-              class="body"
-              data-k-file={file}
-              data-k-path={`services.items.${i}.blurb`}
-              data-k-value={s.blurb}
-              data-k-kind="text"
-              data-k-label="Service blurb"
-            >{s.blurb}</p>
+            <Editable as="h3" class="title" file={file} path={`services.items.${i}.title`} value={s.title} label="Service title" />
+            <Editable as="p" class="body" file={file} path={`services.items.${i}.blurb`} value={s.blurb} label="Service blurb" />
             <button
               type="button"
               class="cta"
@@ -85,13 +64,7 @@ const file = 'src/content/pages/home.json';
           <Editable as="h3" class="title" kind="text" value={services.lab.expandedTitle} file={file} path="services.lab.expandedTitle" label="Lab expanded title" />
           <ul class="deliverables">
             {services.lab.bullets.map((b, i) => (
-              <li
-                data-k-file={file}
-                data-k-path={`services.lab.bullets.${i}`}
-                data-k-value={b}
-                data-k-kind="text"
-                data-k-label={`Lab bullet ${i + 1}`}
-              >{b}</li>
+              <Editable as="li" file={file} path={`services.lab.bullets.${i}`} value={b} label={`Lab bullet ${i + 1}`} />
             ))}
           </ul>
         </div>

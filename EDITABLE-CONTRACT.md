@@ -59,6 +59,99 @@ These nest arbitrarily — a developer can mark both the whole section and
 each item inside it as their own module; the injected script always picks
 the innermost module ancestor of wherever the client clicked.
 
+## Variable-kind fields (the default shape for a text field)
+
+A field's `kind` (`text` or `html`) is normally fixed once, in the
+component's own source, and applies to every instance that render line
+produces. Rather than deciding case by case whether a given field might
+someday want rich formatting, use the `{ text, kind }` object shape by
+default for every `kind:'text'` leaf field, so the Portal's "Add styling"
+action (see the Portal's own docs) is available everywhere a text field is
+editable, with no per-field judgment call and no later retrofit:
+
+```json
+{ "text": "Best decision we made all year.", "kind": "text" }
+```
+
+instead of a bare string like `"Best decision we made all year."`.
+
+Add this helper once near the top of `content.config.ts` and reuse it for
+every text field's Zod type:
+
+```ts
+import { z } from 'astro:content'; // or 'astro/zod', matching this site's existing import
+
+const variableKindText = z.union([
+  z.string(),
+  z.object({ text: z.string(), kind: z.enum(['text', 'html']) }),
+]);
+```
+
+then declare a field with `eyebrow: variableKindText` instead of
+`eyebrow: z.string()`. `<Editable>` detects the shape automatically at
+render time — no extra prop needed, and no branching in the component:
+
+```astro
+<Editable as="p" value={testimonial.quote} file={file} path={`${modulePath}.quote`} />
+```
+
+works identically whether `testimonial.quote` is a plain string or a
+`{ text, kind }` object. When it's the object shape, `Editable` reports the
+leaf's content path as `<path>.text` and adds a
+`data-k-kind-path="<path>.kind"` attribute — a real path into this same
+content file, editable through the exact same mechanism as any other field
+(the "Add styling" action is just an ordinary edit setting that path's
+value to `"html"`, nothing new on the write side).
+
+**When a bare string is still right:** only for a value that was never
+going to be rendered as user-facing prose in the first place — a schema
+discriminator (`type`), a structural field, an href, an icon name, a color
+token, a numeric id. Anything a client would ever read as text on the page
+gets the object shape by default. This removes the earlier "is this
+field prose-shaped enough" judgment call entirely — the object shape is
+the default, a bare string is the deliberate exception, not the other way
+around.
+
+**Reading a field outside `<Editable>`.** `<Editable>` unwraps either shape
+itself. Anywhere else a field is read as a string (an `alt` or `aria-label`, a
+`data-*` attribute, a `<title>`, JSON-LD, `.join()`), an object value prints as
+`[object Object]`. Unwrap it first with a one-line helper, `src/lib/plain.ts`:
+
+```ts
+export type VariableKindText = string | { text: string; kind: 'text' | 'html' };
+
+export function plain(value: VariableKindText): string {
+  return typeof value === 'object' && value !== null ? value.text : value;
+}
+```
+
+then `alt={plain(member.name)}`. `astro check` flags the typed cases (an `alt`
+expecting a string), but values passed into arbitrary attributes are not
+type-checked, so after migrating any field also grep the built HTML for
+`[object Object]`.
+
+**Text with decoration around it** (quote marks, a nested element, an `id` a
+script depends on): put an inner `<Editable as="span">` inside the decoration
+(`<p>"<Editable as="span" ... />"</p>`) instead of hand-placing attributes on the
+outer element. A hand-placed attribute set on a variable-kind field has to point
+at `<path>.text`, add `data-k-kind-path`, and render with `set:html` when the
+kind is `html`, which is exactly what `<Editable>` already does for you.
+
+**Retrofitting an existing field later** (a site already built and already
+live) is a normal, bounded change, not something that has to be decided up
+front:
+
+1. Migrate the content data for that field from a bare string to
+   `{ text, kind }` (one-time, for every existing record).
+2. Update the Zod schema in `content.config.ts` to match.
+3. Update any other place the component reads that field directly (outside
+   the `<Editable>` call itself) to unwrap it with `plain()` (see above)
+   instead of reading the bare value.
+
+Hand-placed raw attributes (where `<Editable>` doesn't fit) can use this
+pattern too — just point `data-k-path` at `<path>.text` and add
+`data-k-kind-path="<path>.kind"` directly, following the same shape.
+
 ## Keeping new content editable (for future development)
 
 This contract isn't a one-time retrofit — it has to keep being applied as
@@ -67,10 +160,12 @@ added here (a new section type, a new field, a new page), whoever builds it
 should also mark it per this contract, in the same commit:
 
 1. Does the new component render a value straight from a `src/content/**`
-   file? If it's a pure passthrough, wrap it in `<Editable>`. If the render
-   isn't a pure passthrough (a wrapper, a conditional, a `set:html` block),
-   hand-place the `data-k-*` attributes directly, per the Leaf fields
-   section above.
+   file? If it's a pure passthrough, wrap it in `<Editable>`, and give the
+   new field the `{ text, kind }` shape in its schema (per the Variable-kind
+   fields section above) rather than a bare string — that's the default now,
+   not a follow-up decision. If the render isn't a pure passthrough (a
+   wrapper, a conditional, a `set:html` block), hand-place the `data-k-*`
+   attributes directly, per the Leaf fields section above.
 2. Does the new component represent a whole section or a repeatable item
    worth referencing as a unit (a new card type, a new list item)? Add
    `data-k-module-*` on its container, per the Modules section above.

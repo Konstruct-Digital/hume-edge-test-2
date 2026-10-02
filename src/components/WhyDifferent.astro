@@ -24,23 +24,9 @@ const file = 'src/content/pages/home.json';
         >
           <div class="head">
             <img class="why-icon" src={row.icon} alt="" width="52" height="52" loading="lazy" />
-            <div
-              class="ttl"
-              data-k-file={file}
-              data-k-path={`whyDifferent.rows.${i}.title`}
-              data-k-value={row.title}
-              data-k-kind="text"
-              data-k-label="Why row title"
-            >{row.title}</div>
+            <Editable as="div" class="ttl" file={file} path={`whyDifferent.rows.${i}.title`} value={row.title} label="Why row title" />
           </div>
-          <div
-            class="body"
-            data-k-file={file}
-            data-k-path={`whyDifferent.rows.${i}.body`}
-            data-k-value={row.body}
-            data-k-kind="text"
-            data-k-label="Why row body"
-          >{row.body}</div>
+          <Editable as="div" class="body" file={file} path={`whyDifferent.rows.${i}.body`} value={row.body} label="Why row body" />
         </div>
       ))}
     </div>
@@ -66,13 +52,7 @@ const file = 'src/content/pages/home.json';
           <div class="firms-row">
             {whyDifferent.closer.firms.map((firm, i) => (
               <>
-                <span
-                  data-k-file={file}
-                  data-k-path={`whyDifferent.closer.firms.${i}`}
-                  data-k-value={firm}
-                  data-k-kind="text"
-                  data-k-label={`Firm ${i + 1}`}
-                >{firm}</span>
+                <Editable as="span" file={file} path={`whyDifferent.closer.firms.${i}`} value={firm} label={`Firm ${i + 1}`} />
                 {i < whyDifferent.closer.firms.length - 1 && <span>·</span>}
               </>
             ))}

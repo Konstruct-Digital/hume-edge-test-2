@@ -4,9 +4,21 @@
     "title": "Page Not Found — Hume Edge",
     "description": "The page you're looking for doesn't exist."
   },
-  "code": "404",
-  "heading": "Page not found.",
-  "body": "The page you're looking for doesn't exist or may have moved.",
-  "ctaLabel": "Back to Home",
+  "code": {
+    "text": "404",
+    "kind": "text"
+  },
+  "heading": {
+    "text": "Page not found.",
+    "kind": "text"
+  },
+  "body": {
+    "text": "The page you're looking for doesn't exist or may have moved.",
+    "kind": "text"
+  },
+  "ctaLabel": {
+    "text": "Back to Home",
+    "kind": "text"
+  },
   "ctaHref": "/"
 }

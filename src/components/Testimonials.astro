@@ -2,6 +2,7 @@
 import { getEntry } from 'astro:content';
 import type { HomeData } from '../content.config';
 import Editable from './Editable.astro';
+import { plain } from '../lib/plain';
 
 const home = await getEntry('pages', 'home');
 const { testimonials } = home!.data as HomeData;
@@ -22,14 +23,14 @@ const file = 'src/content/pages/home.json';
         id="video-tcard"
         role="button"
         tabindex="0"
-        aria-label={`Play video testimonial from ${video.name}`}
+        aria-label={`Play video testimonial from ${plain(video.name)}`}
         data-k-module-file={file}
         data-k-module-path="testimonials.video"
         data-k-module-label="Video testimonial"
       >
         <div class="tcard-media" id="video-media">
           <div class="tcard-poster" id="video-poster">
-            <img class="tcard-photo" src={video.photo} alt={video.name} width="430" height="360" loading="lazy" />
+            <img class="tcard-photo" src={video.photo} alt={plain(video.name)} width="430" height="360" loading="lazy" />
             <span class="tcard-play" aria-hidden="true">
               <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </span>
@@ -54,7 +55,7 @@ const file = 'src/content/pages/home.json';
         tabindex="0"
         aria-pressed="false"
         data-flip-card
-        aria-label={`${flip.name} testimonial - click to read full story`}
+        aria-label={`${plain(flip.name)} testimonial - click to read full story`}
         data-k-module-file={file}
         data-k-module-path="testimonials.flip"
         data-k-module-label="Flip testimonial"
@@ -62,7 +63,7 @@ const file = 'src/content/pages/home.json';
         <div class="tflip-inner">
           <div class="tflip-face tflip-front">
             <div class="tcard-media">
-              <img class="tcard-photo" src={flip.photo} alt={flip.name} width="430" height="360" loading="lazy" />
+              <img class="tcard-photo" src={flip.photo} alt={plain(flip.name)} width="430" height="360" loading="lazy" />
             </div>
             <Editable as="p" class="tcard-quote" kind="text" value={flip.quote} file={file} path="testimonials.flip.quote" label="Flip testimonial quote" />
             <div class="tcard-foot">
@@ -80,16 +81,8 @@ const file = 'src/content/pages/home.json';
               <div class="tback-fade tback-fade--top" aria-hidden="true">
                 <svg class="tback-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
               </div>
-              <div
-                class="tcard-backquote"
-                id="tback-scroll"
-                data-k-file={file}
-                data-k-path="testimonials.flip.backQuote"
-                data-k-value={flip.backQuote}
-                data-k-kind="text"
-                data-k-label="Flip back quote"
-              >
-                &ldquo;{flip.backQuote}&rdquo;
+              <div class="tcard-backquote" id="tback-scroll">
+                &ldquo;<Editable as="span" value={flip.backQuote} file={file} path="testimonials.flip.backQuote" label="Flip back quote" />&rdquo;
               </div>
               <div class="tback-fade tback-fade--bottom" aria-hidden="true">
                 <svg class="tback-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>

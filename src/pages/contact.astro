@@ -124,22 +124,8 @@ const stages = ['Just exploring', 'Pilots underway', 'Scaling', 'Stuck'];
                   data-k-label="Expect item number"
                 >{e.n}</span>
                 <div class="expect-text">
-                  <div
-                    class="expect-title"
-                    data-k-file={file}
-                    data-k-path={`expect.${i}.title`}
-                    data-k-value={e.title}
-                    data-k-kind="text"
-                    data-k-label="Expect item title"
-                  >{e.title}</div>
-                  <p
-                    class="expect-body"
-                    data-k-file={file}
-                    data-k-path={`expect.${i}.body`}
-                    data-k-value={e.body}
-                    data-k-kind="text"
-                    data-k-label="Expect item body"
-                  >{e.body}</p>
+                  <Editable as="div" class="expect-title" file={file} path={`expect.${i}.title`} value={e.title} label="Expect item title" />
+                  <Editable as="p" class="expect-body" file={file} path={`expect.${i}.body`} value={e.body} label="Expect item body" />
                 </div>
               </li>
             ))}

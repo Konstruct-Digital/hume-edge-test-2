@@ -8,6 +8,7 @@ import CTAForm from '../components/CTAForm.astro';
 import Footer from '../components/Footer.astro';
 import ScrollReveal from '../components/ScrollReveal.astro';
 import Editable from '../components/Editable.astro';
+import { plain } from '../lib/plain';
 
 const about = await getEntry('pages', 'about');
 const { meta, hero, shortVersion, mission, team, story, cta } = about!.data as AboutData;
@@ -122,22 +123,8 @@ const file = 'src/content/pages/about.json';
             <div class="conviction-num">
               <img class="conviction-icon" src={c.icon} alt="" width="56" height="56" loading="lazy" />
             </div>
-            <h3
-              class="conviction-title"
-              data-k-file={file}
-              data-k-path={`mission.convictions.${i}.title`}
-              data-k-value={c.title}
-              data-k-kind="text"
-              data-k-label="Conviction title"
-            >{c.title}</h3>
-            <p
-              class="conviction-body"
-              data-k-file={file}
-              data-k-path={`mission.convictions.${i}.body`}
-              data-k-value={c.body}
-              data-k-kind="text"
-              data-k-label="Conviction body"
-            >{c.body}</p>
+            <Editable as="h3" class="conviction-title" file={file} path={`mission.convictions.${i}.title`} value={c.title} label="Conviction title" />
+            <Editable as="p" class="conviction-body" file={file} path={`mission.convictions.${i}.body`} value={c.body} label="Conviction body" />
           </article>
         ))}
       </div>
@@ -165,62 +152,27 @@ const file = 'src/content/pages/about.json';
               <img
                 class="founder-photo"
                 src={p.photo}
-                alt={p.name}
+                alt={plain(p.name)}
                 width="280"
                 height="320"
                 loading="lazy"
               />
             </div>
             <div class="founder-body">
-              <div
-                class="founder-title"
-                data-k-file={file}
-                data-k-path={`team.founders.${i}.title`}
-                data-k-value={p.title}
-                data-k-kind="text"
-                data-k-label="Founder title"
-              >{p.title}</div>
-              <h3
-                class="founder-name"
-                data-k-file={file}
-                data-k-path={`team.founders.${i}.name`}
-                data-k-value={p.name}
-                data-k-kind="text"
-                data-k-label="Founder name"
-              >{p.name}</h3>
+              <Editable as="div" class="founder-title" file={file} path={`team.founders.${i}.title`} value={p.title} label="Founder title" />
+              <Editable as="h3" class="founder-name" file={file} path={`team.founders.${i}.name`} value={p.name} label="Founder name" />
               {p.bio.map((para, j) => (
-                <p
-                  class="founder-bio"
-                  data-k-file={file}
-                  data-k-path={`team.founders.${i}.bio.${j}`}
-                  data-k-value={para}
-                  data-k-kind="text"
-                  data-k-label={`Founder bio paragraph ${j + 1}`}
-                >{para}</p>
+                <Editable as="p" class="founder-bio" file={file} path={`team.founders.${i}.bio.${j}`} value={para} label={`Founder bio paragraph ${j + 1}`} />
               ))}
               <div class="founder-firms">
                 <span class="founder-firms-label">Experience</span>
                 <div class="founder-firms-chips">
                   {p.firms.map((f, j) => (
-                    <span
-                      class="firm-chip"
-                      data-k-file={file}
-                      data-k-path={`team.founders.${i}.firms.${j}`}
-                      data-k-value={f}
-                      data-k-kind="text"
-                      data-k-label={`Founder firm ${j + 1}`}
-                    >{f}</span>
+                    <Editable as="span" class="firm-chip" file={file} path={`team.founders.${i}.firms.${j}`} value={f} label={`Founder firm ${j + 1}`} />
                   ))}
                 </div>
               </div>
-              <div
-                class="founder-industries"
-                data-k-file={file}
-                data-k-path={`team.founders.${i}.industries`}
-                data-k-value={p.industries}
-                data-k-kind="text"
-                data-k-label="Founder industries"
-              >{p.industries}</div>
+              <Editable as="div" class="founder-industries" file={file} path={`team.founders.${i}.industries`} value={p.industries} label="Founder industries" />
               <a class="leader-link founder-link" href={p.linkedin} target="_blank" rel="noopener noreferrer">
                 Connect on LinkedIn <span class="ar">↗</span>
               </a>
@@ -238,13 +190,7 @@ const file = 'src/content/pages/about.json';
         <Editable as="div" class="eyebrow story-eyebrow" kind="text" value={story.eyebrow} file={file} path="story.eyebrow" label="Story eyebrow" />
         <Editable as="h2" class="story-headline" kind="html" value={story.headingHtml} file={file} path="story.headingHtml" label="Story heading" />
         <blockquote class="hume-quote">
-          <p
-            data-k-file={file}
-            data-k-path="story.quote.text"
-            data-k-value={story.quote.text}
-            data-k-kind="text"
-            data-k-label="Story quote text"
-          >"{story.quote.text}"</p>
+          <p>"<Editable as="span" value={story.quote.text} file={file} path="story.quote.text" label="Story quote text" />"</p>
           <Editable as="cite" kind="html" value={story.quote.citeHtml} file={file} path="story.quote.citeHtml" label="Story quote citation" />
         </blockquote>
         <div class="story-photo">
@@ -265,14 +211,7 @@ const file = 'src/content/pages/about.json';
       </div>
       <div class="story-col-right reveal">
         {story.paragraphs.map((para, i) => (
-          <p
-            class="story-para"
-            data-k-file={file}
-            data-k-path={`story.paragraphs.${i}`}
-            data-k-value={para}
-            data-k-kind="text"
-            data-k-label={`Story paragraph ${i + 1}`}
-          >{para}</p>
+          <Editable as="p" class="story-para" file={file} path={`story.paragraphs.${i}`} value={para} label={`Story paragraph ${i + 1}`} />
         ))}
         <Editable as="p" class="story-para story-sign-line" kind="html" value={story.signOffHtml} file={file} path="story.signOffHtml" label="Story sign-off" />
         <Editable as="p" class="story-para" kind="html" value={story.closingParagraphHtml} file={file} path="story.closingParagraphHtml" label="Story closing paragraph" />

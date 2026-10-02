@@ -39,6 +39,10 @@ export function readLeafData(el) {
 		path: el.getAttribute('data-k-path') || null,
 		value: el.getAttribute('data-k-value') || null,
 		kind: el.getAttribute('data-k-kind') || 'text',
+		// Only present on a variable-kind field (see EDITABLE-CONTRACT.md) —
+		// the content path a kind-flip edit would target, same mechanism as
+		// any other field edit, never a special write path of its own.
+		kindPath: el.getAttribute('data-k-kind-path') || null,
 		label: el.getAttribute('data-k-label') || null,
 		hrefPath: el.getAttribute('data-k-href-path') || null,
 		hrefValue: el.getAttribute('data-k-href-value') || null,
@@ -188,16 +192,34 @@ function deactivate() {
 	hideOverlay();
 }
 
-// kind:'html' fields never get a live cosmetic patch, even though the
-// original render may use set:html for other reasons — only textContent/
-// attribute assignment, never markup injection. This is the one hard
-// safety rule from the spec: it closes off the one path a spoofed message
-// could otherwise use to inject markup into the page.
-export function applyPreview({ file, path, hrefPath, value }) {
+// kind:'html' fields get a live innerHTML patch, same as text fields get
+// textContent — both trust the value the same way, on the strength of
+// origin-pinning being the real security boundary here (checked on both
+// this script's message listener and the Portal's own). Every patch also
+// updates data-k-value itself, not just the visible content: readLeafData()
+// (what runs the next time this field is clicked) reads that attribute, not
+// the rendered text — without this, reopening a field always showed the
+// stale pre-edit value, making an in-progress edit look silently reverted
+// even though it was still correctly queued.
+export function applyPreview({ file, path, hrefPath, kindPath, value }) {
+	// A "promote this field to rich text" edit (see EDITABLE-CONTRACT.md's
+	// Variable-kind fields) flips data-k-kind on the live element itself —
+	// without this, a value patch arriving right after still reads the
+	// stale data-k-kind="text" below and renders escaped markup instead of
+	// the actual formatting the client just applied.
+	if (kindPath) {
+		document.querySelectorAll('[data-k-kind-path]').forEach((el) => {
+			if (el.getAttribute('data-k-file') === file && el.getAttribute('data-k-kind-path') === kindPath) {
+				el.setAttribute('data-k-kind', value);
+			}
+		});
+	}
 	if (path) {
 		document.querySelectorAll('[data-k-path]').forEach((el) => {
 			if (el.getAttribute('data-k-file') === file && el.getAttribute('data-k-path') === path) {
-				if (el.getAttribute('data-k-kind') !== 'html') el.textContent = value;
+				if (el.getAttribute('data-k-kind') === 'html') el.innerHTML = value;
+				else el.textContent = value;
+				el.setAttribute('data-k-value', value);
 			}
 		});
 	}
@@ -205,6 +227,7 @@ export function applyPreview({ file, path, hrefPath, value }) {
 		document.querySelectorAll('[data-k-href-path]').forEach((el) => {
 			if (el.getAttribute('data-k-file') === file && el.getAttribute('data-k-href-path') === hrefPath) {
 				el.setAttribute('href', value);
+				el.setAttribute('data-k-href-value', value);
 			}
 		});
 	}
